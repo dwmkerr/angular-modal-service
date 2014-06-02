@@ -1,0 +1,27 @@
+{
+  "name": "angular-modal-service",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dwmkerr/angular-modal-service",
+  "authors": [
+    "Dave Kerr (github.com/dwmkerr)"
+  ],
+  "description": "AngularJS Service for showing Modals and Popups",
+  "main": "angular-modal-service.js",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "modal",
+    "popup"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "angular-modal-service",
+  "version": "0.0.1",
+  "description": "AngularJS Service for showing Modals and Popups",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dwmkerr/angular-modal-service.git"
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "modal",
+    "popup"
+  ],
+  "author": "Dave Kerr (github.com/dwmkerr)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dwmkerr/angular-modal-service/issues"
+  },
+  "homepage": "https://github.com/dwmkerr/angular-modal-service",
+  "devDependencies": {
+    "express": "^4.4.0"
+  }
+}

@@ -11,8 +11,8 @@
 
   var module = angular.module('angularModalService', []);
 
-  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q',
-    function($document, $compile, $controller, $http, $rootScope, $q) {
+  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$timeout',
+    function($document, $compile, $controller, $http, $rootScope, $q, $timeout) {
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
@@ -43,10 +43,17 @@
             //  the scope, but also the resolution of any promises in our resolve.
             //  We will also create a deferred that is resolved with a provided
             //  close function. The controller can then call 'close(result)'.
+            //  The controller can also provide a delay for closing - this is 
+            //  helpful if there are closing animations which must finish first.
             var closeDeferred = $q.defer();
             var inputs = {
               $scope: modalScope,
-              close: function(result) {closeDeferred.resolve(result);}
+              close: function(result, delay) {
+                if(delay === undefined || delay === null) delay = 0;
+                $timeout(function () {
+                  closeDeferred.resolve(result);
+                }, delay);
+              }
             };
 
             //  Collect all promises to resolve for the controller.

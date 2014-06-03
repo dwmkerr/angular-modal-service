@@ -3,7 +3,7 @@ var app = angular.module('sampleapp', ['angularModalService']);
 
 app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
   
-  $scope.message = "";
+  $scope.message = "Open a modal, when you close it you'll see the result here.";
 
   $scope.showYesNo = function() {
 
@@ -14,6 +14,20 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       modal.element.modal();
       modal.close.then(function(result) {
         $scope.message = result ? "You said Yes" : "You said No";
+      });
+    });
+
+  };
+
+  $scope.showComplex = function() {
+
+    ModalService.showModal({
+      templateUrl: "complex/complex.html",
+      controller: "ComplexController"
+    }).then(function(modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+        $scope.message = "Name: " + result.name + ", age: " + result.age;
       });
     });
 

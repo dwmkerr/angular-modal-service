@@ -23,9 +23,11 @@ module.exports = function(grunt) {
     },
 
     karma: {
-      configFile: './test/karma.config.js',
-      background: false,
-      browsers: ['Chrome']
+      unit: {
+        configFile: 'test/karma.config.js',
+        background: false,
+        browsers: ['PhantomJS']
+      }
     },
 
     watch: {

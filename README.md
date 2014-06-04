@@ -1,7 +1,7 @@
 angular-modal-service
 =====================
 
-[![Build Status](https://secure.travis-ci.org/username/reponame.png?branch=master)](https://travis-ci.org/dwmkerr/angular-modal-service)
+[![Build Status](https://secure.travis-ci.org/dwmkerr/angular-modal-service.png?branch=master)](https://travis-ci.org/dwmkerr/angular-modal-service)
 
 Modal service for AngularJS - supports creating popups and modals via a service.
 

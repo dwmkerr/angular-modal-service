@@ -5,6 +5,26 @@ angular-modal-service
 
 Modal service for AngularJS - supports creating popups and modals via a service.
 
+### Usage
+
+### Error Handing
+
+As the `ModalService` exposes only one function, `showModal`, error handling is always performed in the same way.
+The `showModal` function returns a promise - if any part of the process fails, the promise will be rejected, meaning
+that a promise error handling function or `catch` function can be used to get the error details:
+
+```js
+ModalService.showModal({
+  templateUrl: "some/template.html",
+  controller: "SomeController"
+}).then(function(modal) {
+  // only called on success...
+}).catch(function(error) {
+  // error contains a detailed error message.
+  console.log(error);
+});
+```
+
 Developing
 ----------
 

@@ -33,4 +33,18 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
 
   };
 
+  $scope.showCustom = function() {
+
+    ModalService.showModal({
+      templateUrl: "custom/custom.html",
+      controller: "CustomController"
+    }).then(function(modal) {
+      modal.element.css("display", "block");
+      modal.close.then(function(result) {
+        $scope.message = "All good!";
+      });
+    });
+
+  };
+
 }]);

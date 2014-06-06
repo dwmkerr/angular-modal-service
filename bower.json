@@ -19,10 +19,13 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "test",
+    "samples",
     "src",
     ".gitignore",
     "*.json",
-    "*.js",
+    "server.js",
+    "Gruntfile.js",
     "*.yml"
   ],
   "dependencies": {

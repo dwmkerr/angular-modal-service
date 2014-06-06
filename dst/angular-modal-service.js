@@ -4,6 +4,7 @@
 
 /***** JSLint Config *****/
 /*global angular  */
+/*jslint multistr: true */
 (function() {
 
   'use strict';
@@ -31,10 +32,6 @@
         //  Validate the input parameters.
         if(!controller) {
           deferred.reject("No controller has been specified.");
-          return deferred.promise;
-        }
-        if(!templateUrl) {
-          deferred.reject("No templateUrl has been specified.");
           return deferred.promise;
         }
 

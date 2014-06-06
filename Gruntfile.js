@@ -15,34 +15,52 @@ module.exports = function(grunt) {
         sourceMap: true,
         sourceMapName: 'dst/angular-modal-service.min.js.map',
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          '<%= grunt.template.today("yyyy-mm-dd") %> */'
+          '<%= grunt.template.today("yyyy-mm-dd") %> github.com/dwmkerr/angular-modal-service */'
       },
-      files: {
-        'dst/angular-modal-service.min.js': ['src/angular-modal-service.js']
+      src: {
+        files: {
+          'dst/angular-modal-service.min.js': ['src/angular-modal-service.js']
+        }
+      }
+    },
+
+    copy: {
+      src: {
+        expand: true,
+        cwd: 'src/',
+        src: '*',
+        dest: 'dst/',
       }
     },
 
     karma: {
-      unit: {
+      options: {
         configFile: 'test/karma.config.js',
         background: false,
+      },
+      silent: {
         browsers: ['PhantomJS']
+      },
+      debug: {
+        browsers: ['Chrome'],
+        singleRun: false
       }
     },
 
     watch: {
       scripts: {
         files: ['src/**/*.js', 'test/**/*.js'],
-        tasks: ['jshint', 'karma']
+        tasks: ['jshint', 'karma:silent']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
-  grunt.registerTask('dev', ['jshint', 'karma', 'watch']);
-  grunt.registerTask('release', ['uglify']);
+  grunt.registerTask('dev', ['jshint', 'karma:silent', 'watch']);
+  grunt.registerTask('release', ['uglify', 'copy']);
 };

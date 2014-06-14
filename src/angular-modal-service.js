@@ -49,7 +49,7 @@
             var modalScope = $rootScope.$new();
 
             //  Create the inputs object to the controller - this will include
-            //  the scope, but also the resolution of any promises in our resolve.
+            //  the scope, as well as all inputs provided.
             //  We will also create a deferred that is resolved with a provided
             //  close function. The controller can then call 'close(result)'.
             //  The controller can also provide a delay for closing - this is 
@@ -65,62 +65,48 @@
               }
             };
 
-            //  Collect all promises to resolve for the controller.
-            var promises = {};
-            if(resolve) {
-              for (var promiseName in resolve) {
-                promises[promiseName] = resolve[promiseName];
+            //  If we have provided any inputs, pass them to the controller.
+            if(options.inputs) {
+              for(var inputName in options.inputs) {
+                inputs[inputName] = options.inputs[inputName];
               }
             }
 
-            //  Now resolve each promise.
-            $q.all(promises)
-              .then(function(results) {
+            //  Create the controller, explicitly specifying the scope to use.
+            var modalController = $controller(controller, inputs);
 
-                //  Add the result of each promise to the controller inputs.
-                for(var resultName in results) {
-                  inputs[resultName] = results[resultName];
-                }
+            //  Parse the modal HTML into a DOM element (in template form).
+            var modalElementTemplate = angular.element(modalHtml);
 
-                //  Create the controller, explicitly specifying the scope to use.
-                var modalController = $controller(controller, inputs);
+            //  Compile then link the template element, building the actual element.
+            var linkFn = $compile(modalElementTemplate);
+            var modalElement = linkFn(modalScope);
 
-                //  Parse the modal HTML into a DOM element (in template form).
-                var modalElementTemplate = angular.element(modalHtml);
+            //  Finally, append the modal to the dom.
+            body.append(modalElement);
 
-                //  Compile then link the template element, building the actual element.
-                var linkFn = $compile(modalElementTemplate);
-                var modalElement = linkFn(modalScope);
+            //  We now have a modal object.
+            var modal = {
+              controller: modalController,
+              scope: modalScope,
+              element: modalElement,
+              close: closeDeferred.promise
+            };
 
-                //  Finally, append the modal to the dom.
-                body.append(modalElement);
+            //  When close is resolved, we'll clean up the scope and element.
+            modal.close.then(function(result) {
+              //  Clean up the scope
+              modalScope.$destroy();
+              //  Remove the element from the dom.
+              modalElement.remove();
+            });
 
-                //  We now have a modal object.
-                var modal = {
-                  controller: modalController,
-                  scope: modalScope,
-                  element: modalElement,
-                  close: closeDeferred.promise
-                };
-
-                //  When close is resolved, we'll clean up the scope and element.
-                modal.close.then(function(result) {
-                  //  Clean up the scope
-                  modalScope.$destroy();
-                  //  Remove the element from the dom.
-                  modalElement.remove();
-                });
-
-                deferred.resolve(modal);
-
-              });
+            deferred.resolve(modal);
 
           });
 
         return deferred.promise;
       };
-
-      //  todo identify and handle all error cases.
 
     }
 

@@ -36,13 +36,15 @@ module.exports = function(grunt) {
     karma: {
       options: {
         configFile: 'test/karma.config.js',
-        background: false,
+        background: false
       },
       silent: {
         browsers: ['PhantomJS']
       },
       debug: {
         browsers: ['Chrome'],
+        preprocessors: { }, // no preprocessors, they mangle source
+        reporters: [], // no reporters needed when debugging
         singleRun: false
       }
     },

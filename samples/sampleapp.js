@@ -23,7 +23,10 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
 
     ModalService.showModal({
       templateUrl: "complex/complex.html",
-      controller: "ComplexController"
+      controller: "ComplexController",
+      inputs: {
+        title: "A More Complex Example"
+      }
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {

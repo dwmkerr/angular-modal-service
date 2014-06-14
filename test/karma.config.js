@@ -34,7 +34,7 @@ module.exports = function(config) {
     // tell karma how you want the coverage results
     coverageReporter: {
     	reporters: [{
-	    		type: 'html',
+	    		type: 'lcov',
 	      	dir: 'build/coverage/'
     		}
     	]

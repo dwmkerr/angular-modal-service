@@ -89,6 +89,8 @@ The `showModal` function takes an object with these fields:
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal. 
+* `inputs`: A set of values to pass as inputs to the controller. Each value provided
+  is injected into the controller constructor.
 
 #### The Modal Object
 
@@ -155,16 +157,24 @@ npm test
 
 A coverage report is written to `build\coverage`.
 
+If you are updating or debugging tests, you can run:
+
+```
+grunt karma:debug
+```
+
+This will open Karma in Chrome allowing you to set breakpoints and debug your suite.
+
 Todo
 ----
-* Support template cache 
+* LATER: Support template cache 
 * Code each error case
 * Ensure full coverage with unit tests
-  - DOM element created
-  - DOM element destroyed
-  - Parameters passed into controller successfully
-  - close parameter passed successfully
-* Finalise samples
+  - DOM element created DONE
+  - DOM element destroyed DONE
+  - Parameters passed into controller successfully DONE
+  - close parameter passed successfully DONE
+* Finalise samples with inputs
 * Write up blog post
 * Write up documentation
 * Post and share

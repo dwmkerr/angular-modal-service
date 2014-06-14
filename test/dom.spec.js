@@ -1,8 +1,8 @@
 describe('dom', function() {
 
   var ModalService = null;
-  var rootScope = null;
   var $httpBackend = null;
+  var $timeout = null;
 
   angular.module('domtests', ['angularModalService'])
     .controller('DomController', function ($scope, close) {
@@ -11,12 +11,12 @@ describe('dom', function() {
 
   beforeEach(function() {
     module('domtests');
-    inject(function(_ModalService_, $rootScope, $injector) {
+    inject(function(_ModalService_, $injector) {
       ModalService = _ModalService_;
-      rootScope = $rootScope;
       $httpBackend = $injector.get('$httpBackend');
+      $timeout = $injector.get('$timeout');
       $httpBackend.when('GET', 'some/template1.html').respond("<div id='template1'>template1</div>");
-      $httpBackend.when('GET', 'some/template2.html').respond("<div id='template1'>template2</div>");
+      $httpBackend.when('GET', 'some/template2.html').respond("<div id='template2'>template2</div>");
     });
   });
 
@@ -35,7 +35,7 @@ describe('dom', function() {
     }).then(function(modal) {
       
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template1')).not.toBe(null);
+      expect(document.getElementById('template1')).not.toBeNull();
 
     });
 
@@ -43,7 +43,7 @@ describe('dom', function() {
   
   });
  
-  xit('should remove the template html from the dom when the controller closes the modal', function() {
+  it('should remove the template html from the dom when the controller closes the modal', function() {
 
     $httpBackend.expectGET('some/template2.html');
 
@@ -53,18 +53,17 @@ describe('dom', function() {
     }).then(function(modal) {
       
       // We should be able to find the element that has been created in the dom.
-      var template2Before = document.getElementById('template2');
+      expect(document.getElementById('template2')).not.toBeNull();
 
       modal.close.then(function(result) {
-        expect(document.getElementById('template2')).toBeUndefined();
+        expect(document.getElementById('template2')).toBeNull();
       });
 
       modal.scope.close();
-      rootScope.$apply();
-
     });
 
     $httpBackend.flush();
+    $timeout.flush();
   
   });
 

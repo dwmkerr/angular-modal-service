@@ -29,17 +29,17 @@ describe('parameters', function() {
 
   });
 
-  it('should fail if there is no template url specified', function(done) {
+  it('should fail if there is no template or template url specified', function(done) {
 
     ModalService.showModal({
       controller: "SomeController"
-      //  note, no template url is specified, so we should fail.
+      //  note, no template or template url is specified, so we should fail.
     }).then(function(modal) {
       //  We should never get here!
       expect(true).toBe(false);
       done();
     }).catch(function(error) {
-      expect(error).toEqual("No templateUrl has been specified.");
+      expect(error).toEqual("No template or templateUrl has been specified.");
       done();
     });
 

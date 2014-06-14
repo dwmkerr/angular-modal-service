@@ -20,8 +20,28 @@
 
       var self = this;
 
+      //  Returns a promise which gets the template, either
+      //  from the template parameter or via a request to the 
+      //  template url parameter.
+      var getTemplate = function(template, templateUrl) {
+        var deferred = $q.defer();
+        if(template) {
+          deferred.resolve(template);
+        } else if(templateUrl) {
+          $http({method: 'GET', url: templateUrl, cache: true})
+            .then(function(result) {
+              deferred.resolve(result.data);
+            })
+            .catch(function(error) {
+              deferred.reject(error);
+            });
+        } else {
+          deferred.reject("No template or templateUrl has been specified.");
+        }
+        return deferred.promise;
+      };
+
       self.showModal = function(options) {
-        var templateUrl = options.templateUrl;
         var controller = options.controller;
         var resolve = options.resolve;
 
@@ -33,17 +53,12 @@
           deferred.reject("No controller has been specified.");
           return deferred.promise;
         }
-        if(!templateUrl) {
-          deferred.reject("No templateUrl has been specified.");
-          return deferred.promise;
-        }
 
         //  Get the actual html of the template.
-        $http.get(templateUrl)
-          .then(function(result) {
+        getTemplate(options.template, options.templateUrl)
+          .then(function(template) {
 
-            //  Create the complete modal html. Wrapped in a div which is what we remove.
-            var modalHtml = result.data;
+            var modalHtml = template;
 
             //  Create a new scope for the modal.
             var modalScope = $rootScope.$new();
@@ -103,6 +118,9 @@
 
             deferred.resolve(modal);
 
+          })
+          .catch(function(error) {
+            deferred.reject(error);
           });
 
         return deferred.promise;

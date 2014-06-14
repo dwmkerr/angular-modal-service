@@ -173,6 +173,7 @@ This will open Karma in Chrome allowing you to set breakpoints and debug your su
 Todo
 ----
 * LATER: Support template cache
+* cache HTTP get for template
 * Ensure full coverage with unit tests
   - DOM element created DONE
   - DOM element destroyed DONE

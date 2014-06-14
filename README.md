@@ -3,7 +3,8 @@ angular-modal-service
 
 [![Build Status](https://secure.travis-ci.org/dwmkerr/angular-modal-service.png?branch=master)](https://travis-ci.org/dwmkerr/angular-modal-service)
 [![Coverage Status](https://coveralls.io/repos/dwmkerr/angular-modal-service/badge.png?branch=master)](https://coveralls.io/r/dwmkerr/angular-modal-service?branch=master)
-![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.png)
+[![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
+[![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
 
 Modal service for AngularJS - supports creating popups and modals via a service.
 
@@ -17,17 +18,19 @@ TODO
 
 ### Usage
 
-The angular-modal-service exposes one function only, `showModal`. This function adds the specified 
-template to the DOM, builds a controller for it and returns a `modal` object to the caller. This allows
-you to create Bootstrap modals, custom modals, or in fact any DOM element you want.
+First install:
 
-First, make sure that you include the angular modal service javascript in your application:
+```
+bower install angular-modal-service
+```
+
+Then reference the minified script:
 
 ```html
 <script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>
 ```
 
-Ensure that when you create your application module, you specify the modal service as a dependency:
+Specify the modal service as a dependency of your application:
 
 ```js
 var app = angular.module('sampleapp', ['angularModalService']);
@@ -169,14 +172,16 @@ This will open Karma in Chrome allowing you to set breakpoints and debug your su
 
 Todo
 ----
-* LATER: Support template cache 
-* Code each error case
+* LATER: Support template cache
 * Ensure full coverage with unit tests
   - DOM element created DONE
   - DOM element destroyed DONE
   - Parameters passed into controller successfully DONE
   - close parameter passed successfully DONE
 * Finalise samples with inputs DONE
+* Get coverage and dependencies badges working DONE
 * Write up blog post
-* Write up documentation
+* Write up README
+* Publish Samples
+* Test bower install
 * Post and share

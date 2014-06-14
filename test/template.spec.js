@@ -4,12 +4,12 @@ describe('template', function() {
   var rootScope = null;
   var $httpBackend = null;
 
-  angular.module('tests', ['angularModalService'])
-    .controller('SomeController', function ($scope) {
+  angular.module('templatetests', ['angularModalService'])
+    .controller('TemplateController', function ($scope) {
     });
 
   beforeEach(function() {
-    module('tests');
+    module('templatetests');
     inject(function(_ModalService_, $rootScope, $injector) {
       ModalService = _ModalService_;
       rootScope = $rootScope;
@@ -28,7 +28,7 @@ describe('template', function() {
     $httpBackend.expectGET('some/template.html');
 
     ModalService.showModal({
-      controller: "SomeController",
+      controller: "TemplateController",
       templateUrl: "some/template.html"
     }).then(function(modal) {
       expect(modal).not.toBe(null);

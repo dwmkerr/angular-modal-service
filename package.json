@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "grunt karma:silent",
-    "coveralls": "node node_modules/coveralls/bin/coveralls.js < test.lcov.info"
+    "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,7 @@ angular-modal-service
 =====================
 
 [![Build Status](https://secure.travis-ci.org/dwmkerr/angular-modal-service.png?branch=master)](https://travis-ci.org/dwmkerr/angular-modal-service)
+[![Coverage Status](https://coveralls.io/repos/dwmkerr/angular-modal-service/badge.png?branch=master)](https://coveralls.io/r/dwmkerr/angular-modal-service?branch=master)
 
 Modal service for AngularJS - supports creating popups and modals via a service.
 
@@ -174,7 +175,7 @@ Todo
   - DOM element destroyed DONE
   - Parameters passed into controller successfully DONE
   - close parameter passed successfully DONE
-* Finalise samples with inputs
+* Finalise samples with inputs DONE
 * Write up blog post
 * Write up documentation
 * Post and share

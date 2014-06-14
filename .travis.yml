@@ -6,4 +6,5 @@ before_script:
   - 'npm install -g bower' 
   - 'bower install'
 after_script:
+  - 'find build -type d -print'
   - 'npm run coveralls'

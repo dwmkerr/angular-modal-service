@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sampleapp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Dave Kerr">
+    <title>Angular Modal Service - Samples</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+    <script src="angular-modal-service.js"></script>
+    <script src="sampleapp.js"></script>
+    <script src="/yesno/yesnocontroller.js"></script>
+    <script src="/complex/complexcontroller.js"></script>
+    <script src="/custom/customcontroller.js"></script>
+    <style>
+    body {
+      padding-top: 50px;
+    }
+    .starter-template {
+      padding: 40px 15px;
+      text-align: center;
+    }
+    .sample {
+      padding: 40px 15px;
+    }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body ng-controller="SampleController" data-spy="scroll" data-target="#mainNav">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Angular Modal Service Samples</a>
+        </div>
+        <div id="mainNav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#yesno">Yes No Modal</a></li>
+            <li><a href="#complex">Complex Modal</a></li>
+            <li><a href="#custom">Custom Modal</a></li>
+            <li><a href="https://github.com/dwmkerr/angular-modal-service">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Angular Modal Service Samples</h1>
+        <p class="lead">Samples for <a href="https://github.com/dwmkerr/angular-modal-service">the only Angular Modal Service you'll ever need</a>.</p>
+      </div>
+
+      <hr />
+
+      <a id="yesno"></a>
+      <div class="sample">
+      <h3>A Simple Yes/No Modal</h3>
+
+      <p>This sample shows a Bootstrap Modal with the options 'Yes' and 'No'.</p>
+      <p>It demonstrates how to show a Bootstrap Modal, how to show a modal and how
+      to retrieve data from the modal.</p>
+
+      <p><a href class="btn btn-default btn-lg " ng-click="showYesNo()">Show Yes No</a></p>
+
+      <pre ng-show="yesNoResult">{{yesNoResult}}</pre>
+      <p>See the code that makes up this sample:</p>
+      <ul>
+      <li>The Modal Template - <a href="">yesno.html</a></li>
+      <li>The Modal Controller - <a href="">yesnocontroller.js</a></li>
+      <li>The Sample Controller (see 'showYesNo') - <a href="">sampleapp.js</a></li>
+      </ul>
+      </div>
+
+      <hr />
+
+      <a id="complex"></a>
+      <div class="sample">
+      <h3>A Complex Modal</h3>
+
+      <p>This more complicated modal contains a form, showing how the modal template can
+      be customised. It also has a controller with data injected by the caller and 
+      returns more complex data.</p>
+      
+      <p><a href class="btn btn-default btn-lg " ng-click="showComplex()">Show Complex</a></p>
+
+      <pre ng-show="complexResult">{{complexResult}}</pre>
+      <p>See the code that makes up this sample:</p>
+      <ul>
+      <li>The Modal Template - <a href="">complex.html</a></li>
+      <li>The Modal Controller - <a href="">complexcontroller.js</a></li>
+      <li>The Sample Controller (see 'showComplex') - <a href="">sampleapp.js</a></li>
+      </ul>
+      </div>
+
+      <hr />
+
+      <a id="custom"></a>
+      <div class="sample">
+      <h3>A Custom Modal</h3>
+
+      <p>This sample shows how you can use any kind of modal, not just Bootstrap modals.</p>
+      
+      <p><a href class="btn btn-default btn-lg " ng-click="showCustom()">Show Custom</a></p>
+
+      <pre ng-show="customResult">{{customResult}}</pre>
+      <p>See the code that makes up this sample:</p>
+      <ul>
+      <li>The Modal Template - <a href="">custom.html</a></li>
+      <li>The Modal Controller - <a href="">customcontroller.js</a></li>
+      <li>The Sample Controller (see 'showCustom') - <a href="">sampleapp.js</a></li>
+      </ul>
+      </div>
+
+
+    </div>
+
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51910473-1', 'dwmkerr.github.io');
+  ga('send', 'pageview');
+
+</script>
+</html>

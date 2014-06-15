@@ -3,7 +3,9 @@ var app = angular.module('sampleapp', ['angularModalService']);
 
 app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
   
-  $scope.message = "Open a modal, when you close it you'll see the result here.";
+  $scope.yesNoResult = null;
+  $scope.complexResult = null;
+  $scope.customResult = null;
 
   $scope.showYesNo = function() {
 
@@ -13,7 +15,7 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {
-        $scope.message = result ? "You said Yes" : "You said No";
+        $scope.yesNoResult = result ? "You said Yes" : "You said No";
       });
     });
 
@@ -30,7 +32,7 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {
-        $scope.message = "Name: " + result.name + ", age: " + result.age;
+        $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
       });
     });
 
@@ -44,7 +46,7 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     }).then(function(modal) {
       modal.element.css("display", "block");
       modal.close.then(function(result) {
-        $scope.message = "All good!";
+        $scope.customResult = "All good!";
       });
     });
 

@@ -173,15 +173,17 @@ This will open Karma in Chrome allowing you to set breakpoints and debug your su
 Todo
 ----
 * LATER: Support template cache
-* cache HTTP get for template
+* cache HTTP get for template DONE
 * Ensure full coverage with unit tests
   - DOM element created DONE
   - DOM element destroyed DONE
   - Parameters passed into controller successfully DONE
   - close parameter passed successfully DONE
+  - raw template
 * Finalise samples with inputs DONE
 * Get coverage and dependencies badges working DONE
-* Write up blog post
+* Write up blog post DONE
+* Write up samples
 * Write up README
 * Publish Samples
 * Test bower install

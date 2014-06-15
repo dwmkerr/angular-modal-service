@@ -3,8 +3,14 @@ describe('parameters', function() {
   var ModalService = null;
   var rootScope = null;
 
+
+  angular.module('parametertests', ['angularModalService'])
+    .controller('ValidController', function ($scope, close) {
+      $scope.close = close;
+    });
+
   beforeEach(function() {
-    module('angularModalService');
+    module('parametertests');
     inject(function(_ModalService_, $rootScope) {
       ModalService = _ModalService_;
       rootScope = $rootScope;
@@ -42,6 +48,21 @@ describe('parameters', function() {
       expect(error).toEqual("No template or templateUrl has been specified.");
       done();
     });
+
+    rootScope.$apply();
+
+  });
+
+  it('should accept the template provided as a string', function(done) {
+
+    ModalService.showModal({
+      controller: "ValidController",
+      template: "<div>A template</div>"
+    }).then(function(modal) {
+      expect(modal.element.html()).toBe("A template");
+      done();
+    });
+
 
     rootScope.$apply();
 

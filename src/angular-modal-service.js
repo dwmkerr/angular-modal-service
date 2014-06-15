@@ -42,13 +42,12 @@
       };
 
       self.showModal = function(options) {
-        var controller = options.controller;
-        var resolve = options.resolve;
-
+        
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 
         //  Validate the input parameters.
+        var controller = options.controller;
         if(!controller) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
@@ -57,8 +56,6 @@
         //  Get the actual html of the template.
         getTemplate(options.template, options.templateUrl)
           .then(function(template) {
-
-            var modalHtml = template;
 
             //  Create a new scope for the modal.
             var modalScope = $rootScope.$new();
@@ -91,7 +88,7 @@
             var modalController = $controller(controller, inputs);
 
             //  Parse the modal HTML into a DOM element (in template form).
-            var modalElementTemplate = angular.element(modalHtml);
+            var modalElementTemplate = angular.element(template);
 
             //  Compile then link the template element, building the actual element.
             var linkFn = $compile(modalElementTemplate);

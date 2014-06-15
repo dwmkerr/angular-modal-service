@@ -15,6 +15,7 @@ describe('template', function() {
       rootScope = $rootScope;
       $httpBackend = $injector.get('$httpBackend');
       $httpBackend.when('GET', 'some/template.html').respond("<div>template</div>");
+      $httpBackend.when('GET', 'some/invalid/template.html').respond(404, 'Not Found');
     });
   });
 
@@ -32,6 +33,21 @@ describe('template', function() {
       templateUrl: "some/template.html"
     }).then(function(modal) {
       expect(modal).not.toBe(null);
+    });
+
+    $httpBackend.flush();
+  
+  });
+
+  it('should fail to get an invalid template url', function() {
+
+    ModalService.showModal({
+      controller: "TemplateController",
+      templateUrl: "some/invalid/template.html"
+    }).then(function(modal) {
+      
+    }).catch(function(error) {
+      expect(error).not.toBe(null);
     });
 
     $httpBackend.flush();

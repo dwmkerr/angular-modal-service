@@ -6,11 +6,11 @@ angular-modal-service
 [![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
 
-Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a [full set of samples](http://dwmkerr.github.io/angular-modal-service).
+Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 
 ### Usage
 
-First install:
+First, install with Bower:
 
 ```
 bower install angular-modal-service
@@ -31,7 +31,7 @@ var app = angular.module('sampleapp', ['angularModalService']);
 Now just inject the modal service into any controller, service or directive where you need it.
 
 ```js
-app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
+app.controller('SampleController', function($scope, ModalService) {
   
   $scope.showAModal = function() {
 
@@ -50,9 +50,11 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     });
 
   };
+
+});
 ```
 
-Calling 'showModal' returns a promise which is resolved when the modal DOM element is created
+Calling `showModal` returns a promise which is resolved when the modal DOM element is created
 and the controller for it is created. The promise returns a `modal` object which contains the 
 element created, the controller, the scope and a `close` promise which is resolved when the 
 modal is closed - this `close` promise provides the result of the modal close function.
@@ -62,11 +64,13 @@ provided with one extra parameter - the `close` function. Here's an example cont
 for a bootstrap modal:
 
 ```js
-app.controller('SampleModalController', ['$scope', 'close', function($scope, close) {
+app.controller('SampleModalController', function($scope, close) {
   
  $scope.close = function(result) {
  	close(result, 200); // close, but give 200ms for bootstrap to animate
  };
+
+});
 ```
 
 The `close` function is automatically injected to the modal controller and takes the result
@@ -135,7 +139,7 @@ bower install
 ```
 
 and all code will be built and ready to go. To ensure the code is linted, test, minified and
-updated to the `dst` folder as you change it, just run:
+updated to the `dst` folder as you change it, run:
 
 ```
 grunt dev

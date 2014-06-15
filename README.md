@@ -6,15 +6,7 @@ angular-modal-service
 [![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
 
-Modal service for AngularJS - supports creating popups and modals via a service.
-
-A full end-to-end example of using this service to show a bootstrap modal is at:
-
-TODO
-
-You can see the modal service in action showing some modals here:
-
-TODO
+Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a [full set of samples](http://dwmkerr.github.io/angular-modal-service).
 
 ### Usage
 
@@ -169,22 +161,3 @@ grunt karma:debug
 ```
 
 This will open Karma in Chrome allowing you to set breakpoints and debug your suite.
-
-Todo
-----
-* LATER: Support template cache
-* cache HTTP get for template DONE
-* Ensure full coverage with unit tests
-  - DOM element created DONE
-  - DOM element destroyed DONE
-  - Parameters passed into controller successfully DONE
-  - close parameter passed successfully DONE
-  - raw template
-* Finalise samples with inputs DONE
-* Get coverage and dependencies badges working DONE
-* Write up blog post DONE
-* Write up samples
-* Write up README
-* Publish Samples
-* Test bower install
-* Post and share

@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**/*.js', 'test/**/*.js'],
-        tasks: ['jshint', 'karma:silent']
+        tasks: ['jshint', 'karma:silent', 'release']
       }
     }
   });

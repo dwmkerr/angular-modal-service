@@ -22,7 +22,7 @@ describe('template', function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
- 
+
   it('should http get the specified template url', function() {
 
     $httpBackend.expectGET('some/template.html');

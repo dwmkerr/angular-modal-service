@@ -10,8 +10,8 @@
 
   var module = angular.module('angularModalService', []);
 
-  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$timeout',
-    function($document, $compile, $controller, $http, $rootScope, $q, $timeout) {
+  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$timeout', '$templateCache',
+    function($document, $compile, $controller, $http, $rootScope, $q, $timeout, $templateCache) {
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
@@ -28,13 +28,23 @@
         if(template) {
           deferred.resolve(template);
         } else if(templateUrl) {
-          $http({method: 'GET', url: templateUrl, cache: true})
-            .then(function(result) {
-              deferred.resolve(result.data);
-            })
-            .catch(function(error) {
-              deferred.reject(error);
-            });
+          // check to see if the template has already been loaded
+          var cache = $templateCache.get(templateUrl);
+          if(cache !== undefined) {
+            deferred.resolve(cache);
+          }
+          // if not, let's grab the template for the first time
+          else {
+            $http({method: 'GET', url: templateUrl, cache: true})
+              .then(function(result) {
+                // save template into the cache and return the template
+                $templateCache.put(templateUrl, result.data);
+                deferred.resolve(result.data);
+              })
+              .catch(function(error) {
+                deferred.reject(error);
+              });
+          }
         } else {
           deferred.reject("No template or templateUrl has been specified.");
         }

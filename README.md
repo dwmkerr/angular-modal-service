@@ -171,4 +171,4 @@ Thanks
 
 Thanks go the the following contributors:
 
-[https://github.com/joshvillbrandt](joshvillbrant) - Adding support for `$templateCache`.
+[joshvillbrandt](https://github.com/joshvillbrandt) - Adding support for `$templateCache`.

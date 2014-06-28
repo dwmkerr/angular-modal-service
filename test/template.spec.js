@@ -63,21 +63,21 @@ describe('template', function() {
       controller: "TemplateController",
       templateUrl: "templatetobecached.html"
     }).then(function(modal) {
-      expect(modal).not.toBe(null);
+
+      //  The template should now be cached...
+      spyOn($templateCache, 'get').and.callThrough();
+
+      ModalService.showModal({
+        controller: "TemplateController",
+        templateUrl: "templatetobecached.html"
+      }).then(function(modal) {
+        expect(modal).not.toBe(null);
+      });
+
+      //  ...so get should have been called.
+      expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
+
     });
-
-    //  The template should now be cached...
-    spyOn($templateCache, 'get');
-
-    ModalService.showModal({
-      controller: "TemplateController",
-      templateUrl: "templatetobecached.html"
-    }).then(function(modal) {
-      expect(modal).not.toBe(null);
-    });
-
-    //  ...so get should have been called.
-    expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
 
     $httpBackend.flush();
 

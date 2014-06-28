@@ -165,3 +165,10 @@ grunt karma:debug
 ```
 
 This will open Karma in Chrome allowing you to set breakpoints and debug your suite.
+
+Thanks
+------
+
+Thanks go the the following contributors:
+
+[https://github.com/joshvillbrandt](joshvillbrant) - Adding support for `$templateCache`.

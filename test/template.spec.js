@@ -54,4 +54,33 @@ describe('template', function() {
   
   });
 
+  it('should use the template cache for subsequent requests for the same template', 
+    inject(function($templateCache) {
+
+    $httpBackend.expectGET('templatetobecached.html').respond('<div>template</div>');
+
+    ModalService.showModal({
+      controller: "TemplateController",
+      templateUrl: "templatetobecached.html"
+    }).then(function(modal) {
+      expect(modal).not.toBe(null);
+    });
+
+    //  The template should now be cached...
+    spyOn($templateCache, 'get');
+
+    ModalService.showModal({
+      controller: "TemplateController",
+      templateUrl: "templatetobecached.html"
+    }).then(function(modal) {
+      expect(modal).not.toBe(null);
+    });
+
+    //  ...so get should have been called.
+    expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
+
+    $httpBackend.flush();
+
+  }));
+
 });

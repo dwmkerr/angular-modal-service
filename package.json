@@ -1,6 +1,6 @@
 {
   "name": "angular-modal-service",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "server.js",
   "scripts": {

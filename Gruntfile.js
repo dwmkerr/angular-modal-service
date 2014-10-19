@@ -63,6 +63,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
 
+  grunt.registerTask('default', ['jshint', 'karma:silent', 'watch']);
   grunt.registerTask('dev', ['jshint', 'karma:silent', 'watch']);
   grunt.registerTask('release', ['uglify', 'copy']);
 };

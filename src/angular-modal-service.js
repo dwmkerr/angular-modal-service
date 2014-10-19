@@ -107,7 +107,13 @@
             var modalController = $controller(controller, inputs);
 
             //  Finally, append the modal to the dom.
-            body.append(modalElement);
+            if (options.appendElement) {
+              // append to custom append element
+              options.appendElement.append(modalElement);
+            } else {
+              // append to body when no custom append element is specified
+              body.append(modalElement);
+            }
 
             //  We now have a modal object.
             var modal = {

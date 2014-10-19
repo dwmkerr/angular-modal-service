@@ -42,6 +42,57 @@ describe('dom', function() {
     $httpBackend.flush();
   
   });
+
+  it('should add the template html to the custom dom element', function () {
+    $httpBackend.expectGET('some/template1.html');
+
+    // create fake element
+    var fakeDomElement = document.createElement('div');
+    fakeDomElement.id = 'fake-dom-element';
+
+    // insert fakeDomElement into the document to test against
+    document.body.insertBefore(fakeDomElement);
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template1.html",
+      appendElement: angular.element(document.getElementById('fake-dom-element'))
+    }).then(function (modal) {
+      // We should be able to find the lement that has been created in the custom dom element
+      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
+    });
+
+    $httpBackend.flush();
+  });
+
+  it('should close the template html to the custom dom element', function () {
+    $httpBackend.expectGET('some/template1.html');
+
+    // create fake element
+    var fakeDomElement = document.createElement('div');
+    fakeDomElement.id = 'fake-dom-element';
+
+    // insert fakeDomElement into the document to test against
+    document.body.insertBefore(fakeDomElement);
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template1.html",
+      appendElement: angular.element(document.getElementById('fake-dom-element'))
+    }).then(function (modal) {
+      // We should be able to find the lement that has been created in the custom dom element
+      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
+
+      modal.close.then(function(result) {
+        expect(document.getElementById('template2')).toBeNull();
+      });
+
+      modal.scope.close();
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+  });
  
   it('should remove the template html from the dom when the controller closes the modal', function() {
 

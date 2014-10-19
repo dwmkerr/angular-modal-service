@@ -44,7 +44,6 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       templateUrl: "custom/custom.html",
       controller: "CustomController"
     }).then(function(modal) {
-      modal.element.css("display", "block");
       modal.close.then(function(result) {
         $scope.customResult = "All good!";
       });

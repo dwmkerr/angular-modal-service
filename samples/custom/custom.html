@@ -1,6 +1,5 @@
 <style type="text/css">
 #overlay {
-    display: none;
     position: fixed;
     left: 25%;
     top: 25%;
@@ -12,7 +11,6 @@
     z-index: 100;
 }
 #fade {
-    display: none;
     position: fixed;
     left: 0%;
     top: 0%;
@@ -25,9 +23,9 @@
     z-index: 90;
 }
 </style>
-<div id="overlay">
+<div id="overlay" ng-show="display">
     This is a custom modal. The angular-modal-service doesn't depend on bootstrap, you
     can use any modal you want.
     <a href ng-click="close()">Close</a>
 </div>
-<div id="fade"></div>
+<div id="fade" ng-show="display"></div>

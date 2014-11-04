@@ -5,6 +5,8 @@ describe('controller', function() {
   var $timeout = null;
 
   angular.module('controllertests', ['angularModalService'])
+    .controller('CloseController', function ($scope) {
+    });
     .controller('InputsController', function ($scope, input1, input2) {
       $scope.input1 = input1;
       $scope.input2 = input2;

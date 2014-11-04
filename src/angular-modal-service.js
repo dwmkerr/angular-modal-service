@@ -69,6 +69,9 @@
 
             //  Create a new scope for the modal.
             var modalScope = $rootScope.$new();
+            
+            // Init Variables on Scope
+            if (options.init !=undefined) angular.extend(modalScope, options.init);
 
             //  Create the inputs object to the controller - this will include
             //  the scope, as well as all inputs provided.

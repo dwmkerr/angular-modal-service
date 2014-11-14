@@ -70,11 +70,8 @@ app.controller('SampleModalController', function($scope) {
   //You can get the parameters sent through the `init` object
   console.log($scope.textModal);
 
-  //function
-  $scope.closeModal(function() { return true; }, 200); // close, but give 200ms for bootstrap to animate
-
-  //OR
   $scope.closeModal(true, 200); // close, but give 200ms for bootstrap to animate
+  //OR you can return a object like: $scope.closeModal({p1: true, p2: "hello"}, 200);
 
 });
 ```

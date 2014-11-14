@@ -5,8 +5,8 @@ describe('parameters', function() {
 
 
   angular.module('parametertests', ['angularModalService'])
-    .controller('ValidController', function ($scope, close) {
-      $scope.close = close;
+    .controller('ValidController', function ($scope) {
+      //$scope.closeModal > action to close modal
     });
 
   beforeEach(function() {
@@ -16,7 +16,7 @@ describe('parameters', function() {
       rootScope = $rootScope;
     });
   });
- 
+
   it('should fail if there is no controller specified', function(done) {
 
     ModalService.showModal({

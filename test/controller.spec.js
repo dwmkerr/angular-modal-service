@@ -6,7 +6,8 @@ describe('controller', function() {
 
   angular.module('controllertests', ['angularModalService'])
     .controller('CloseController', function ($scope) {
-    });
+      //$scope.closeModal > action to close modal
+    })
     .controller('InputsController', function ($scope, input1, input2) {
       $scope.input1 = input1;
       $scope.input2 = input2;
@@ -26,7 +27,7 @@ describe('controller', function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
- 
+
   it('should inject the closeModal function into the controller scope', function() {
 
     $httpBackend.expectGET('some/controllertemplate.html');
@@ -35,15 +36,18 @@ describe('controller', function() {
       controller: "CloseController",
       templateUrl: "some/controllertemplate.html"
     }).then(function(modal) {
-      
-      //  The controller we've created should put the close function on
+
+      //  The controller we've created should put the closeModal function on
       //  the scope, this is how we test it's been passed.
       expect(modal.scope.closeModal).not.toBeUndefined();
+      //  The controller we've created should put the onClose callback function on
+      //  the modal object, this is how we test it's been passed.
+      expect(modal.onClose).not.toBeUndefined();
 
     });
 
     $httpBackend.flush();
-  
+
   });
 
   it('should inject inputs and init variables to the controller', function() {
@@ -61,7 +65,7 @@ describe('controller', function() {
         test: 'new Test'
       }
     }).then(function(modal) {
-      
+
       //  The controller sets the inputs on the scope.
       expect(modal.scope.input1).toBe(15);
       expect(modal.scope.input2).toBe("hi");

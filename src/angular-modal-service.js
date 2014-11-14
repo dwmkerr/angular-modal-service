@@ -71,7 +71,7 @@
             var modalScope = $rootScope.$new();
 
             // Init Variables on Scope
-            if (options.init !=undefined) angular.extend(modalScope, options.init);
+            if (options.init !== undefined) angular.extend(modalScope, options.init);
 
             //  We will also create a deferred that is resolved with a provided
             //  close function. The controller can then call 'close(result)'.

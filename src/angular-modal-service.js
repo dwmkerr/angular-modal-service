@@ -15,13 +15,13 @@
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
-    
+
     function ModalService() {
 
       var self = this;
 
       //  Returns a promise which gets the template, either
-      //  from the template parameter or via a request to the 
+      //  from the template parameter or via a request to the
       //  template url parameter.
       var getTemplate = function(template, templateUrl) {
         var deferred = $q.defer();
@@ -52,7 +52,7 @@
       };
 
       self.showModal = function(options) {
-        
+
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 
@@ -70,21 +70,25 @@
             //  Create a new scope for the modal.
             var modalScope = $rootScope.$new();
 
-            //  Create the inputs object to the controller - this will include
-            //  the scope, as well as all inputs provided.
+            // Init Variables on Scope
+            if (options.init !== undefined) angular.extend(modalScope, options.init);
+
             //  We will also create a deferred that is resolved with a provided
             //  close function. The controller can then call 'close(result)'.
-            //  The controller can also provide a delay for closing - this is 
+            //  The controller can also provide a delay for closing - this is
             //  helpful if there are closing animations which must finish first.
             var closeDeferred = $q.defer();
-            var inputs = {
-              $scope: modalScope,
-              close: function(result, delay) {
+            angular.extend(modalScope, {closeModal: function(result, delay) {
                 if(delay === undefined || delay === null) delay = 0;
                 $timeout(function () {
                   closeDeferred.resolve(result);
                 }, delay);
-              }
+              }});
+
+            //  Create the inputs object to the controller - this will include
+            //  the scope, as well as all inputs provided.
+            var inputs = {
+              $scope: modalScope
             };
 
             //  If we have provided any inputs, pass them to the controller.
@@ -120,11 +124,11 @@
               controller: modalController,
               scope: modalScope,
               element: modalElement,
-              close: closeDeferred.promise
+              onClose: closeDeferred.promise
             };
 
             //  When close is resolved, we'll clean up the scope and element.
-            modal.close.then(function(result) {
+            modal.onClose.then(function(result) {
               //  Clean up the scope
               modalScope.$destroy();
               //  Remove the element from the dom.

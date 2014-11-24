@@ -86,7 +86,9 @@ is so that you can have a delay before destroying the DOM element if you are ani
 closure.
 
 Now just make sure the `close` function is called by your modal controller when the modal
-should be closed and that's it.
+should be closed and that's it. Quick hint - if you are using Bootstrap for your modals,
+then make sure the modal template only contains one root level element, see the [FAQ](#faq)
+for the gritty details of why.
 
 #### ShowModal Options
 

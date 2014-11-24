@@ -8,7 +8,13 @@ angular-modal-service
 
 Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 
-### Usage
+1. [Usage](#Usage)
+2. [Developing](#Developing)
+3. [Tests](#Tests)
+4. [FAQ & Troubleshooting](#FAQ)
+5. [Thanks](#Thanks)
+
+## Usage
 
 First, install with Bower:
 
@@ -129,8 +135,7 @@ ModalService.showModal({
 });
 ```
 
-Developing
-----------
+## Developing
 
 To work with the code, just run:
 
@@ -148,8 +153,7 @@ grunt dev
 
 The easiest way to adapt the code is to play with some of the examples in the ``samples`` folder.
 
-Tests
------
+## Tests
 
 Run tests with:
 
@@ -167,8 +171,33 @@ grunt karma:debug
 
 This will open Karma in Chrome allowing you to set breakpoints and debug your suite.
 
-Thanks
-------
+## FAQ
+
+Having problems? Check this FAQ first.
+
+**I'm using a Bootstrap Modal and the backdrop doesn't fade away**
+
+This can happen if your modal template contains more than one top level element.
+Imagine this case:
+
+```html
+<!-- Some comment -->
+<div>...some modal</div>
+```
+
+When you create the modal, the Angular Modal Service will add both of these elements
+to the page, then pass the elements to you as a jQuery selector. When you call bootstrap's
+`modal` function on it, it will try and make both elements into a modal:
+
+```js
+modal.element.modal();
+```
+
+In this case, either remove the extra elements, or find the specific element you need
+from the provided `modal.element` property.
+
+
+## Thanks
 
 Thanks go the the following contributors:
 

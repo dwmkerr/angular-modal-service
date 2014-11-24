@@ -1,3 +1,7 @@
+## v0.5
+
+* Updated the dependencies to use AngularJS 1.3 and upwards.
+
 ## v0.4
 
 ### Features

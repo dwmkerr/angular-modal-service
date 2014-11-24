@@ -8,11 +8,11 @@ angular-modal-service
 
 Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 
-1. [Usage](#Usage)
-2. [Developing](#Developing)
-3. [Tests](#Tests)
-4. [FAQ & Troubleshooting](#FAQ)
-5. [Thanks](#Thanks)
+1. [Usage](#usage)
+2. [Developing](#developing)
+3. [Tests](#tests)
+4. [FAQ & Troubleshooting](#faq)
+5. [Thanks](#thanks)
 
 ## Usage
 
@@ -187,12 +187,13 @@ Imagine this case:
 
 When you create the modal, the Angular Modal Service will add both of these elements
 to the page, then pass the elements to you as a jQuery selector. When you call bootstrap's
-`modal` function on it, it will try and make both elements into a modal:
+`modal` function on it, like this:
 
 ```js
 modal.element.modal();
 ```
 
+It will try and make both elements into a modal. This means both elements will get a backdrop.
 In this case, either remove the extra elements, or find the specific element you need
 from the provided `modal.element` property.
 

@@ -120,6 +120,11 @@
               body.append(modalElement);
             }
 
+              // if a bodyClass is specified append it to the body
+              if (options.bodyClass) {
+                body.addClass(options.bodyClass);
+              }
+
             //  We now have a modal object.
             var modal = {
               controller: modalController,
@@ -134,6 +139,11 @@
               modalScope.$destroy();
               //  Remove the element from the dom.
               modalElement.remove();
+
+              // Remove bodyClass
+              if (options.bodyClass) {
+                body.removeClass(options.bodyClass);
+              }
             });
 
             deferred.resolve(modal);

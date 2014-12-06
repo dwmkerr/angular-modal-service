@@ -88,6 +88,7 @@ The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created.
 * `controllerAs` : The name controllerAs - (optional)
+* `bodyClass` : class to be added and removed to body when modal displayed - (optional)
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal.

@@ -1,6 +1,8 @@
 var app = angular.module('sampleapp');
 
-app.controller('ComplexController', ['$scope', 'title', 'close', function($scope, title, close) {
+app.controller('ComplexController', [
+  '$scope', '$element', 'title', 'close', 
+  function($scope, $element, title, close) {
 
   $scope.name = null;
   $scope.age = null;

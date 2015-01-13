@@ -199,6 +199,28 @@ It will try and make both elements into a modal. This means both elements will g
 In this case, either remove the extra elements, or find the specific element you need
 from the provided `modal.element` property.
 
+**I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?**
+
+You can check the 'Complex' sample ([complexcontroller.js](samples/complex/complexcontroller.js)). The 'Cancel' button closes without using the `data-dismiss` attribute.
+All you need to do is grab the modal element in your controller, then call the bootstrap `modal` function
+to manually close the modal. Then call the `close` function as normal:
+
+```js
+app.controller('ExampleModalController', [
+  '$scope', '$element', 'close', 
+  function($scope, $element, close) {
+
+  $scope.closeModal = function() {
+
+    //  Manually hide the modal using bootstrap.
+    $element.modal('hide');
+    
+    //  Now close as normal, but give 500ms for bootstrap to animate
+    close(null, 500);
+  };
+
+}]);
+```
 
 ## Thanks
 

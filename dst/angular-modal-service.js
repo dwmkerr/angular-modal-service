@@ -134,19 +134,23 @@
             };
 
             //  When close is resolved, we'll clean up the scope and element.
-            modal.close.then(function(result) {
-              //  Clean up the scope
-              modalScope.$destroy();
-              //  Remove the element from the dom.
-              modalElement.remove();
-
-              // Remove bodyClass
-              if (options.bodyClass) {
-                body.removeClass(options.bodyClass);
-              }
-            });
+            modal.close.then(closeModal);
 
             deferred.resolve(modal);
+
+              function closeModal(result) {
+                //  Clean up the scope
+                modalScope.$destroy();
+                //  Remove the element from the dom.
+                modalElement.remove();
+
+                // Remove bodyClass
+                if (options.bodyClass) {
+                  body.removeClass(options.bodyClass);
+                }
+              }
+
+              $rootScope.$on('$locationChangeSuccess', closeModal);
 
           })
           .catch(function(error) {

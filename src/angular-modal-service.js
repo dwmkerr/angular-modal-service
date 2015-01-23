@@ -57,10 +57,16 @@
         var deferred = $q.defer();
 
         //  Validate the input parameters.
-        var controller = options.controller;
-        if(!controller) {
+        var controllerName = options.controller;
+        if(!controllerName) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
+        }
+
+        //  If a 'controllerAs' option has been provided, we change the controller
+        //  name to use 'as' syntax. $controller will automatically handle this.
+        if(options.controllerAs) {
+          controllerName = controllerName + " as " + options.controllerAs;
         }
 
         //  Get the actual html of the template.
@@ -104,12 +110,8 @@
             inputs.$element = modalElement;
 
             //  Create the controller, explicitly specifying the scope to use.
-            var modalController = $controller(controller, inputs);
+            var modalController = $controller(controllerName, inputs);
 
-            if(options.controllerAs) {
-
-              inputs.$scope[options.controllerAs] = modalController;
-            }
 
             //  Finally, append the modal to the dom.
             if (options.appendElement) {

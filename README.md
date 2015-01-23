@@ -95,7 +95,7 @@ for the gritty details of why.
 The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created.
-* `controllerAs` : The name controllerAs - (optional)
+* `controllerAs` : The name of the variable on the scope the controller is assigned to - (optional)
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal.
@@ -229,3 +229,4 @@ Thanks go the the following contributors:
 
 * [joshvillbrandt](https://github.com/joshvillbrandt) - Adding support for `$templateCache`.
 * [cointilt](https://github.com/cointilt) - Allowing the modal to be added to a custom element, not just the body.
+* [kernowjoe](https://github.com/kernowjoe) - controllerAs

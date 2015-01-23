@@ -15,13 +15,13 @@
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
-    
+
     function ModalService() {
 
       var self = this;
 
       //  Returns a promise which gets the template, either
-      //  from the template parameter or via a request to the 
+      //  from the template parameter or via a request to the
       //  template url parameter.
       var getTemplate = function(template, templateUrl) {
         var deferred = $q.defer();
@@ -52,7 +52,7 @@
       };
 
       self.showModal = function(options) {
-        
+
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 
@@ -74,7 +74,7 @@
             //  the scope, as well as all inputs provided.
             //  We will also create a deferred that is resolved with a provided
             //  close function. The controller can then call 'close(result)'.
-            //  The controller can also provide a delay for closing - this is 
+            //  The controller can also provide a delay for closing - this is
             //  helpful if there are closing animations which must finish first.
             var closeDeferred = $q.defer();
             var inputs = {
@@ -105,6 +105,11 @@
 
             //  Create the controller, explicitly specifying the scope to use.
             var modalController = $controller(controller, inputs);
+
+            if(options.controllerAs) {
+
+              inputs.$scope[options.controllerAs] = modalController;
+            }
 
             //  Finally, append the modal to the dom.
             if (options.appendElement) {

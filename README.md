@@ -38,7 +38,7 @@ Now just inject the modal service into any controller, service or directive wher
 
 ```js
 app.controller('SampleController', function($scope, ModalService) {
-  
+
   $scope.showAModal = function() {
 
   	// Just provide a template url, a controller and call 'showModal'.
@@ -61,8 +61,8 @@ app.controller('SampleController', function($scope, ModalService) {
 ```
 
 Calling `showModal` returns a promise which is resolved when the modal DOM element is created
-and the controller for it is created. The promise returns a `modal` object which contains the 
-element created, the controller, the scope and a `close` promise which is resolved when the 
+and the controller for it is created. The promise returns a `modal` object which contains the
+element created, the controller, the scope and a `close` promise which is resolved when the
 modal is closed - this `close` promise provides the result of the modal close function.
 
 The modal controller can be any controller that you like, just remember that it is always
@@ -71,7 +71,7 @@ for a bootstrap modal:
 
 ```js
 app.controller('SampleModalController', function($scope, close) {
-  
+
  $scope.close = function(result) {
  	close(result, 200); // close, but give 200ms for bootstrap to animate
  };
@@ -80,9 +80,9 @@ app.controller('SampleModalController', function($scope, close) {
 ```
 
 The `close` function is automatically injected to the modal controller and takes the result
-object (which is passed to the `close` promise used by the caller). It can take an optional 
+object (which is passed to the `close` promise used by the caller). It can take an optional
 second parameter, the number of milliseconds to wait before destroying the DOM element. This
-is so that you can have a delay before destroying the DOM element if you are animating the 
+is so that you can have a delay before destroying the DOM element if you are animating the
 closure.
 
 Now just make sure the `close` function is called by your modal controller when the modal
@@ -95,9 +95,10 @@ for the gritty details of why.
 The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created.
+* `controllerAs` : The name controllerAs - (optional)
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
-  HTML for the modal. 
+  HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default body.

@@ -135,7 +135,10 @@
               //  Clean up the scope
               modalScope.$destroy();
               //  Remove the element from the dom.
-              modalElement.remove();
+              modalElement.modal('hide');
+              modalElement.on('hidden.bs.modal', function () {
+                  modalElement.remove();
+              });
             });
 
             deferred.resolve(modal);

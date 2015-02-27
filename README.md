@@ -164,14 +164,10 @@ To work with the code, just run:
 ```
 npm install
 bower install
+gulp
 ```
 
-and all code will be built and ready to go. To ensure the code is linted, test, minified and
-updated to the `dst` folder as you change it, run:
-
-```
-grunt dev
-```
+The samples will be opened in the browser. All JavaScript changes will re-run the tests, all samples changes are automatically reloaded into the browser.
 
 The easiest way to adapt the code is to play with some of the examples in the ``samples`` folder.
 
@@ -184,14 +180,6 @@ npm test
 ```
 
 A coverage report is written to `build\coverage`.
-
-If you are updating or debugging tests, you can run:
-
-```
-grunt karma:debug
-```
-
-This will open Karma in Chrome allowing you to set breakpoints and debug your suite.
 
 ## FAQ
 

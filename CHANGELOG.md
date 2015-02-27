@@ -1,3 +1,7 @@
+## v0.6.3
+
+* Fixed memory leak.
+
 ## v0.6.2
 
 * Tidied up logic for cleanup.

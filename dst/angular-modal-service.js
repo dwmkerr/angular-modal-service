@@ -88,7 +88,13 @@
               close: function(result, delay) {
                 if(delay === undefined || delay === null) delay = 0;
                 $timeout(function () {
+
+                  //  Resolve the 'close' promise.
                   closeDeferred.resolve(result);
+
+                  //  We can now clean up the scope and remove the element from the DOM.
+                  modalScope.$destroy();
+                  modalElement.remove();
                 }, delay);
               }
             };
@@ -112,7 +118,6 @@
             //  Create the controller, explicitly specifying the scope to use.
             var modalController = $controller(controllerName, inputs);
 
-
             //  Finally, append the modal to the dom.
             if (options.appendElement) {
               // append to custom append element
@@ -122,7 +127,7 @@
               body.append(modalElement);
             }
 
-            //  We now have a modal object.
+            //  We now have a modal object...
             var modal = {
               controller: modalController,
               scope: modalScope,
@@ -130,14 +135,7 @@
               close: closeDeferred.promise
             };
 
-            //  When close is resolved, we'll clean up the scope and element.
-            modal.close.then(function(result) {
-              //  Clean up the scope
-              modalScope.$destroy();
-              //  Remove the element from the dom.
-              modalElement.remove();
-            });
-
+            //  ...which is passed to the caller via the promise.
             deferred.resolve(modal);
 
           })

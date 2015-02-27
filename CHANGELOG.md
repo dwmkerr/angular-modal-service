@@ -1,4 +1,4 @@
-## v0.7
+## v0.6.1
 
 * Moved from grunt to gulp.
 

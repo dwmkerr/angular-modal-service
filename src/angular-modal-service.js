@@ -10,8 +10,8 @@
 
   var module = angular.module('angularModalService', []);
 
-  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$timeout', '$templateCache',
-    function($document, $compile, $controller, $http, $rootScope, $q, $timeout, $templateCache) {
+  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateCache',
+    function($document, $compile, $controller, $http, $rootScope, $q, $templateCache) {
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
@@ -87,8 +87,7 @@
               $scope: modalScope,
               close: function(result, delay) {
                 if(delay === undefined || delay === null) delay = 0;
-                $timeout(function () {
-
+                window.setTimeout(function() {
                   //  Resolve the 'close' promise.
                   closeDeferred.resolve(result);
 

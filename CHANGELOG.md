@@ -1,3 +1,8 @@
+## v0.6.2
+
+* Tidied up logic for cleanup.
+* Fixed issue with vendor files.
+
 ## v0.6.1
 
 * Moved from grunt to gulp.

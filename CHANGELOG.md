@@ -1,3 +1,9 @@
+## v0.7
+
+* Moved from grunt to gulp.
+
+## v0.6
+
 ## v0.5
 
 * Updated the dependencies to use AngularJS 1.3 and upwards.

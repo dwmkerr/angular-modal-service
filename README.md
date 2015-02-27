@@ -72,7 +72,7 @@ for a bootstrap modal:
 ```js
 app.controller('SampleModalController', function($scope, close) {
 
- $scope.close = function(result) {
+ $scope.dismissModal = function(result) {
  	close(result, 200); // close, but give 200ms for bootstrap to animate
  };
 
@@ -90,18 +90,37 @@ should be closed and that's it. Quick hint - if you are using Bootstrap for your
 then make sure the modal template only contains one root level element, see the [FAQ](#faq)
 for the gritty details of why.
 
+To pass data into the modal controller, use the `inputs` field of the modal options. For example:
+
+```js
+ModalService.showModal({
+  templateUrl: "exampletemplate.html",
+  controller: "ExampleController",
+  inputs: {
+    name: "Fry",
+    year: 3001
+  }
+})
+```
+
+injects the `name` and `year` values into the controller:
+
+```js
+app.controler('ExampleController', function($scope, name, year, close) {
+});
+
 #### ShowModal Options
 
 The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created.
-* `controllerAs` : The name of the variable on the scope the controller is assigned to - (optional)
+* `controllerAs` : The name of the variable on the scope the controller is assigned to - (optional).
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
-* `appendElement`: The custom angular element to append the modal to instead of default body.
+* `appendElement`: The custom angular element to append the modal to instead of default `body` element.
 
 #### The Modal Object
 

@@ -15,9 +15,6 @@ var header = require('gulp-header');
 //  Copies bower dependencies into the samples/vendor folder.
 gulp.task('vendor', function() {
 
-  gulp.src('bower_components/bootstrap/dist/**/*.*')
-    .pipe(gulp.dest('samples/vendor/bootstrap'));
-
   gulp.src(
     [
       'bower_components/angular/angular.js',

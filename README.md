@@ -122,6 +122,7 @@ The `showModal` function takes an object with these fields:
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
+* `scope`: Optional. If provided, a new scope will not be created for the model - this scope will be used. Be aware that the modal service will *still* destroy the scope when the modal is closed. Typically you should not need to use this field, as the generated scope will handle most use cases.
 
 #### The Modal Object
 

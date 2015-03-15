@@ -1,6 +1,6 @@
 {
   "name": "angular-modal-service",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./dst/angular-modal-service.js",
   "scripts": {
@@ -25,7 +25,7 @@
   "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "devDependencies": {
     "coveralls": "^2.10.0",
-    "express": "^4.4.0",
+    "express": "^4.12.0",
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.9.2",
     "gulp-open": "^0.3.2",

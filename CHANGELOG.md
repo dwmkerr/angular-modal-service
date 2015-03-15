@@ -1,3 +1,7 @@
+## v0.6.4
+
+* Merged `scope` option field. Updated readme.
+
 ## v0.6.3
 
 * Fixed memory leak.

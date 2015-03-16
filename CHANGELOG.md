@@ -1,3 +1,8 @@
+## v0.6.5
+
+* Reverted changes below as they led to a bug with injected `$element` in modal controller.
+  Added a test to protect against this case in the future.
+
 ## v0.6.4
 
 * Merged `scope` option field. Updated readme.

@@ -74,7 +74,7 @@
           .then(function(template) {
 
             //  Create a new scope for the modal.
-            var modalScope = options.scope || $rootScope.$new();
+            var modalScope = (options.scope || $rootScope).$new();
 
             //  Create the inputs object to the controller - this will include
             //  the scope, as well as all inputs provided.

@@ -233,9 +233,13 @@ app.controller('ExampleModalController', [
 
 **I'm using a Bootstrap Modal and the dialog doesn't show up**
 
-Code is entered exactly as shown the example but when the showAModal() function fires the modal template html is appended to the body while the console outputs TypeError: undefined is not a function (pointing to a line: modal.element.modal();
+Code is entered exactly as shown the example but when the showAModal() function fires the modal template html is appended to the body while the console outputs:
 
-Solution: include bootstrap before angular in your script loads
+```
+TypeError: undefined is not a function
+```
+
+Pointing to the code: `modal.element.modal();`. This occurs if you are using a Bootstap modal but have not included the Bootstrap JavaScript. The recommendation is to include the modal JavaScript before AngularJS.
 
 
 ## Thanks

@@ -1,3 +1,8 @@
+## v0.6.6
+
+* Removed calls to $q `catch` and replaced with `then(null, f)` so that the code works in 
+  IE8 (ECMAScript 3).
+
 ## v0.6.5
 
 * Reverted changes below as they led to a bug with injected `$element` in modal controller.

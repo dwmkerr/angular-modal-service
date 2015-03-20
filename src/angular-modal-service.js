@@ -40,8 +40,7 @@
                 // save template into the cache and return the template
                 $templateCache.put(templateUrl, result.data);
                 deferred.resolve(result.data);
-              })
-              .catch(function(error) {
+              }, function(error) {
                 deferred.reject(error);
               });
           }
@@ -149,7 +148,7 @@
             deferred.resolve(modal);
 
           })
-          .catch(function(error) {
+          .then(null, function(error) { // 'catch' doesn't work in IE8.
             deferred.reject(error);
           });
 

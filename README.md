@@ -216,14 +216,14 @@ to manually close the modal. Then call the `close` function as normal:
 
 ```js
 app.controller('ExampleModalController', [
-  '$scope', '$element', 'close', 
+  '$scope', '$element', 'close',
   function($scope, $element, close) {
 
   $scope.closeModal = function() {
 
     //  Manually hide the modal using bootstrap.
     $element.modal('hide');
-    
+
     //  Now close as normal, but give 500ms for bootstrap to animate
     close(null, 500);
   };

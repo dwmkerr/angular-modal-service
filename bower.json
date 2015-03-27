@@ -1,6 +1,6 @@
 {
   "name": "angular-modal-service",
-  "version": "0.4.0",
+  "version": "0.6.6",
   "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "authors": [
     "Dave Kerr (github.com/dwmkerr)"
@@ -24,15 +24,19 @@
     "src",
     ".gitignore",
     "*.json",
-    "server.js",
-    "Gruntfile.js",
+    "gulpfile.js",
     "CHANGELOG.md",
     "*.yml"
   ],
   "dependencies": {
-    "angular": "~1.2.0"
+    "angular": "~1.3.x",
+    "bootstrap": "~3.3.2",
+    "jquery": "~2.1.3"
   },
   "devDependencies": {
-    "angular-mocks": "~1.2.16"
+    "angular-mocks": "~1.3.x"
+  },
+  "resolutions": {
+    "angular": "~1.3.x"
   }
 }

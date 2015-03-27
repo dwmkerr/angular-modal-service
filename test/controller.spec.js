@@ -12,6 +12,12 @@ describe('controller', function() {
       $scope.input1 = input1;
       $scope.input2 = input2;
       $scope.close = close;
+    })
+    .controller('ControllerAsController', function() {
+      this.character = "Fry";
+    })
+    .controller('ElementController', function($scope, $element) {
+      $scope.getElement = function() { return $element; };
     });
 
   beforeEach(function() {
@@ -64,6 +70,47 @@ describe('controller', function() {
       //  The controller sets the inputs on the scope.
       expect(modal.scope.input1).toBe(15);
       expect(modal.scope.input2).toBe("hi");
+
+    });
+
+    $httpBackend.flush();
+
+  });
+
+  it('should add a controller to the scope if controllerAs is used', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'ControllerAsController',
+      controllerAs: 'futurama',
+      templateUrl: 'some/controllertemplate.html'
+    }).then(function(modal) {
+      
+      //  The controller should be on the scope.
+      expect(modal.scope.futurama).not.toBeNull();
+
+      //  Fields defined on the controller instance should be on the 
+      //  controller on the scope.
+      expect(modal.scope.futurama.character).toBe('Fry');
+
+    });
+
+    $httpBackend.flush();
+
+  });
+
+  it('should inject the modal element into the controller', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'ElementController',
+      templateUrl: 'some/controllertemplate.html'
+    }).then(function(modal) {
+      
+      //  The controller should be on the scope.
+      expect(modal.scope.getElement()).not.toBeUndefined();
 
     });
 

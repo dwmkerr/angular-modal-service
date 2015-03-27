@@ -116,21 +116,9 @@
                   }
 
                   //  Parse the modal HTML into a DOM element (in template form).
-                  var modalElementTemplate = angular.element(template);
+                  var modalElement = angular.element(template);
 
-                  //  Compile then link the template element, building the actual element.
-                  //  Set the $element on the inputs so that it can be injected if required.
-                  var linkFn = $compile(modalElementTemplate);
-
-                  //  Create the controller, explicitly specifying the scope to use.
-                  var modalController = $controller(controllerName, inputs);
-
-                  var modalElement = linkFn(modalScope);
-                  inputs.$element = modalElement;
-
-
-
-                  //  Finally, append the modal to the dom.
+                  //  First, append the modal to the dom.
                   if (options.appendElement) {
                     // append to custom append element
                     options.appendElement.append(modalElement);
@@ -138,6 +126,18 @@
                     // append to body when no custom append element is specified
                     body.append(modalElement);
                   }
+
+                  //  Compile then link the template element, building the actual element.
+                  //  Set the $element on the inputs so that it can be injected if required.
+                  var linkFn = $compile(modalElement);
+
+                  // attach the modal element to be available in the controller
+                  inputs.$element = modalElement;
+
+                  //  Create the controller, explicitly specifying the scope to use.
+                  var modalController = $controller(controllerName, inputs);
+
+                  linkFn(modalScope);
 
                   //  We now have a modal object...
                   var modal = {

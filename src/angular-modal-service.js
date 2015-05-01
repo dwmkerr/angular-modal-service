@@ -136,6 +136,19 @@
               body.append(modalElement);
             }
 
+            ///////////////////////////////
+            setTimeout(function(){
+              var inputs, index;
+
+              inputs = document.getElementsByTagName('input');
+              for (index = 0; index < inputs.length; ++index) {
+                if (inputs[index].attributes.getNamedItem('autofocus')){
+                  inputs[index].focus();
+                }
+              }
+            },300);
+            ///////////////////////////////
+
             //  We now have a modal object...
             var modal = {
               controller: modalController,

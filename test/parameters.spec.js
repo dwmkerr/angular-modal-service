@@ -16,7 +16,7 @@ describe('parameters', function() {
       rootScope = $rootScope;
     });
   });
- 
+
   it('should fail if there is no controller specified', function(done) {
 
     ModalService.showModal({
@@ -68,4 +68,20 @@ describe('parameters', function() {
 
   });
 
+  it('should accept the controller provided as a function', function(done) {
+
+    ModalService.showModal({
+      controller: function($scope){
+        $scope.test = "here";
+      },
+      template: "<div>A template</div>"
+    }).then(function(modal) {
+      expect(modal.element.html()).toBe("A template");
+      done();
+    });
+
+
+    rootScope.$apply();
+
+  });
 });

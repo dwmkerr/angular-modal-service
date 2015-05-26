@@ -106,7 +106,7 @@ ModalService.showModal({
 injects the `name` and `year` values into the controller:
 
 ```js
-app.controler('ExampleController', function($scope, name, year, close) {
+app.controller('ExampleController', function($scope, name, year, close) {
 });
 ```
 

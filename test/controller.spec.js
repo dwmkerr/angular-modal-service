@@ -118,4 +118,46 @@ describe('controller', function() {
 
   });
 
+   it('should add a default valuse to the controller scope without controllerAs ', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'ControllerAsController',
+      templateUrl: 'some/controllertemplate.html',
+      modalDefaultValues : {
+        colorA : 'orange'
+      }
+    }).then(function(modal) {
+      
+      //  The controller should be on the scope.
+      expect(modal.scope.colorA).toBe('orange');
+
+    });
+
+    $httpBackend.flush();
+
+  });
+
+    it('should add a default valuse to the controller scope with controllerAs definition', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'ControllerAsController',
+      controllerAs: 'futurama',
+      templateUrl: 'some/controllertemplate.html',
+      modalDefaultValues : {
+        colorA : 'orange'
+      }
+    }).then(function(modal) {
+      
+      expect(modal.scope.futurama.colorA).toBe('orange');
+
+    });
+
+    $httpBackend.flush();
+
+  });
+
 });

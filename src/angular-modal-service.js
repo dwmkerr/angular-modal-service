@@ -143,18 +143,14 @@
                             //  Create the controller, explicitly specifying the scope to use.
                             var modalController = $controller(controllerName, inputs);
 
-                            //init default values again on the modal to use inside the function  
+                            //init default values again on the modal to use inside the function if there is controllerAs option  
                             if (options.modalDefaultValues && typeof options.modalDefaultValues == 'object') {
                                 
                                 if (options.controllerAs) {
                                     for (var key in options.modalDefaultValues) {
                                         modalScope[options.controllerAs][key] = options.modalDefaultValues[key];
                                     }
-                                } else {
-                                    for (var key in options.modalDefaultValues) {
-                                        modalScope[key] = options.modalDefaultValues[key];
-                                    }
-                                }
+                                } 
                             }
 
                             //  Finally, append the modal to the dom.

@@ -13,7 +13,7 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       templateUrl: "yesno/yesno.html",
       controller: "YesNoController"
     }).then(function(modal) {
-      modal.element.modal();
+      modal.element.show();
       modal.close.then(function(result) {
         $scope.yesNoResult = result ? "You said Yes" : "You said No";
       });
@@ -30,7 +30,7 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
         title: "A More Complex Example"
       }
     }).then(function(modal) {
-      modal.element.modal();
+      modal.element.show();
       modal.close.then(function(result) {
         $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
       });

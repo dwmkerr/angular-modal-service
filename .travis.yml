@@ -6,3 +6,4 @@ before_script:
   - 'bower install'
 after_script:
   - 'npm run coveralls'
+sudo: false

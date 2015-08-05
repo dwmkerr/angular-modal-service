@@ -11,10 +11,12 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular/angular-animate.js"></script>
     <script src="angular-modal-service.js"></script>
     <script src="sampleapp.js"></script>
     <script src="yesno/yesnocontroller.js"></script>
     <script src="complex/complexcontroller.js"></script>
+    <link href="custom/custom.css" rel="stylesheet">
     <script src="custom/customcontroller.js"></script>
     <style>
     body {
@@ -94,9 +96,9 @@
       <h3>A Complex Modal</h3>
 
       <p>This more complicated modal contains a form, showing how the modal template can
-      be customised. It also has a controller with data injected by the caller and 
+      be customised. It also has a controller with data injected by the caller and
       returns more complex data.</p>
-      
+
       <p><a href class="btn btn-default btn-lg " ng-click="showComplex()">Show Complex</a></p>
 
       <pre ng-show="complexResult">{{complexResult}}</pre>
@@ -115,7 +117,7 @@
       <h3>A Custom Modal</h3>
 
       <p>This sample shows how you can use any kind of modal, not just Bootstrap modals.</p>
-      
+
       <p><a href class="btn btn-default btn-lg " ng-click="showCustom()">Show Custom</a></p>
 
       <pre ng-show="customResult">{{customResult}}</pre>

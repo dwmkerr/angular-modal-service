@@ -10,8 +10,8 @@
 
   var module = angular.module('angularModalService', []);
 
-  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateCache',
-    function($document, $compile, $controller, $http, $rootScope, $q, $templateCache) {
+  module.factory('ModalService', ['$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest',
+    function($document, $compile, $controller, $http, $rootScope, $q, $templateRequest) {
 
     //  Get the body of the document, we'll add the modal to this.
     var body = $document.find('body');
@@ -28,11 +28,10 @@
         if(template) {
           deferred.resolve(template);
         } else if(templateUrl) {
-          //  Get the template, using the $templateCache.
-          $http.get(templateUrl, {cache: $templateCache})
-            .then(function(result) {
-              deferred.resolve(result.data);
-            }, function(error) {
+          $templateRequest(templateUrl, true)
+            .then(function (template) {
+              deferred.resolve(template);
+            }, function (error) {
               deferred.reject(error);
             });
         } else {

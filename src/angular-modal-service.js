@@ -109,18 +109,11 @@
             };
 
             //  If we have provided any inputs, pass them to the controller.
-            if(options.inputs) {
-              for(var inputName in options.inputs) {
-                inputs[inputName] = options.inputs[inputName];
-              }
-            }
-
-            //  Parse the modal HTML into a DOM element (in template form).
-            var modalElementTemplate = angular.element(template);
+            if(options.inputs) angular.extend(inputs, options.inputs);
 
             //  Compile then link the template element, building the actual element.
             //  Set the $element on the inputs so that it can be injected if required.
-            var linkFn = $compile(modalElementTemplate);
+            var linkFn = $compile(template);
             var modalElement = linkFn(modalScope);
             inputs.$element = modalElement;
 

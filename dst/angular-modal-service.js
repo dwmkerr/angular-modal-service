@@ -64,7 +64,7 @@
 
         //  If a 'controllerAs' option has been provided, we change the controller
         //  name to use 'as' syntax. $controller will automatically handle this.
-        if(options.controllerAs) {
+        if(typeof controllerName === "string" && options.controllerAs) {
           controllerName = controllerName + " as " + options.controllerAs;
         }
 

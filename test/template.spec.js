@@ -19,10 +19,11 @@ describe('template', function() {
     });
   });
 
-  afterEach(function() {
+  afterEach(inject(function($templateCache) {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
-  });
+    $templateCache.removeAll();
+  }));
 
   it('should http get the specified template url', function() {
 
@@ -71,12 +72,35 @@ describe('template', function() {
         controller: "TemplateController",
         templateUrl: "templatetobecached.html"
       }).then(function(modal) {
+        //  ...so get should have been called.
         expect(modal).not.toBe(null);
+        expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
       });
 
-      //  ...so get should have been called.
-      expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
+    });
 
+    $httpBackend.flush();
+
+  }));
+
+  it('should use the template cache correctly if the template is precached',
+    inject(function($templateCache, $http) {
+
+    $httpBackend.expectGET('templatetobeprecached.html').respond('<div>template</div>');
+
+    //  Fetch the template (i.e. precache).
+    $http.get('templatetobeprecached.html', {cache: $templateCache});  
+
+    //  The template should now be cached...
+    spyOn($templateCache, 'get').and.callThrough();
+
+    ModalService.showModal({
+      controller: "TemplateController",
+      templateUrl: "templatetobeprecached.html"
+    }).then(function(modal) {
+      //  ...so get should have been called.
+      expect(modal).not.toBe(null);
+      expect($templateCache.get).toHaveBeenCalledWith('templatetobeprecached.html');
     });
 
     $httpBackend.flush();

@@ -5,6 +5,7 @@
   "main": "./dst/angular-modal-service.js",
   "scripts": {
     "test": "gulp test",
+    "test-debug": "./node_modules/.bin/karma start ./test/karma.config.js --no-single-run --browsers Chrome",
     "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info"
   },
   "repository": {

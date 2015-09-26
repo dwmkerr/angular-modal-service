@@ -28,22 +28,13 @@
         if(template) {
           deferred.resolve(template);
         } else if(templateUrl) {
-          // check to see if the template has already been loaded
-          var cachedTemplate = $templateCache.get(templateUrl);
-          if(cachedTemplate !== undefined) {
-            deferred.resolve(cachedTemplate);
-          }
-          // if not, let's grab the template for the first time
-          else {
-            $http({method: 'GET', url: templateUrl, cache: true})
-              .then(function(result) {
-                // save template into the cache and return the template
-                $templateCache.put(templateUrl, result.data);
-                deferred.resolve(result.data);
-              }, function(error) {
-                deferred.reject(error);
-              });
-          }
+          //  Get the template, using the $templateCache.
+          $http.get(templateUrl, {cache: $templateCache})
+            .then(function(result) {
+              deferred.resolve(result.data);
+            }, function(error) {
+              deferred.reject(error);
+            });
         } else {
           deferred.reject("No template or templateUrl has been specified.");
         }
@@ -109,18 +100,11 @@
             };
 
             //  If we have provided any inputs, pass them to the controller.
-            if(options.inputs) {
-              for(var inputName in options.inputs) {
-                inputs[inputName] = options.inputs[inputName];
-              }
-            }
-
-            //  Parse the modal HTML into a DOM element (in template form).
-            var modalElementTemplate = angular.element(template);
+            if(options.inputs) angular.extend(inputs, options.inputs);
 
             //  Compile then link the template element, building the actual element.
             //  Set the $element on the inputs so that it can be injected if required.
-            var linkFn = $compile(modalElementTemplate);
+            var linkFn = $compile(template);
             var modalElement = linkFn(modalScope);
             inputs.$element = modalElement;
 

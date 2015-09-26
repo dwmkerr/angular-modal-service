@@ -182,6 +182,14 @@ npm test
 
 A coverage report is written to `build\coverage`.
 
+Debug tests with:
+
+```
+npm run test-debug
+```
+
+This will run the tests in Chrome, allowing you to debug.
+
 ## FAQ
 
 Having problems? Check this FAQ first.

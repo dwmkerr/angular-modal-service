@@ -249,3 +249,4 @@ Thanks go the the following contributors:
 * [joshvillbrandt](https://github.com/joshvillbrandt) - Adding support for `$templateCache`.
 * [cointilt](https://github.com/cointilt) - Allowing the modal to be added to a custom element, not just the body.
 * [kernowjoe](https://github.com/kernowjoe) - controllerAs
+* [poporul](https://github.com/poporul) - Improving the core logic around compilation and inputs.

@@ -270,3 +270,4 @@ Thanks go the the following contributors:
 * [kernowjoe](https://github.com/kernowjoe) - controllerAs
 * [poporul](https://github.com/poporul) - Improving the core logic around compilation and inputs.
 * [jonasnas](https://github.com/jonasnas) - Fixing template cache logic.
+* [maxdow](https://github.com/maxdow) - Added support for controller inlining.

@@ -53,12 +53,6 @@
           return deferred.promise;
         }
 
-        //  If a 'controllerAs' option has been provided, we change the controller
-        //  name to use 'as' syntax. $controller will automatically handle this.
-        if(options.controllerAs) {
-          controllerName = controllerName + " as " + options.controllerAs;
-        }
-
         //  Get the actual html of the template.
         getTemplate(options.template, options.templateUrl)
           .then(function(template) {
@@ -84,9 +78,9 @@
                   //  We can now clean up the scope and remove the element from the DOM.
                   modalScope.$destroy();
                   modalElement.remove();
-                  
+
                   //  Unless we null out all of these objects we seem to suffer
-                  //  from memory leaks, if anyone can explain why then I'd 
+                  //  from memory leaks, if anyone can explain why then I'd
                   //  be very interested to know.
                   inputs.close = null;
                   deferred = null;
@@ -109,8 +103,11 @@
             inputs.$element = modalElement;
 
             //  Create the controller, explicitly specifying the scope to use.
-            var modalController = $controller(controllerName, inputs);
+            var modalController = $controller(options.controller, inputs);
 
+            if(options.controllerAs){
+              modalScope[options.controllerAs] = modalController ;
+            }
             //  Finally, append the modal to the dom.
             if (options.appendElement) {
               // append to custom append element

@@ -99,6 +99,7 @@ describe('controller', function() {
     $httpBackend.flush();
 
   });
+
   it('should add a controller to the scope if the controller is inlined', function() {
 
     $httpBackend.expectGET('some/controllertemplate.html');
@@ -119,12 +120,13 @@ describe('controller', function() {
     $httpBackend.flush();
 
   });
+
   it('should add a controller to the scope if the controller is inlined with controllerAs', function() {
 
     $httpBackend.expectGET('some/controllertemplate.html');
 
     ModalService.showModal({
-      controller: function(){
+      controller: function() {
         this.character = "Fry";
       },
       controllerAs: 'futurama',
@@ -143,6 +145,34 @@ describe('controller', function() {
     $httpBackend.flush();
 
   });
+
+
+  it('should add a controller to the scope if the controller is inlined with controllerAs and also annotated', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: ['$http', function($http) {
+        expect($http).not.toBeNull();
+        this.character = "Fry";
+      }],
+      controllerAs: 'futurama',
+      templateUrl: 'some/controllertemplate.html'
+    }).then(function(modal) {
+
+      //  The controller should be on the scope.
+      expect(modal.scope.futurama).not.toBeNull();
+
+      //  Fields defined on the controller instance should be on the
+      //  controller on the scope.
+      expect(modal.scope.futurama.character).toBe('Fry');
+
+    });
+
+    $httpBackend.flush();
+
+  });
+
   it('should inject the modal element into the controller', function() {
 
     $httpBackend.expectGET('some/controllertemplate.html');

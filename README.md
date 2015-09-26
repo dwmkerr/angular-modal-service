@@ -258,3 +258,4 @@ Thanks go the the following contributors:
 * [cointilt](https://github.com/cointilt) - Allowing the modal to be added to a custom element, not just the body.
 * [kernowjoe](https://github.com/kernowjoe) - controllerAs
 * [poporul](https://github.com/poporul) - Improving the core logic around compilation and inputs.
+* [jonasnas](https://github.com/jonasnas) - Fixing template cache logic.

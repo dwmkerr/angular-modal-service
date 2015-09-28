@@ -21,6 +21,12 @@ First, install with Bower:
 ```
 bower install angular-modal-service
 ```
+or npm 
+
+```
+npm install angular-modal-service
+```
+
 
 Then reference the minified script:
 

@@ -116,7 +116,9 @@ app.controller('ExampleController', function($scope, name, year, close) {
 });
 ```
 
-You can also provide a controller function directly to the modal, with or without the controllerAs attribute :
+You can also provide a controller function directly to the modal, with or without the `controllerAs` attribute.
+But if you provide `controller` attribute with `as` syntax and `controllerAs` attribute together, `controllerAs`
+will have high priority.
 
 ```js
 ModalService.showModal({
@@ -132,7 +134,7 @@ ModalService.showModal({
 The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created. It could be a function.
-* `controllerAs` : The name of the variable on the scope the controller is assigned to - (optional).
+* `controllerAs` : The name of the variable on the scope instance of the controller is assigned to - (optional).
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal.

@@ -103,7 +103,12 @@
             inputs.$element = modalElement;
 
             //  Create the controller, explicitly specifying the scope to use.
+            var controllerObjBefore = modalScope[options.controllerAs];
             var modalController = $controller(options.controller, inputs, false, options.controllerAs);
+
+            if (options.controllerAs && controllerObjBefore) {
+              angular.extend(modalController, controllerObjBefore);
+            }
 
             //  Finally, append the modal to the dom.
             if (options.appendElement) {

@@ -21,7 +21,7 @@ First, install with Bower:
 ```
 bower install angular-modal-service
 ```
-or npm 
+or npm
 
 ```
 npm install angular-modal-service
@@ -68,8 +68,10 @@ app.controller('SampleController', function($scope, ModalService) {
 
 Calling `showModal` returns a promise which is resolved when the modal DOM element is created
 and the controller for it is created. The promise returns a `modal` object which contains the
-element created, the controller, the scope and a `close` promise which is resolved when the
-modal is closed - this `close` promise provides the result of the modal close function.
+element created, the controller, the scope and two promises: `close` and `closed`. Both are
+resolved to the result of the modal close function, but `close` is resolved as soon as the
+modal close function is called, while `closed` is only resolved once the modal has finished
+animating and has been completely removed from the DOM.
 
 The modal controller can be any controller that you like, just remember that it is always
 provided with one extra parameter - the `close` function. Here's an example controller
@@ -86,10 +88,10 @@ app.controller('SampleModalController', function($scope, close) {
 ```
 
 The `close` function is automatically injected to the modal controller and takes the result
-object (which is passed to the `close` promise used by the caller). It can take an optional
-second parameter, the number of milliseconds to wait before destroying the DOM element. This
-is so that you can have a delay before destroying the DOM element if you are animating the
-closure.
+object (which is passed to the `close` and `closed` promises used by the caller). It can
+take an optional second parameter, the number of milliseconds to wait before destroying the
+DOM element. This is so that you can have a delay before destroying the DOM element if you
+are animating the closure.
 
 Now just make sure the `close` function is called by your modal controller when the modal
 should be closed and that's it. Quick hint - if you are using Bootstrap for your modals,
@@ -149,13 +151,39 @@ The `modal` object returned by `showModal` has this structure:
   to show the modal.
 * `modal.scope` - The new scope created for the modal DOM and controller.
 * `modal.controller` - The new controller created for the modal.
-* `modal.close` - A promise which is resolved when the modal is closed.
+* `modal.close` - A promise which is resolved when the modal `close` function is called.
+* `modal.closed` - A promise which is resolved once the modal has finished animating out of the DOM.
 
 #### The Modal Controller
 
 The controller that is used for the modal always has one extra parameter injected, a function
 called `close`. Call this function with any parameter (the result). This result parameter is
-then passed as the parameter of the `close` promise used by the caller.
+then passed as the parameter of the `close` and `closed` promises used by the caller.
+
+### Animation
+
+`ModalService` cooperates with Angular's `$animate` service to allow easy implementation of
+custom animation. Specifically, `showModal` will trigger the `ng-enter` hook, and calling
+`close` will trigger the `ng-leave` hook. For example, if the `ngAnimate` module is
+installed, the following CSS rules will add fade in/fade out animations to a modal with the
+class `modal`:
+
+```css
+.modal.ng-enter {
+  transition: opacity .5s ease-out;
+  opacity: 0;
+}
+.modal.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.modal.ng-leave {
+  transition: opacity .5s ease-out;
+  opacity: 1;
+}
+.modal.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+```
 
 ### Error Handing
 

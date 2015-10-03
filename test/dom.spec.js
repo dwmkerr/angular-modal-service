@@ -24,7 +24,7 @@ describe('dom', function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
- 
+
   it('should add the template html to the dom', function() {
 
     $httpBackend.expectGET('some/template1.html');
@@ -33,14 +33,14 @@ describe('dom', function() {
       controller: "DomController",
       templateUrl: "some/template1.html"
     }).then(function(modal) {
-      
+
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template1')).not.toBeNull();
 
     });
 
     $httpBackend.flush();
-  
+
   });
 
   it('should add the template html to the custom dom element', function () {
@@ -93,7 +93,7 @@ describe('dom', function() {
     $httpBackend.flush();
     $timeout.flush();
   });
- 
+
   it('should remove the template html from the dom when the controller closes the modal', function() {
 
     $httpBackend.expectGET('some/template2.html');
@@ -102,11 +102,11 @@ describe('dom', function() {
       controller: "DomController",
       templateUrl: "some/template2.html"
     }).then(function(modal) {
-      
+
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template2')).not.toBeNull();
 
-      modal.close.then(function(result) {
+      modal.closed.then(function(result) {
         expect(document.getElementById('template2')).toBeNull();
       });
 
@@ -115,7 +115,7 @@ describe('dom', function() {
 
     $httpBackend.flush();
     $timeout.flush();
-  
+
   });
 
 });

@@ -1,8 +1,8 @@
 //  Build our app module, with a dependency on the angular modal service.
-var app = angular.module('sampleapp', ['angularModalService']);
+var app = angular.module('sampleapp', ['angularModalService', 'ngAnimate']);
 
 app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
-  
+
   $scope.yesNoResult = null;
   $scope.complexResult = null;
   $scope.customResult = null;

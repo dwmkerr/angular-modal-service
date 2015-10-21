@@ -43,7 +43,7 @@ var app = angular.module('sampleapp', ['angularModalService']);
 Now just inject the modal service into any controller, service or directive where you need it.
 
 ```js
-app.controller('SampleController', function($scope, ModalService) {
+app.controller('SampleController', ["$scope", "ModalService", function($scope, ModalService) {
 
   $scope.showAModal = function() {
 
@@ -63,7 +63,7 @@ app.controller('SampleController', function($scope, ModalService) {
 
   };
 
-});
+}]);
 ```
 
 Calling `showModal` returns a promise which is resolved when the modal DOM element is created

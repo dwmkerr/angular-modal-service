@@ -26,6 +26,9 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     ModalService.showModal({
       templateUrl: "complex/complex.html",
       controller: "ComplexController",
+      controllerAs: "complexCtrl",
+      // You can use below,
+      // controller: "ComplexController as complexCtrl"
       inputs: {
         title: "A More Complex Example"
       }

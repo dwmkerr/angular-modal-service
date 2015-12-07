@@ -4,10 +4,14 @@ app.controller('ComplexController', [
   '$scope', '$element', 'title', 'close', 
   function($scope, $element, title, close) {
 
+  var vm = this;
+
   $scope.name = null;
   $scope.age = null;
   $scope.title = title;
-  
+
+  vm.title = 'As Controller with ' + $scope.title;
+
   //  This close function doesn't need to use jQuery or bootstrap, because
   //  the button has the 'data-dismiss' attribute.
   $scope.close = function() {

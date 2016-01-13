@@ -9,7 +9,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var express = require('express');
 var connectLivereload = require('connect-livereload');
 var opn = require('opn');
-var karma = require('karma').server;
+var Server = require('karma').Server;
 var header = require('gulp-header');
 
 //  Copies bower dependencies into the samples/vendor folder.
@@ -82,10 +82,10 @@ function notifyLivereload(event) {
 
 //  Test the code.
 gulp.task('test', function (done) {
-  karma.start({
-    configFile: path.join(__dirname, './test/karma.config.js'),
+  new Server({
+    configFile: __dirname + '/test/karma.config.js',
     singleRun: true
-  }, done);
+  }, done).start();
 });
 
 //  Sets up watchers.

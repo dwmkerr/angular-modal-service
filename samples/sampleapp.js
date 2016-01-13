@@ -16,7 +16,10 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       modal.element.modal();
       modal.close.then(function(result) {
         $scope.yesNoResult = result ? "You said Yes" : "You said No";
-      });
+      },
+      modal.element.on('hidden.bs.modal', function(){
+        $('.modal').remove();
+      }));
     });
 
   };
@@ -33,7 +36,10 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       modal.element.modal();
       modal.close.then(function(result) {
         $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
-      });
+      },
+      modal.element.on('hidden.bs.modal', function(){
+        $('.modal').remove();
+      }));
     });
 
   };
@@ -46,7 +52,10 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     }).then(function(modal) {
       modal.close.then(function(result) {
         $scope.customResult = "All good!";
-      });
+      },
+      modal.element.on('hidden.bs.modal', function(){
+        $('.modal').remove();
+      }));
     });
 
   };

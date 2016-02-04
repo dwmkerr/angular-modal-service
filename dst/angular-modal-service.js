@@ -86,6 +86,11 @@
                   //  Resolve the 'close' promise.
                   closeDeferred.resolve(result);
 
+                  //  Remove the custom class from the body
+                  if(options.bodyClass) {
+                    body[0].classList.remove(options.bodyClass);
+                  }
+
                   //  Let angular remove the element and wait for animations to finish.
                   $animate.leave(modalElement)
                     .then(function () {
@@ -125,13 +130,17 @@
             if(options.controllerAs){
               modalScope[options.controllerAs] = modalController ;
             }
-            //  Finally, append the modal to the dom.
+            // Then append the modal to the dom.
             if (options.appendElement) {
               // append to custom append element
               appendChild(options.appendElement, modalElement);
             } else {
               // append to body when no custom append element is specified
               appendChild(body, modalElement);
+            }
+            // Finally, append any custom classes to the body
+            if(options.bodyClass) {
+              body[0].classList.add(options.bodyClass);
             }
 
             //  We now have a modal object...

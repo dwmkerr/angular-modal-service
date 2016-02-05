@@ -1,3 +1,4 @@
+
 #overlay {
     position: fixed;
     left: 25%;
@@ -20,6 +21,13 @@
     width: 100%;
     height: 100%;
     z-index: 90;
+}
+
+body.custom-modal-open #fade {
+  background-color: darkred;
+    -moz-opacity: 0.9;
+    opacity: .90;
+    filter: alpha(opacity=90);
 }
 
 #custom-modal.ng-enter {

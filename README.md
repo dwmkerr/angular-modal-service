@@ -141,6 +141,8 @@ The `showModal` function takes an object with these fields:
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
+* `bodyClass`: The custom css class to append to the body while the modal is open (optional, useful when
+  not using Bootstrap).
 
 #### The Modal Object
 

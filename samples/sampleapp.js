@@ -42,7 +42,8 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
 
     ModalService.showModal({
       templateUrl: "custom/custom.html",
-      controller: "CustomController"
+      controller: "CustomController",
+      bodyClass: "custom-modal-open"
     }).then(function(modal) {
       modal.close.then(function(result) {
         $scope.customResult = "All good!";

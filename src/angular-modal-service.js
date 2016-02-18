@@ -81,10 +81,12 @@
             var inputs = {
               $scope: modalScope,
               close: function(result, delay) {
+
+                //  Resolve the 'close' promise.
+                closeDeferred.resolve(result);
+
                 if(delay === undefined || delay === null) delay = 0;
                 $timeout(function() {
-                  //  Resolve the 'close' promise.
-                  closeDeferred.resolve(result);
 
                   //  Let angular remove the element and wait for animations to finish.
                   $animate.leave(modalElement)

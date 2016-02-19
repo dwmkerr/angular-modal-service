@@ -190,5 +190,23 @@ describe('controller', function() {
     $httpBackend.flush();
 
   });
+  
+  it('should add a controller to the scope if the controller is inlined with controllerAs alternative syntax', function() {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'ElementController as element',
+      templateUrl: 'some/controllertemplate.html'
+    }).then(function(modal) {
+
+      //  The controller should be on the scope.
+      expect(modal.scope.element).not.toBeNull();
+
+    });
+
+    $httpBackend.flush();
+
+  });
 
 });

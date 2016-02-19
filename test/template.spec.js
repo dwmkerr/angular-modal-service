@@ -9,8 +9,8 @@ describe('template', function() {
     });
 
   beforeEach(function() {
-    module('templatetests');
-    inject(function(_ModalService_, $rootScope, $injector) {
+    angular.mock.module('templatetests');
+    angular.mock.inject(function(_ModalService_, $rootScope, $injector) {
       ModalService = _ModalService_;
       rootScope = $rootScope;
       $httpBackend = $injector.get('$httpBackend');

@@ -11,6 +11,11 @@ module.exports = {
     filename: 'angular-modal-service.js'
   },
 
+  //  Define externals (things we don't pack).
+  externals: {
+    angular: 'angular',
+  },
+
   //  Use babel for anything that is *.js or *.jsx.
   module: {
     loaders: [

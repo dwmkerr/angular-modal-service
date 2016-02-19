@@ -3,6 +3,9 @@ var path = require('path');
 module.exports = function(config) {  
   config.set({
 
+    //  Set the base path.
+    basePath: '../',
+
     //  Frameworks to use.
     frameworks: ['jasmine'],
 
@@ -11,22 +14,15 @@ module.exports = function(config) {
 
     //  Input files.
     files: [
-      //  Dependencies, including polyfill for 'bind'.
-      'bower_components/angular/angular.min.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'node_modules/babel-polyfill/dist/polyfill.js',
-
-      //  Source
-      'src/angular-modal-service.js',
 
       //  Our specs
-      'test/**/*.spec.js'
+      'test/spec.js'
     ],
 
     //  Preprocessors.
     preprocessors: {
       'src/angular-modal-service.js': ['webpack'],
-      'test/**/*.spec.js': ['webpack'],
+      'test/**/*spec.js': ['webpack'],
     },
 
     reporters: ['progress', 'coverage', 'junit'],

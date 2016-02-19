@@ -25,8 +25,8 @@ describe('controller', function() {
     });
 
   beforeEach(function() {
-    module('controllertests');
-    inject(function(_ModalService_, $injector) {
+    angular.mock.module('controllertests');
+    angular.mock.inject(function(_ModalService_, $injector) {
       ModalService = _ModalService_;
       $httpBackend = $injector.get('$httpBackend');
       $timeout = $injector.get('$timeout');

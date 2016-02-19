@@ -10,8 +10,8 @@ describe('parameters', function() {
     });
 
   beforeEach(function() {
-    module('parametertests');
-    inject(function(_ModalService_, $rootScope) {
+    angular.mock.module('parametertests');
+    angular.mock.inject(function(_ModalService_, $rootScope) {
       ModalService = _ModalService_;
       rootScope = $rootScope;
     });

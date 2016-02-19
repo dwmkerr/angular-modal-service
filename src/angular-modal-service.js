@@ -3,7 +3,7 @@
 //  Service for showing modal dialogs.
 'use strict';
 
-//import angular from 'angular';
+var angular = require('angular');
 
 var module = angular.module('angularModalService', []);
 

@@ -8,7 +8,7 @@
     "test-debug": "./node_modules/.bin/karma start ./test/karma.config.js --no-single-run --browsers Chrome",
     "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info",
     "webpack": "webpack --config tooling/webpack.config.js",
-    "test-new": "karma start ./karma.config.js"
+    "test-new": "karma start ./tooling/karma.config.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "devDependencies": {
+    "angular-mocks": "^1.5.0",
     "babel": "^6.5.2",
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.3",
@@ -55,5 +56,8 @@
     "phantomjs-prebuilt": "^2.1.4",
     "tiny-lr": "^0.1.5",
     "webpack": "^1.12.13"
+  },
+  "dependencies": {
+    "angular": "^1.5.0"
   }
 }

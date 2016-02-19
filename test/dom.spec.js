@@ -10,8 +10,8 @@ describe('dom', function() {
     });
 
   beforeEach(function() {
-    module('domtests');
-    inject(function(_ModalService_, $injector) {
+    angular.mock.module('domtests');
+    angular.mock.inject(function(_ModalService_, $injector) {
       ModalService = _ModalService_;
       $httpBackend = $injector.get('$httpBackend');
       $timeout = $injector.get('$timeout');

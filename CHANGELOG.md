@@ -1,6 +1,7 @@
 ## v0.6.7
 
 * Added support for using a custom parent scope for the controller scope, via the `scope` option.
+* Fixed a bug with controllerAs vs `controller as`.
 
 ## v0.6.6
 

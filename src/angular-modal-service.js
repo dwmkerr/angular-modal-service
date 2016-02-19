@@ -28,10 +28,9 @@
         if (template) {
           deferred.resolve(template);
         } else if (templateUrl) {
-          //  Get the template, using the $templateCache.
-          $http.get(templateUrl, {cache: $templateCache})
-            .then(function(result) {
-              deferred.resolve(result.data);
+          $templateRequest(templateUrl, true)
+            .then(function(template) {
+              deferred.resolve(template);
             }, function(error) {
               deferred.reject(error);
             });
@@ -83,7 +82,7 @@
               $scope: modalScope,
               close: function(result, delay) {
                 if (delay === undefined || delay === null) delay = 0;
-                window.setTimeout(function() {
+                $timeout(function() {
                   //  Resolve the 'close' promise.
                   closeDeferred.resolve(result);
 

@@ -4,11 +4,11 @@
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./dst/angular-modal-service.js",
   "scripts": {
-    "test": "gulp test",
+    "test": "karma start ./tooling/karma.config.js",
     "test-debug": "./node_modules/.bin/karma start ./test/karma.config.js --no-single-run --browsers Chrome",
     "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info",
     "webpack": "webpack --config tooling/webpack.config.js",
-    "test-new": "karma start ./tooling/karma.config.js"
+    "build": "webpack -p --config tooling/webpack.config.js"
   },
   "repository": {
     "type": "git",

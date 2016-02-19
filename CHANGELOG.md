@@ -1,3 +1,7 @@
+## v0.6.7
+
+* Added support for using a custom parent scope for the controller scope, via the `scope` option.
+
 ## v0.6.6
 
 * Removed calls to $q `catch` and replaced with `then(null, f)` so that the code works in 

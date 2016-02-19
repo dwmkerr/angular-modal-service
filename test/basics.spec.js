@@ -1,3 +1,5 @@
+import angularModalService from '../src/angular-modal-service';
+
 describe('basics', function() {
 
   var ModalService = null;

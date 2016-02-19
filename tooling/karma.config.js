@@ -41,14 +41,24 @@ module.exports = function(config) {
 
     //  jUnit reporter configuration, used by Travis.
     junitReporter: {
-      outputFile: 'build/test-results.xml'
+      outputDir: 'build/',
+      outputFile: 'test-results.xml',
+      useBrowserName: false
     },
 
     singleRun: true,
 
     webpack: {
-      //  Use babel for anything that is *.js or *.jsx.
       module: {
+        // Support instrumentation of ES6.
+        preLoaders: [
+          {
+            test: /\.jsx?$/,
+            exclude: [/node_modules/, /test/],
+            loader: 'isparta-instrumenter-loader'
+          },
+        ],
+        //  Use babel for anything that is *.js or *.jsx.
         loaders: [
           {
             test: /\.jsx?$/,

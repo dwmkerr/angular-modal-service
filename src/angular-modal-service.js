@@ -20,7 +20,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
     //  Returns a promise which gets the template, either
     //  from the template parameter or via a request to the
     //  template url parameter.
-    var getTemplate = function(template, templateUrl) {
+    var getTemplate = (template, templateUrl) => {
       var deferred = $q.defer();
       if (template) {
         deferred.resolve(template);

@@ -14,7 +14,11 @@ describe('controller', function() {
       $scope.close = close;
     })
     .controller('ControllerAsController', function() {
-      this.character = "Fry";
+      var vm = this;
+      vm.character = "Fry";
+      vm.checkValidity = function() {
+        return vm.ExampleForm.$valid;
+      }
     })
     .controller('ElementController', function($scope, $element) {
       $scope.getElement = function() { return $element; };
@@ -27,6 +31,9 @@ describe('controller', function() {
       $httpBackend = $injector.get('$httpBackend');
       $timeout = $injector.get('$timeout');
       $httpBackend.when('GET', 'some/controllertemplate.html').respond("<div id='controllertemplate'>controller template</div>");
+      $httpBackend.when('GET', 'some/formtemplate.html').respond(
+        "<form name='formCtrl.ExampleForm'><input type='text' name='exampleInput'></form>"
+      );
     });
   });
 
@@ -185,6 +192,23 @@ describe('controller', function() {
       //  The controller should be on the scope.
       expect(modal.scope.getElement()).not.toBeUndefined();
 
+    });
+
+    $httpBackend.flush();
+
+  });
+
+  it('should correct process form with controllerAs.form syntax', function() {
+
+    $httpBackend.expectGET('some/formtemplate.html');
+
+    ModalService.showModal({
+      controller: 'ControllerAsController',
+      controllerAs: 'formCtrl',
+      templateUrl: 'some/formtemplate.html'
+    }).then(function(modal) {
+      expect(modal.scope.formCtrl.ExampleForm).not.toBeUndefined();
+      expect(modal.scope.formCtrl.checkValidity()).toBe(true);
     });
 
     $httpBackend.flush();

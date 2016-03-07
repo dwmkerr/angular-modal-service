@@ -43,7 +43,7 @@ var app = angular.module('sampleapp', ['angularModalService']);
 Now just inject the modal service into any controller, service or directive where you need it.
 
 ```js
-app.controller('SampleController', function($scope, ModalService) {
+app.controller('SampleController', ["$scope", "ModalService", function($scope, ModalService) {
 
   $scope.showAModal = function() {
 
@@ -63,7 +63,7 @@ app.controller('SampleController', function($scope, ModalService) {
 
   };
 
-});
+}]);
 ```
 
 Calling `showModal` returns a promise which is resolved when the modal DOM element is created
@@ -118,7 +118,9 @@ app.controller('ExampleController', function($scope, name, year, close) {
 });
 ```
 
-You can also provide a controller function directly to the modal, with or without the controllerAs attribute :
+You can also provide a controller function directly to the modal, with or without the `controllerAs` attribute.
+But if you provide `controller` attribute with `as` syntax and `controllerAs` attribute together, `controllerAs`
+will have high priority.
 
 ```js
 ModalService.showModal({
@@ -134,15 +136,15 @@ ModalService.showModal({
 The `showModal` function takes an object with these fields:
 
 * `controller`: The name of the controller to created. It could be a function.
-* `controllerAs` : The name of the variable on the scope the controller is assigned to - (optional).
+* `controllerAs` : The name of the variable on the scope instance of the controller is assigned to - (optional).
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
   HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
-* `bodyClass`: The custom css class to append to the body while the modal is open (optional, useful when
-  not using Bootstrap).
+* `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
+* `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
 
 #### The Modal Object
 

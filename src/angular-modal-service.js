@@ -25,13 +25,13 @@
       //  template url parameter.
       var getTemplate = function(template, templateUrl) {
         var deferred = $q.defer();
-        if(template) {
+        if (template) {
           deferred.resolve(template);
-        } else if(templateUrl) {
+        } else if (templateUrl) {
           $templateRequest(templateUrl, true)
-            .then(function (template) {
+            .then(function(template) {
               deferred.resolve(template);
-            }, function (error) {
+            }, function(error) {
               deferred.reject(error);
             });
         } else {
@@ -58,7 +58,7 @@
 
         //  Validate the input parameters.
         var controllerName = options.controller;
-        if(!controllerName) {
+        if (!controllerName) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
         }
@@ -68,7 +68,7 @@
           .then(function(template) {
 
             //  Create a new scope for the modal.
-            var modalScope = $rootScope.$new();
+            var modalScope = (options.scope || $rootScope).$new();
 
             //  Create the inputs object to the controller - this will include
             //  the scope, as well as all inputs provided.
@@ -81,7 +81,7 @@
             var inputs = {
               $scope: modalScope,
               close: function(result, delay) {
-                if(delay === undefined || delay === null) delay = 0;
+                if (delay === undefined || delay === null) delay = 0;
                 $timeout(function() {
                   //  Resolve the 'close' promise.
                   closeDeferred.resolve(result);
@@ -116,7 +116,7 @@
             };
 
             //  If we have provided any inputs, pass them to the controller.
-            if(options.inputs) angular.extend(inputs, options.inputs);
+            if (options.inputs) angular.extend(inputs, options.inputs);
 
             //  Compile then link the template element, building the actual element.
             //  Set the $element on the inputs so that it can be injected if required.
@@ -125,11 +125,13 @@
             inputs.$element = modalElement;
 
             //  Create the controller, explicitly specifying the scope to use.
-            var modalController = $controller(options.controller, inputs);
+            var controllerObjBefore = modalScope[options.controllerAs];
+            var modalController = $controller(options.controller, inputs, false, options.controllerAs);
 
-            if(options.controllerAs){
-              modalScope[options.controllerAs] = modalController ;
+            if (options.controllerAs && controllerObjBefore) {
+              angular.extend(modalController, controllerObjBefore);
             }
+
             // Then append the modal to the dom.
             if (options.appendElement) {
               // append to custom append element

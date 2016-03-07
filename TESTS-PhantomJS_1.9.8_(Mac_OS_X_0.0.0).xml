@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 1.9.8 (Mac OS X 0.0.0)" package="" timestamp="2016-02-19T03:30:59" id="0" hostname="Daves-MacBook-Air.local" tests="21" errors="0" failures="0" time="0.101">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
+  </properties>
+  <testcase name="should be able to inject the modal service" time="0.008" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).basics"/>
+  <testcase name="should inject the close function into the controller" time="0.015" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should inject inputs to the controller" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should add a controller to the scope if controllerAs is used" time="0.002" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should add a controller to the scope if the controller is inlined" time="0.004" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should add a controller to the scope if the controller is inlined with controllerAs" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should add a controller to the scope if the controller is inlined with controllerAs and also annotated" time="0.002" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should inject the modal element into the controller" time="0.007" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should correct process form with controllerAs.form syntax" time="0.008" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).controller"/>
+  <testcase name="should add the template html to the dom" time="0.002" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).dom"/>
+  <testcase name="should add the template html to the custom dom element" time="0.002" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).dom"/>
+  <testcase name="should close the template html to the custom dom element" time="0.005" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).dom"/>
+  <testcase name="should remove the template html from the dom when the controller closes the modal" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).dom"/>
+  <testcase name="should fail if there is no controller specified" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).parameters"/>
+  <testcase name="should fail if there is no template or template url specified" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).parameters"/>
+  <testcase name="should accept the template provided as a string" time="0.01" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).parameters"/>
+  <testcase name="should accept the controller provided as a function" time="0.008" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).parameters"/>
+  <testcase name="should http get the specified template url" time="0.004" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).template"/>
+  <testcase name="should fail to get an invalid template url" time="0.003" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).template"/>
+  <testcase name="should use the template cache for subsequent requests for the same template" time="0.004" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).template"/>
+  <testcase name="should use the template cache correctly if the template is precached" time="0.002" classname="PhantomJS_1_9_8_(Mac_OS_X_0_0_0).template"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

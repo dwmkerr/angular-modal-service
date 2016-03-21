@@ -14,7 +14,7 @@
     function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
 
     //  Get the body of the document, we'll add the modal to this.
-    var body = $document.find('body');
+    var body = angular.element($document[0].body);
 
     function ModalService() {
 

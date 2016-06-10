@@ -3,6 +3,7 @@ describe('dom', function() {
   var ModalService = null;
   var $httpBackend = null;
   var $timeout = null;
+  var $rootScope = null;
 
   angular.module('domtests', ['angularModalService'])
     .controller('DomController', function ($scope, close) {
@@ -11,9 +12,10 @@ describe('dom', function() {
 
   beforeEach(function() {
     module('domtests');
-    inject(function(_ModalService_, $injector) {
+    inject(function(_ModalService_, _$rootScope_, $injector) {
       ModalService = _ModalService_;
       $httpBackend = $injector.get('$httpBackend');
+      $rootScope = _$rootScope_;
       $timeout = $injector.get('$timeout');
       $httpBackend.when('GET', 'some/template1.html').respond("<div id='template1'>template1</div>");
       $httpBackend.when('GET', 'some/template2.html').respond("<div id='template2'>template2</div>");
@@ -111,6 +113,30 @@ describe('dom', function() {
       });
 
       modal.scope.close();
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+
+  });
+
+  it('should remove the template html from the dom when the $locationChangeSuccess event is fired', function() {
+
+    $httpBackend.expectGET('some/template2.html');
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template2.html"
+    }).then(function(modal) {
+
+      // We should be able to find the element that has been created in the dom.
+      expect(document.getElementById('template2')).not.toBeNull();
+
+      modal.close.then(function(result) {
+        expect(document.getElementById('template2')).toBeNull();
+      });
+
+      $rootScope.$emit('$locationChangeSuccess');
     });
 
     $httpBackend.flush();

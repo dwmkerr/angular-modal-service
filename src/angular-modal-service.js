@@ -13,9 +13,6 @@
   module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
     function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
 
-    //  Get the body of the document, we'll add the modal to this.
-    var body = angular.element($document[0].body);
-
     function ModalService() {
 
       var self = this;
@@ -52,6 +49,9 @@
       };
 
       self.showModal = function(options) {
+
+        //  Get the body of the document, we'll add the modal to this.
+        var body = angular.element($document[0].body);
 
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();

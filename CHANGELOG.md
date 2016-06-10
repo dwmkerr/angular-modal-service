@@ -1,3 +1,9 @@
+## v0.6.11
+
+* Robustness for 'locationChangeEvent'.
+* Robustness if the body element changs.
+* Addded `bower` as a dev dependency. Run `bower install` as an `npm` `postinstall` step, which makes initial setup on a clean machine slightly easier.
+
 ## v0.6.10
 
 * Added support for using a custom parent scope for the controller scope, via the `scope` option.

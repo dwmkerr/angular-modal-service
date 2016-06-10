@@ -212,7 +212,6 @@ To work with the code, just run:
 
 ```
 npm install
-bower install
 gulp
 ```
 
@@ -308,3 +307,5 @@ Thanks go the the following contributors:
 * [poporul](https://github.com/poporul) - Improving the core logic around compilation and inputs.
 * [jonasnas](https://github.com/jonasnas) - Fixing template cache logic.
 * [maxdow](https://github.com/maxdow) - Added support for controller inlining.
+* [kernowjoe](https://github.com/kernowjoe) - Robustness around locationChange
+* [arthur-xavier](https://github.com/arthur-xavier) - Robustness when `body` element changes.

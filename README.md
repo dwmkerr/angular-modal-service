@@ -31,7 +31,7 @@ npm install angular-modal-service
 Then reference the minified script:
 
 ```html
-<script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>
+<script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
 ```
 
 Specify the modal service as a dependency of your application:

@@ -4,6 +4,8 @@
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./dst/angular-modal-service.js",
   "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --content-base ./samples",
     "test": "gulp test",
     "test-debug": "./node_modules/.bin/karma start ./test/karma.config.js --no-single-run --browsers Chrome",
     "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info",
@@ -26,6 +28,9 @@
   },
   "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
     "bower": "^1.7.9",
     "connect-livereload": "^0.5.3",
     "coveralls": "^2.10.0",
@@ -47,6 +52,8 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "opn": "^3.0.1",
     "phantomjs": "^1.9.18",
-    "tiny-lr": "^0.1.5"
+    "tiny-lr": "^0.1.5",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }

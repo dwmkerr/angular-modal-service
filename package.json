@@ -5,7 +5,7 @@
   "main": "./dst/angular-modal-service.js",
   "scripts": {
     "build": "webpack && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map ./dst/angular-modal-service.min.js.map",
-    "start": "webpack-dev-server --content-base ./samples",
+    "start": "webpack-dev-server --inline --content-base ./samples",
     "test": "karma start karma.config.js",
     "test-debug": "karma start karma.config.js --no-single-run --browsers Chrome",
     "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info",

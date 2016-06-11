@@ -3,7 +3,7 @@ describe('basics', function() {
   var ModalService = null;
 
   beforeEach(function() {
-    module('angularModalService');
+    angular.mock.module('angularModalService');
     inject(function(_ModalService_) {
       ModalService = _ModalService_;
     });

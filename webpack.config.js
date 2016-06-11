@@ -11,7 +11,9 @@ module.exports = {
     filename: 'angular-modal-service.js'
   },
   
-  //  Make sure we include sourcemaps.
+  //  Make sure we include sourcemaps. This is for the bundled
+  //  code, not the uglfied code (we uglify with npm run build,
+  //  see package.json for details).
   devtool: 'source-map',
 
   //  Define externals (things we don't pack).

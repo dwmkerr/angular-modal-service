@@ -11,7 +11,7 @@ describe('dom', function() {
     });
 
   beforeEach(function() {
-    module('domtests');
+    angular.mock.module('domtests');
     inject(function(_ModalService_, _$rootScope_, $injector) {
       ModalService = _ModalService_;
       $httpBackend = $injector.get('$httpBackend');

@@ -8,7 +8,8 @@
     "start": "webpack-dev-server --inline --content-base ./samples",
     "test": "karma start karma.config.js",
     "test-debug": "karma start karma.config.js --no-single-run --browsers Chrome",
-    "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info"
+    "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -34,14 +35,15 @@
     "coveralls": "^2.10.0",
     "jasmine-core": "^2.4.1",
     "jshint-stylish": "^2.0.0",
-    "karma": "^0.13.10",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-coverage": "^0.5.1",
-    "karma-jasmine": "~0.3",
-    "karma-junit-reporter": "~0.3",
-    "karma-phantomjs-launcher": "^0.2.1",
+    "karma": "0.13.x",
+    "karma-chrome-launcher": "1.0.x",
+    "karma-coverage": "1.0.x",
+    "karma-jasmine": "1.0.x",
+    "karma-junit-reporter": "2.0.x",
+    "karma-phantomjs-launcher": "1.0.x",
     "karma-webpack": "^1.7.0",
-    "phantomjs": "^1.9.18",
+    "phantomjs": "2.1.x",
+    "phantomjs-prebuilt": "2.1.x",
     "uglify-js": "^2.6.2",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"

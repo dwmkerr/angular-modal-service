@@ -16,10 +16,11 @@ Modal service for AngularJS - supports creating popups and modals via a service.
 
 ## Usage
 
-Install with Bower or NPM:
+Install with Bower (or NPM):
 
-```
+```bash
 bower install angular-modal-service
+# or...
 npm install angular-modal-service
 ```
 
@@ -27,7 +28,6 @@ Then reference the minified script:
 
 ```html
 <script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
-<script src="./node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
 ```
 
 Specify the modal service as a dependency of your application:

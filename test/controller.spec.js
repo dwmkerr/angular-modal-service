@@ -1,3 +1,7 @@
+let angular = require('angular');
+require('angular-mocks');
+require('../src/angular-modal-service');
+
 describe('controller', function() {
 
   var ModalService = null;

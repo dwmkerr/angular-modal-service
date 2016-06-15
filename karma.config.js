@@ -3,6 +3,7 @@ var webpackConfig = require('./webpack.config.js');
 //  We'll use the webpack config already defined, but take
 //  away the entrypoint.
 webpackConfig.entry = {};
+webpackConfig.externals = {};
 
 module.exports = function(config) {
   config.set({
@@ -12,10 +13,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       //  Dependencies
-      './node_modules/angular/angular.js',
-      './node_modules/angular-mocks/angular-mocks.js',
+      // './node_modules/angular/angular.js',
+      // './node_modules/angular-mocks/angular-mocks.js',
 
-      'src/angular-modal-service.js',
+      //'src/angular-modal-service.js',
 
       //  Our specs
       'test/*.spec.js'
@@ -25,8 +26,15 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       //'../test/*.spec.js': ['webpack'],
-      'src/angular-modal-service.js': ['coverage']
+      'test/*.spec.js': ['webpack', 'coverage']//,
+      //'src/angular-modal-service.js': ['webpack', 'coverage']
     },
+
+    webpack: webpackConfig,
+
+    webpackMiddleware: {
+      noInfo: true // no spam!
+    },  
 
     // test results reporter to use
     reporters: ['progress', 'coverage', 'junit'],

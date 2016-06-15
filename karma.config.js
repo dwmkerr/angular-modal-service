@@ -26,8 +26,8 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       //'../test/*.spec.js': ['webpack'],
-      'test/*.spec.js': ['webpack', 'coverage']//,
-      //'src/angular-modal-service.js': ['webpack', 'coverage']
+      'test/*.spec.js': ['webpack'],
+      'src/angular-modal-service.js': ['webpack', 'coverage']
     },
 
     webpack: webpackConfig,

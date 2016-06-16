@@ -1,17 +1,17 @@
-describe('parameters', function() {
+describe('parameters', () => {
 
-  var ModalService = null;
-  var rootScope = null;
+  let ModalService = null;
+  let rootScope = null;
 
 
   angular.module('parametertests', ['angularModalService'])
-    .controller('ValidController', function ($scope, close) {
+    .controller('ValidController', ($scope, close) => {
       $scope.close = close;
     });
 
-  beforeEach(function() {
+  beforeEach(() => {
     angular.mock.module('parametertests');
-    inject(function(_ModalService_, $rootScope) {
+    inject((_ModalService_, $rootScope) => {
       ModalService = _ModalService_;
       rootScope = $rootScope;
     });

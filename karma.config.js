@@ -19,14 +19,14 @@ module.exports = function(config) {
       //'src/angular-modal-service.js',
 
       //  Our specs
-      'test/*.spec.js'
+      './test/index.js'
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       //'../test/*.spec.js': ['webpack'],
-      'test/*.spec.js': ['webpack'],
+      './test/index.js': ['webpack'],
       'src/angular-modal-service.js': ['webpack', 'coverage']
     },
 

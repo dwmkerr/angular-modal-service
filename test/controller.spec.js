@@ -1,7 +1,3 @@
-let angular = require('angular');
-require('angular-mocks');
-require('../src/angular-modal-service');
-
 describe('controller', () => {
 
   var ModalService = null;

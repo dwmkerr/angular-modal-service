@@ -1,18 +1,18 @@
-describe('dom', function() {
+describe('dom', () => {
 
-  var ModalService = null;
-  var $httpBackend = null;
-  var $timeout = null;
-  var $rootScope = null;
+  let ModalService = null;
+  let $httpBackend = null;
+  let $timeout = null;
+  let $rootScope = null;
 
   angular.module('domtests', ['angularModalService'])
-    .controller('DomController', function ($scope, close) {
+    .controller('DomController', ($scope, close) => {
       $scope.close = close;
     });
 
-  beforeEach(function() {
+  beforeEach(() => {
     angular.mock.module('domtests');
-    inject(function(_ModalService_, _$rootScope_, $injector) {
+    inject((_ModalService_, _$rootScope_, $injector) => {
       ModalService = _ModalService_;
       $httpBackend = $injector.get('$httpBackend');
       $rootScope = _$rootScope_;
@@ -22,19 +22,19 @@ describe('dom', function() {
     });
   });
 
-  afterEach(function() {
+  afterEach(() => {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should add the template html to the dom', function() {
+  it('should add the template html to the dom', () => {
 
     $httpBackend.expectGET('some/template1.html');
 
     ModalService.showModal({
       controller: "DomController",
       templateUrl: "some/template1.html"
-    }).then(function(modal) {
+    }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template1')).not.toBeNull();
@@ -45,11 +45,11 @@ describe('dom', function() {
 
   });
 
-  it('should add the template html to the custom dom element', function () {
+  it('should add the template html to the custom dom element', () => {
     $httpBackend.expectGET('some/template1.html');
 
     // create fake element
-    var fakeDomElement = document.createElement('div');
+    let fakeDomElement = document.createElement('div');
     fakeDomElement.id = 'fake-dom-element';
 
     // insert fakeDomElement into the document to test against
@@ -59,7 +59,7 @@ describe('dom', function() {
       controller: "DomController",
       templateUrl: "some/template1.html",
       appendElement: angular.element(document.getElementById('fake-dom-element'))
-    }).then(function (modal) {
+    }).then((modal) => {
       // We should be able to find the lement that has been created in the custom dom element
       expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
     });
@@ -67,11 +67,11 @@ describe('dom', function() {
     $httpBackend.flush();
   });
 
-  it('should close the template html to the custom dom element', function () {
+  it('should close the template html to the custom dom element', () => {
     $httpBackend.expectGET('some/template1.html');
 
     // create fake element
-    var fakeDomElement = document.createElement('div');
+    let fakeDomElement = document.createElement('div');
     fakeDomElement.id = 'fake-dom-element';
 
     // insert fakeDomElement into the document to test against
@@ -81,11 +81,11 @@ describe('dom', function() {
       controller: "DomController",
       templateUrl: "some/template1.html",
       appendElement: angular.element(document.getElementById('fake-dom-element'))
-    }).then(function (modal) {
+    }).then((modal) => {
       // We should be able to find the lement that has been created in the custom dom element
       expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
 
-      modal.close.then(function(result) {
+      modal.close.then((result) => {
         expect(document.getElementById('template2')).toBeNull();
       });
 
@@ -96,19 +96,19 @@ describe('dom', function() {
     $timeout.flush();
   });
 
-  it('should remove the template html from the dom when the controller closes the modal', function() {
+  it('should remove the template html from the dom when the controller closes the modal', () => {
 
     $httpBackend.expectGET('some/template2.html');
 
     ModalService.showModal({
       controller: "DomController",
       templateUrl: "some/template2.html"
-    }).then(function(modal) {
+    }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template2')).not.toBeNull();
 
-      modal.closed.then(function(result) {
+      modal.closed.then((result) => {
         expect(document.getElementById('template2')).toBeNull();
       });
 
@@ -120,19 +120,19 @@ describe('dom', function() {
 
   });
 
-  it('should remove the template html from the dom when the $locationChangeSuccess event is fired', function() {
+  it('should remove the template html from the dom when the $locationChangeSuccess event is fired', () => {
 
     $httpBackend.expectGET('some/template2.html');
 
     ModalService.showModal({
       controller: "DomController",
       templateUrl: "some/template2.html"
-    }).then(function(modal) {
+    }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template2')).not.toBeNull();
 
-      modal.close.then(function(result) {
+      modal.close.then((result) => {
         expect(document.getElementById('template2')).toBeNull();
       });
 

@@ -21,9 +21,6 @@ describe('controller', () => {
       vm.checkValidity = () => {
         return vm.ExampleForm.$valid;
       }
-    })
-    .controller('ElementController', ($scope, $element) => {
-      $scope.getElement = () => { return $element; };
     });
 
   beforeEach(() => {
@@ -175,24 +172,6 @@ describe('controller', () => {
       //  Fields defined on the controller instance should be on the
       //  controller on the scope.
       expect(modal.scope.futurama.character).toBe('Fry');
-
-    });
-
-    $httpBackend.flush();
-
-  });
-
-  it('should inject the modal element into the controller', () => {
-
-    $httpBackend.expectGET('some/controllertemplate.html');
-
-    ModalService.showModal({
-      controller: 'ElementController',
-      templateUrl: 'some/controllertemplate.html'
-    }).then((modal) => {
-
-      //  The controller should be on the scope.
-      expect(modal.scope.getElement()).not.toBeUndefined();
 
     });
 

@@ -8,6 +8,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
     function ModalService() {
 
       var self = this;
+      var modalElement, modal;
 
       //  Returns a promise which gets the template, either
       //  from the template parameter or via a request to the
@@ -50,7 +51,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
         //  Validate the input parameters.
         var controllerName = options.controller;
-        if (!controllerName) {
+        if (!options.renderedElement && !controllerName) {
           deferred.reject("No controller has been specified.");
           return deferred.promise;
         }
@@ -61,31 +62,30 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
         var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
 
         //  Create a new scope for the modal or use the one from the given rendered element.
-        var modalScope = options.renderedElement.scope() || ((options.scope || $rootScope).$new());
+        var modalScope = (options.renderedElement && options.renderedElement.scope()) || ((options.scope || $rootScope).$new());
 
         //  Store a reference to the parent element of a rendered element to put it back there later on
         var parentElement = (options.renderedElement) ? options.renderedElement.parent() : null;
+
+        //  Create the inputs object to the controller - this will include
+        //  the scope, as well as all inputs provided.
+        //  We will also create a deferred that is resolved with a provided
+        //  close function. The controller can then call 'close(result)'.
+        //  The controller can also provide a delay for closing - this is
+        //  helpful if there are closing animations which must finish first.
+        var inputs = {
+          close: function (result, delay) {
+            if (delay === undefined || delay === null) delay = 0;
+            $timeout(function () {
+              cleanUpClose(result);
+            }, delay);
+          }
+        };
 
         //  Get the actual html of the template, if there is no rendered element given
         if(!options.renderedElement) {
           getTemplate(options.template, options.templateUrl)
             .then(function (template) {
-
-
-              //  Create the inputs object to the controller - this will include
-              //  the scope, as well as all inputs provided.
-              //  We will also create a deferred that is resolved with a provided
-              //  close function. The controller can then call 'close(result)'.
-              //  The controller can also provide a delay for closing - this is
-              //  helpful if there are closing animations which must finish first.
-              var inputs = {
-                close: function (result, delay) {
-                  if (delay === undefined || delay === null) delay = 0;
-                  $timeout(function () {
-                    cleanUpClose(result);
-                  }, delay);
-                }
-              };
 
               // Extend the inputs object by the modalScope
               inputs.$scope = modalScope;
@@ -96,9 +96,9 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
               //  Compile then link the template element, building the actual element.
               //  Set the $element on the inputs so that it can be injected if required.
               var linkFn = $compile(template);
-              var modalElement = linkFn(modalScope);
+              modalElement = linkFn(modalScope);
 
-              buildModal(modalElement);
+              buildModal(modalElement, inputs);
             })
             .then(null, function (error) { // 'catch' doesn't work in IE8.
               deferred.reject(error);
@@ -124,6 +124,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             if (options.controllerAs && controllerObjBefore) {
               angular.extend(modalController, controllerObjBefore);
             }
+
           }
 
           //  Finally, append the modal to the dom.
@@ -147,43 +148,46 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
           //  ...which is passed to the caller via the promise.
           deferred.resolve(modal);
 
-          function cleanUpClose(result) {
-
-            //  Resolve the 'close' promise.
-            closeDeferred.resolve(result);
-
-            //  Let angular remove the element and wait for animations to finish if it wasn't a rendered element
-            if(!options.renderedElement) {
-              $animate.leave(modalElement)
-                .then(function () {
-                  //  Resolve the 'closed' promise.
-                  closedDeferred.resolve(result);
-
-                  //  We can now clean up the scope
-                  modalScope.$destroy();
-                });
-
-              // remove event watcher
-              rootScopeOnClose && rootScopeOnClose();
-            } else {
-              // move the rendered modal back to where it came from
-              modalElement.clone().appendTo(parentElement);
-              modalElement.remove();
-              closedDeferred.resolve(result);
-            }
-
-            //  Unless we null out all of these objects we seem to suffer
-            //  from memory leaks, if anyone can explain why then I'd
-            //  be very interested to know.
-            inputs.close = null;
-            deferred = null;
-            closeDeferred = null;
-            modal = null;
-            inputs = null;
-            modalElement = null;
-            modalScope = null;
-          }
         }
+
+        function cleanUpClose(result) {
+
+          //  Resolve the 'close' promise.
+          closeDeferred.resolve(result);
+
+          //  Let angular remove the element and wait for animations to finish if it wasn't a rendered element
+          if(!options.renderedElement) {
+
+            $animate.leave(modalElement)
+              .then(function () {
+                //  Resolve the 'closed' promise.
+                closedDeferred.resolve(result);
+
+                //  We can now clean up the scope
+                modalScope.$destroy();
+              });
+
+            // remove event watcher
+            rootScopeOnClose && rootScopeOnClose();
+          } else {
+            // move the rendered modal back to where it came from
+            modalElement.clone().appendTo(parentElement);
+            modalElement.remove();
+            closedDeferred.resolve(result);
+          }
+
+          //  Unless we null out all of these objects we seem to suffer
+          //  from memory leaks, if anyone can explain why then I'd
+          //  be very interested to know.
+          inputs.close = null;
+          deferred = null;
+          closeDeferred = null;
+          modal = null;
+          inputs = null;
+          modalElement = null;
+          modalScope = null;
+        }
+
         return deferred.promise;
       };
 

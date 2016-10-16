@@ -144,4 +144,82 @@ describe('dom', () => {
 
   });
 
+  it('should leave the template html in the dom when the $locationChangeSuccess event is explicitly enabled', () => {
+
+    $httpBackend.expectGET('some/template2.html');
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template2.html"
+    }).then((modal) => {
+
+      // We should be able to find the element that has been created in the dom.
+      expect(document.getElementById('template2')).not.toBeNull();
+
+      modal.close.then((result) => {
+        expect(document.getElementById('template2')).toBeNull();
+      });
+
+      $rootScope.$emit('$locationChangeSuccess');
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+
+  });
+
+  it('should leave the template html in the dom when the $locationChangeSuccess event is explicitly disabled', (done) => {
+
+    $httpBackend.expectGET('some/template2.html');
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template2.html",
+      locationChangeSuccess : false
+    }).then((modal) => {
+
+      // We should be able to find the element that has been created in the dom.
+      expect(document.getElementById('template2')).not.toBeNull();
+
+      $rootScope.$emit('$locationChangeSuccess');
+
+      setTimeout(() => {
+        expect(document.getElementById('template2')).not.toBeNull();
+        done();
+      }, 3);
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+
+  });
+
+  it('should leave the template html in the dom when the $locationChangeSuccess event for the specified delay', () => {
+
+    $httpBackend.expectGET('some/template2.html');
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template2.html",
+      locationChangeSuccess : 10
+    }).then((modal) => {
+
+      $rootScope.$emit('$locationChangeSuccess');
+      expect($timeout.verifyNoPendingTasks).toThrow();
+      expect(document.getElementById('template2')).not.toBeNull();
+
+      modal.close.then((result) => {
+         $timeout.verifyNoPendingTasks();
+        expect(document.getElementById('template2')).toBeNull();
+      });
+
+      $rootScope.$emit('$locationChangeSuccess');
+
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+
+  });
+
 });

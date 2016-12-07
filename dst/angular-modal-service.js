@@ -44,175 +44,76 @@
 /* 0 */
 /***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 	
-	//  angularModalService.js
-	//
-	//  Service for showing modal dialogs.
-	
-	/***** JSLint Config *****/
-	/*global angular  */
-	(function () {
-	
-	  'use strict';
-	
-	  var module = angular.module('angularModalService', []);
-	
-	  module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
-	
-	    function ModalService() {
-	
-	      var self = this;
-	
-	      //  Returns a promise which gets the template, either
-	      //  from the template parameter or via a request to the
-	      //  template url parameter.
-	      var getTemplate = function getTemplate(template, templateUrl) {
-	        var deferred = $q.defer();
-	        if (template) {
-	          deferred.resolve(template);
-	        } else if (templateUrl) {
-	          $templateRequest(templateUrl, true).then(function (template) {
-	            deferred.resolve(template);
-	          }, function (error) {
-	            deferred.reject(error);
-	          });
-	        } else {
-	          deferred.reject("No template or templateUrl has been specified.");
-	        }
-	        return deferred.promise;
-	      };
-	
-	      //  Adds an element to the DOM as the last child of its container
-	      //  like append, but uses $animate to handle animations. Returns a
-	      //  promise that is resolved once all animation is complete.
-	      var appendChild = function appendChild(parent, child) {
-	        var children = parent.children();
-	        if (children.length > 0) {
-	          return $animate.enter(child, parent, children[children.length - 1]);
-	        }
-	        return $animate.enter(child, parent);
-	      };
-	
-	      self.showModal = function (options) {
-	
-	        //  Get the body of the document, we'll add the modal to this.
-	        var body = angular.element($document[0].body);
-	
-	        //  Create a deferred we'll resolve when the modal is ready.
-	        var deferred = $q.defer();
-	
-	        //  Validate the input parameters.
-	        var controllerName = options.controller;
-	        if (!controllerName) {
-	          deferred.reject("No controller has been specified.");
-	          return deferred.promise;
-	        }
-	
-	        //  Get the actual html of the template.
-	        getTemplate(options.template, options.templateUrl).then(function (template) {
-	
-	          //  Create a new scope for the modal.
-	          var modalScope = (options.scope || $rootScope).$new();
-	          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
-	
-	          //  Create the inputs object to the controller - this will include
-	          //  the scope, as well as all inputs provided.
-	          //  We will also create a deferred that is resolved with a provided
-	          //  close function. The controller can then call 'close(result)'.
-	          //  The controller can also provide a delay for closing - this is
-	          //  helpful if there are closing animations which must finish first.
-	          var closeDeferred = $q.defer();
-	          var closedDeferred = $q.defer();
-	          var inputs = {
-	            $scope: modalScope,
-	            close: function close(result, delay) {
-	              if (delay === undefined || delay === null) delay = 0;
-	              $timeout(function () {
-	
-	                cleanUpClose(result);
-	              }, delay);
+	var __cov_GL43Ieg5PM7ctuB_vuWsyw = Function('return this')();
+	if (!__cov_GL43Ieg5PM7ctuB_vuWsyw.__coverage__) {
+	   __cov_GL43Ieg5PM7ctuB_vuWsyw.__coverage__ = {};
+	}
+	__cov_GL43Ieg5PM7ctuB_vuWsyw = __cov_GL43Ieg5PM7ctuB_vuWsyw.__coverage__;
+	if (!__cov_GL43Ieg5PM7ctuB_vuWsyw['/Users/joeprisk/repos/github/angular-modal-service/src/angular-modal-service.js']) {
+	   __cov_GL43Ieg5PM7ctuB_vuWsyw['/Users/joeprisk/repos/github/angular-modal-service/src/angular-modal-service.js'] = { "path": "/Users/joeprisk/repos/github/angular-modal-service/src/angular-modal-service.js", "s": { "1": 0, "2": 0, "3": 1, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0, "22": 0, "23": 0, "24": 0, "25": 0, "26": 0, "27": 0, "28": 0, "29": 0, "30": 0, "31": 0, "32": 0, "33": 0, "34": 0, "35": 0, "36": 0, "37": 0, "38": 0, "39": 0, "40": 0, "41": 0, "42": 0, "43": 0, "44": 0, "45": 0, "46": 0, "47": 0, "48": 0, "49": 0, "50": 0, "51": 1, "52": 0, "53": 0, "54": 0, "55": 0, "56": 0, "57": 0, "58": 0, "59": 0, "60": 0, "61": 0, "62": 0, "63": 0, "64": 0, "65": 0, "66": 0 }, "b": { "1": [0, 0], "2": [0, 0], "3": [0, 0], "4": [0, 0], "5": [0, 0], "6": [0, 0], "7": [0, 0], "8": [0, 0], "9": [0, 0], "10": [0, 0], "11": [0, 0], "12": [0, 0] }, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 6, "column": 2 }, "end": { "line": 6, "column": 106 } } }, "2": { "name": "ModalService", "line": 7, "loc": { "start": { "line": 8, "column": 2 }, "end": { "line": 8, "column": 26 } } }, "3": { "name": "getTemplate", "line": 14, "loc": { "start": { "line": 15, "column": 22 }, "end": { "line": 15, "column": 54 } } }, "4": { "name": "(anonymous_4)", "line": 19, "loc": { "start": { "line": 21, "column": 16 }, "end": { "line": 21, "column": 35 } } }, "5": { "name": "(anonymous_5)", "line": 21, "loc": { "start": { "line": 23, "column": 13 }, "end": { "line": 23, "column": 29 } } }, "6": { "name": "appendChild", "line": 33, "loc": { "start": { "line": 35, "column": 22 }, "end": { "line": 35, "column": 46 } } }, "7": { "name": "(anonymous_7)", "line": 41, "loc": { "start": { "line": 43, "column": 21 }, "end": { "line": 43, "column": 39 } } }, "8": { "name": "(anonymous_8)", "line": 57, "loc": { "start": { "line": 60, "column": 14 }, "end": { "line": 60, "column": 33 } } }, "9": { "name": "close", "line": 73, "loc": { "start": { "line": 76, "column": 19 }, "end": { "line": 76, "column": 43 } } }, "10": { "name": "(anonymous_10)", "line": 75, "loc": { "start": { "line": 78, "column": 23 }, "end": { "line": 78, "column": 34 } } }, "11": { "name": "cleanUpClose", "line": 120, "loc": { "start": { "line": 124, "column": 10 }, "end": { "line": 124, "column": 40 } } }, "12": { "name": "(anonymous_12)", "line": 129, "loc": { "start": { "line": 134, "column": 26 }, "end": { "line": 134, "column": 38 } } }, "13": { "name": "(anonymous_13)", "line": 148, "loc": { "start": { "line": 156, "column": 20 }, "end": { "line": 156, "column": 36 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 0 } }, "3": { "start": { "line": 8, "column": 2 }, "end": { "line": 163, "column": 3 } }, "4": { "start": { "line": 10, "column": 4 }, "end": { "line": 10, "column": 4 } }, "5": { "start": { "line": 15, "column": 4 }, "end": { "line": 15, "column": 4 } }, "6": { "start": { "line": 16, "column": 6 }, "end": { "line": 16, "column": 6 } }, "7": { "start": { "line": 17, "column": 6 }, "end": { "line": 28, "column": 7 } }, "8": { "start": { "line": 18, "column": 8 }, "end": { "line": 18, "column": 8 } }, "9": { "start": { "line": 19, "column": 13 }, "end": { "line": 28, "column": 7 } }, "10": { "start": { "line": 20, "column": 8 }, "end": { "line": 20, "column": 8 } }, "11": { "start": { "line": 22, "column": 12 }, "end": { "line": 22, "column": 12 } }, "12": { "start": { "line": 24, "column": 12 }, "end": { "line": 24, "column": 12 } }, "13": { "start": { "line": 27, "column": 8 }, "end": { "line": 27, "column": 8 } }, "14": { "start": { "line": 29, "column": 6 }, "end": { "line": 29, "column": 6 } }, "15": { "start": { "line": 35, "column": 4 }, "end": { "line": 35, "column": 4 } }, "16": { "start": { "line": 36, "column": 6 }, "end": { "line": 36, "column": 6 } }, "17": { "start": { "line": 37, "column": 6 }, "end": { "line": 39, "column": 7 } }, "18": { "start": { "line": 38, "column": 8 }, "end": { "line": 38, "column": 8 } }, "19": { "start": { "line": 40, "column": 6 }, "end": { "line": 40, "column": 6 } }, "20": { "start": { "line": 43, "column": 4 }, "end": { "line": 43, "column": 4 } }, "21": { "start": { "line": 46, "column": 6 }, "end": { "line": 46, "column": 6 } }, "22": { "start": { "line": 49, "column": 6 }, "end": { "line": 49, "column": 6 } }, "23": { "start": { "line": 52, "column": 6 }, "end": { "line": 52, "column": 6 } }, "24": { "start": { "line": 53, "column": 6 }, "end": { "line": 56, "column": 7 } }, "25": { "start": { "line": 54, "column": 8 }, "end": { "line": 54, "column": 8 } }, "26": { "start": { "line": 55, "column": 8 }, "end": { "line": 55, "column": 8 } }, "27": { "start": { "line": 59, "column": 6 }, "end": { "line": 59, "column": 6 } }, "28": { "start": { "line": 63, "column": 10 }, "end": { "line": 63, "column": 10 } }, "29": { "start": { "line": 64, "column": 10 }, "end": { "line": 64, "column": 10 } }, "30": { "start": { "line": 72, "column": 10 }, "end": { "line": 72, "column": 10 } }, "31": { "start": { "line": 73, "column": 10 }, "end": { "line": 73, "column": 10 } }, "32": { "start": { "line": 74, "column": 10 }, "end": { "line": 74, "column": 10 } }, "33": { "start": { "line": 77, "column": 14 }, "end": { "line": 77, "column": 57 } }, "34": { "start": { "line": 77, "column": 57 }, "end": { "line": 77, "column": 57 } }, "35": { "start": { "line": 78, "column": 14 }, "end": { "line": 78, "column": 14 } }, "36": { "start": { "line": 80, "column": 16 }, "end": { "line": 80, "column": 16 } }, "37": { "start": { "line": 87, "column": 10 }, "end": { "line": 87, "column": 30 } }, "38": { "start": { "line": 87, "column": 30 }, "end": { "line": 87, "column": 30 } }, "39": { "start": { "line": 91, "column": 10 }, "end": { "line": 91, "column": 10 } }, "40": { "start": { "line": 92, "column": 10 }, "end": { "line": 92, "column": 10 } }, "41": { "start": { "line": 93, "column": 10 }, "end": { "line": 93, "column": 10 } }, "42": { "start": { "line": 96, "column": 10 }, "end": { "line": 96, "column": 10 } }, "43": { "start": { "line": 97, "column": 10 }, "end": { "line": 97, "column": 10 } }, "44": { "start": { "line": 99, "column": 10 }, "end": { "line": 101, "column": 11 } }, "45": { "start": { "line": 100, "column": 12 }, "end": { "line": 100, "column": 12 } }, "46": { "start": { "line": 104, "column": 10 }, "end": { "line": 110, "column": 11 } }, "47": { "start": { "line": 106, "column": 12 }, "end": { "line": 106, "column": 12 } }, "48": { "start": { "line": 109, "column": 12 }, "end": { "line": 109, "column": 12 } }, "49": { "start": { "line": 113, "column": 10 }, "end": { "line": 113, "column": 10 } }, "50": { "start": { "line": 122, "column": 10 }, "end": { "line": 122, "column": 10 } }, "51": { "start": { "line": 124, "column": 10 }, "end": { "line": 153, "column": 11 } }, "52": { "start": { "line": 127, "column": 12 }, "end": { "line": 127, "column": 12 } }, "53": { "start": { "line": 130, "column": 12 }, "end": { "line": 130, "column": 12 } }, "54": { "start": { "line": 133, "column": 12 }, "end": { "line": 133, "column": 12 } }, "55": { "start": { "line": 136, "column": 22 }, "end": { "line": 136, "column": 22 } }, "56": { "start": { "line": 142, "column": 22 }, "end": { "line": 142, "column": 22 } }, "57": { "start": { "line": 143, "column": 22 }, "end": { "line": 143, "column": 22 } }, "58": { "start": { "line": 144, "column": 22 }, "end": { "line": 144, "column": 22 } }, "59": { "start": { "line": 145, "column": 22 }, "end": { "line": 145, "column": 22 } }, "60": { "start": { "line": 146, "column": 22 }, "end": { "line": 146, "column": 22 } }, "61": { "start": { "line": 147, "column": 22 }, "end": { "line": 147, "column": 22 } }, "62": { "start": { "line": 148, "column": 22 }, "end": { "line": 148, "column": 22 } }, "63": { "start": { "line": 152, "column": 12 }, "end": { "line": 152, "column": 12 } }, "64": { "start": { "line": 157, "column": 10 }, "end": { "line": 157, "column": 10 } }, "65": { "start": { "line": 160, "column": 6 }, "end": { "line": 160, "column": 6 } }, "66": { "start": { "line": 165, "column": 2 }, "end": { "line": 165, "column": 2 } } }, "branchMap": { "1": { "line": 16, "type": "if", "locations": [{ "start": { "line": 17, "column": 6 }, "end": { "line": 17, "column": 6 } }, { "start": { "line": 17, "column": 6 }, "end": { "line": 17, "column": 6 } }] }, "2": { "line": 18, "type": "if", "locations": [{ "start": { "line": 19, "column": 13 }, "end": { "line": 19, "column": 13 } }, { "start": { "line": 19, "column": 13 }, "end": { "line": 19, "column": 13 } }] }, "3": { "line": 35, "type": "if", "locations": [{ "start": { "line": 37, "column": 6 }, "end": { "line": 37, "column": 6 } }, { "start": { "line": 37, "column": 6 }, "end": { "line": 37, "column": 6 } }] }, "4": { "line": 51, "type": "if", "locations": [{ "start": { "line": 53, "column": 6 }, "end": { "line": 53, "column": 6 } }, { "start": { "line": 53, "column": 6 }, "end": { "line": 53, "column": 6 } }] }, "5": { "line": 60, "type": "binary-expr", "locations": [{ "start": { "line": 63, "column": 28 }, "end": { "line": 63, "column": 28 } }, { "start": { "line": 63, "column": 45 }, "end": { "line": 63, "column": 27 } }] }, "6": { "line": 74, "type": "if", "locations": [{ "start": { "line": 77, "column": 14 }, "end": { "line": 77, "column": 14 } }, { "start": { "line": 77, "column": 14 }, "end": { "line": 77, "column": 14 } }] }, "7": { "line": 74, "type": "binary-expr", "locations": [{ "start": { "line": 77, "column": 18 }, "end": { "line": 77, "column": 18 } }, { "start": { "line": 77, "column": 41 }, "end": { "line": 77, "column": 14 } }] }, "8": { "line": 83, "type": "if", "locations": [{ "start": { "line": 87, "column": 10 }, "end": { "line": 87, "column": 10 } }, { "start": { "line": 87, "column": 10 }, "end": { "line": 87, "column": 10 } }] }, "9": { "line": 95, "type": "if", "locations": [{ "start": { "line": 99, "column": 10 }, "end": { "line": 99, "column": 10 } }, { "start": { "line": 99, "column": 10 }, "end": { "line": 99, "column": 10 } }] }, "10": { "line": 95, "type": "binary-expr", "locations": [{ "start": { "line": 99, "column": 14 }, "end": { "line": 99, "column": 14 } }, { "start": { "line": 99, "column": 38 }, "end": { "line": 99, "column": 10 } }] }, "11": { "line": 100, "type": "if", "locations": [{ "start": { "line": 104, "column": 10 }, "end": { "line": 104, "column": 10 } }, { "start": { "line": 104, "column": 10 }, "end": { "line": 104, "column": 10 } }] }, "12": { "line": 146, "type": "binary-expr", "locations": [{ "start": { "line": 152, "column": 12 }, "end": { "line": 152, "column": 12 } }, { "start": { "line": 152, "column": 32 }, "end": { "line": 152, "column": 12 } }] } }, "code": ["'use strict';", "", "let module = angular.module('angularModalService', []);", "", "module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',", "  function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {", "", "  function ModalService() {", "", "    var self = this;", "", "    //  Returns a promise which gets the template, either", "    //  from the template parameter or via a request to the", "    //  template url parameter.", "    var getTemplate = function(template, templateUrl) {", "      var deferred = $q.defer();", "      if (template) {", "        deferred.resolve(template);", "      } else if (templateUrl) {", "        $templateRequest(templateUrl, true)", "          .then(function(template) {", "            deferred.resolve(template);", "          }, function(error) {", "            deferred.reject(error);", "          });", "      } else {", "        deferred.reject(\"No template or templateUrl has been specified.\");", "      }", "      return deferred.promise;", "    };", "", "    //  Adds an element to the DOM as the last child of its container", "    //  like append, but uses $animate to handle animations. Returns a", "    //  promise that is resolved once all animation is complete.", "    var appendChild = function(parent, child) {", "      var children = parent.children();", "      if (children.length > 0) {", "        return $animate.enter(child, parent, children[children.length - 1]);", "      }", "      return $animate.enter(child, parent);", "    };", "", "    self.showModal = function(options) {", "", "      //  Get the body of the document, we'll add the modal to this.", "      var body = angular.element($document[0].body);", "", "      //  Create a deferred we'll resolve when the modal is ready.", "      var deferred = $q.defer();", "", "      //  Validate the input parameters.", "      var controllerName = options.controller;", "      if (!controllerName) {", "        deferred.reject(\"No controller has been specified.\");", "        return deferred.promise;", "      }", "", "      //  Get the actual html of the template.", "      getTemplate(options.template, options.templateUrl)", "        .then(function(template) {", "", "          //  Create a new scope for the modal.", "          var modalScope = (options.scope || $rootScope).$new();", "          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);", "", "          //  Create the inputs object to the controller - this will include", "          //  the scope, as well as all inputs provided.", "          //  We will also create a deferred that is resolved with a provided", "          //  close function. The controller can then call 'close(result)'.", "          //  The controller can also provide a delay for closing - this is", "          //  helpful if there are closing animations which must finish first.", "          var closeDeferred = $q.defer();", "          var closedDeferred = $q.defer();", "          var inputs = {", "            $scope: modalScope,", "            close: function(result, delay) {", "              if (delay === undefined || delay === null) delay = 0;", "              $timeout(function() {", "", "                cleanUpClose(result);", "", "              }, delay);", "            }", "          };", "", "          //  If we have provided any inputs, pass them to the controller.", "          if (options.inputs) angular.extend(inputs, options.inputs);", "", "          //  Compile then link the template element, building the actual element.", "          //  Set the $element on the inputs so that it can be injected if required.", "          var linkFn = $compile(template);", "          var modalElement = linkFn(modalScope);", "          inputs.$element = modalElement;", "", "          //  Create the controller, explicitly specifying the scope to use.", "          var controllerObjBefore = modalScope[options.controllerAs];", "          var modalController = $controller(options.controller, inputs, false, options.controllerAs);", "", "          if (options.controllerAs && controllerObjBefore) {", "            angular.extend(modalController, controllerObjBefore);", "          }", "", "          //  Finally, append the modal to the dom.", "          if (options.appendElement) {", "            // append to custom append element", "            appendChild(options.appendElement, modalElement);", "          } else {", "            // append to body when no custom append element is specified", "            appendChild(body, modalElement);", "          }", "", "          //  We now have a modal object...", "          var modal = {", "            controller: modalController,", "            scope: modalScope,", "            element: modalElement,", "            close: closeDeferred.promise,", "            closed: closedDeferred.promise", "          };", "", "          //  ...which is passed to the caller via the promise.", "          deferred.resolve(modal);", "", "          function cleanUpClose(result) {", "", "            //  Resolve the 'close' promise.", "            closeDeferred.resolve(result);", "", "            //  We can now clean up the scope", "            modalScope.$destroy();", "              ", "            //  Let angular remove the element and wait for animations to finish.", "            $animate.leave(modalElement)", "                    .then(function () {", "                      //  Resolve the 'closed' promise.", "                      closedDeferred.resolve(result);", "", "", "                      //  Unless we null out all of these objects we seem to suffer", "                      //  from memory leaks, if anyone can explain why then I'd", "                      //  be very interested to know.", "                      inputs.close = null;", "                      deferred = null;", "                      closeDeferred = null;", "                      modal = null;", "                      inputs = null;", "                      modalElement = null;", "                      modalScope = null;", "                    });", "", "            // remove event watcher", "            rootScopeOnClose && rootScopeOnClose();", "          }", "", "        })", "        .then(null, function(error) { // 'catch' doesn't work in IE8.", "          deferred.reject(error);", "        });", "", "      return deferred.promise;", "    };", "", "  }", "", "  return new ModalService();", "}]);", ""] };
+	}
+	__cov_GL43Ieg5PM7ctuB_vuWsyw = __cov_GL43Ieg5PM7ctuB_vuWsyw['/Users/joeprisk/repos/github/angular-modal-service/src/angular-modal-service.js'];
+	__cov_GL43Ieg5PM7ctuB_vuWsyw.s['1']++;var _module = angular.module('angularModalService', []);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['2']++;_module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
+	   __cov_GL43Ieg5PM7ctuB_vuWsyw.f['1']++;function ModalService() {
+	      __cov_GL43Ieg5PM7ctuB_vuWsyw.f['2']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['4']++;var self = this;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['5']++;var getTemplate = function getTemplate(template, templateUrl) {
+	         __cov_GL43Ieg5PM7ctuB_vuWsyw.f['3']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['6']++;var deferred = $q.defer();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['7']++;if (template) {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['1'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['8']++;deferred.resolve(template);
+	         } else {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['1'][1]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['9']++;if (templateUrl) {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['2'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['10']++;$templateRequest(templateUrl, true).then(function (template) {
+	                  __cov_GL43Ieg5PM7ctuB_vuWsyw.f['4']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['11']++;deferred.resolve(template);
+	               }, function (error) {
+	                  __cov_GL43Ieg5PM7ctuB_vuWsyw.f['5']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['12']++;deferred.reject(error);
+	               });
+	            } else {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['2'][1]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['13']++;deferred.reject('No template or templateUrl has been specified.');
 	            }
-	          };
-	
-	          //  If we have provided any inputs, pass them to the controller.
-	          if (options.inputs) angular.extend(inputs, options.inputs);
-	
-	          //  Compile then link the template element, building the actual element.
-	          //  Set the $element on the inputs so that it can be injected if required.
-	          var linkFn = $compile(template);
-	          var modalElement = linkFn(modalScope);
-	          inputs.$element = modalElement;
-	
-	          //  Create the controller, explicitly specifying the scope to use.
-	          var controllerObjBefore = modalScope[options.controllerAs];
-	          var modalController = $controller(options.controller, inputs, false, options.controllerAs);
-	
-	          if (options.controllerAs && controllerObjBefore) {
-	            angular.extend(modalController, controllerObjBefore);
-	          }
-	
-	          //  Finally, append the modal to the dom.
-	          if (options.appendElement) {
-	            // append to custom append element
-	            appendChild(options.appendElement, modalElement);
-	          } else {
-	            // append to body when no custom append element is specified
-	            appendChild(body, modalElement);
-	          }
-	
-	          //  We now have a modal object...
-	          var modal = {
-	            controller: modalController,
-	            scope: modalScope,
-	            element: modalElement,
-	            close: closeDeferred.promise,
-	            closed: closedDeferred.promise
-	          };
-	
-	          //  ...which is passed to the caller via the promise.
-	          deferred.resolve(modal);
-	
-	          function cleanUpClose(result) {
-	
-	            //  Resolve the 'close' promise.
-	            closeDeferred.resolve(result);
-	
-	            //  Let angular remove the element and wait for animations to finish.
-	            $animate.leave(modalElement).then(function () {
-	              //  Resolve the 'closed' promise.
-	              closedDeferred.resolve(result);
-	
-	              //  We can now clean up the scope
-	              modalScope.$destroy();
-	
-	              //  Unless we null out all of these objects we seem to suffer
-	              //  from memory leaks, if anyone can explain why then I'd
-	              //  be very interested to know.
-	              inputs.close = null;
-	              deferred = null;
-	              closeDeferred = null;
-	              modal = null;
-	              inputs = null;
-	              modalElement = null;
-	              modalScope = null;
-	            });
-	
-	            // remove event watcher
-	            rootScopeOnClose && rootScopeOnClose();
-	          }
-	        }).then(null, function (error) {
-	          // 'catch' doesn't work in IE8.
-	          deferred.reject(error);
-	        });
-	
-	        return deferred.promise;
+	         }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['14']++;return deferred.promise;
+	      };__cov_GL43Ieg5PM7ctuB_vuWsyw.s['15']++;var appendChild = function appendChild(parent, child) {
+	         __cov_GL43Ieg5PM7ctuB_vuWsyw.f['6']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['16']++;var children = parent.children();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['17']++;if (children.length > 0) {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['3'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['18']++;return $animate.enter(child, parent, children[children.length - 1]);
+	         } else {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['3'][1]++;
+	         }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['19']++;return $animate.enter(child, parent);
+	      };__cov_GL43Ieg5PM7ctuB_vuWsyw.s['20']++;self.showModal = function (options) {
+	         __cov_GL43Ieg5PM7ctuB_vuWsyw.f['7']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['21']++;var body = angular.element($document[0].body);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['22']++;var deferred = $q.defer();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['23']++;var controllerName = options.controller;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['24']++;if (!controllerName) {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['4'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['25']++;deferred.reject('No controller has been specified.');__cov_GL43Ieg5PM7ctuB_vuWsyw.s['26']++;return deferred.promise;
+	         } else {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.b['4'][1]++;
+	         }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['27']++;getTemplate(options.template, options.templateUrl).then(function (template) {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.f['8']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['28']++;var modalScope = ((__cov_GL43Ieg5PM7ctuB_vuWsyw.b['5'][0]++, options.scope) || (__cov_GL43Ieg5PM7ctuB_vuWsyw.b['5'][1]++, $rootScope)).$new();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['29']++;var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['30']++;var closeDeferred = $q.defer();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['31']++;var closedDeferred = $q.defer();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['32']++;var inputs = { $scope: modalScope, close: function close(result, delay) {
+	                  __cov_GL43Ieg5PM7ctuB_vuWsyw.f['9']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['33']++;if ((__cov_GL43Ieg5PM7ctuB_vuWsyw.b['7'][0]++, delay === undefined) || (__cov_GL43Ieg5PM7ctuB_vuWsyw.b['7'][1]++, delay === null)) {
+	                     __cov_GL43Ieg5PM7ctuB_vuWsyw.b['6'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['34']++;delay = 0;
+	                  } else {
+	                     __cov_GL43Ieg5PM7ctuB_vuWsyw.b['6'][1]++;
+	                  }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['35']++;$timeout(function () {
+	                     __cov_GL43Ieg5PM7ctuB_vuWsyw.f['10']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['36']++;cleanUpClose(result);
+	                  }, delay);
+	               } };__cov_GL43Ieg5PM7ctuB_vuWsyw.s['37']++;if (options.inputs) {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['8'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['38']++;angular.extend(inputs, options.inputs);
+	            } else {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['8'][1]++;
+	            }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['39']++;var linkFn = $compile(template);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['40']++;var modalElement = linkFn(modalScope);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['41']++;inputs.$element = modalElement;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['42']++;var controllerObjBefore = modalScope[options.controllerAs];__cov_GL43Ieg5PM7ctuB_vuWsyw.s['43']++;var modalController = $controller(options.controller, inputs, false, options.controllerAs);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['44']++;if ((__cov_GL43Ieg5PM7ctuB_vuWsyw.b['10'][0]++, options.controllerAs) && (__cov_GL43Ieg5PM7ctuB_vuWsyw.b['10'][1]++, controllerObjBefore)) {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['9'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['45']++;angular.extend(modalController, controllerObjBefore);
+	            } else {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['9'][1]++;
+	            }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['46']++;if (options.appendElement) {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['11'][0]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['47']++;appendChild(options.appendElement, modalElement);
+	            } else {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.b['11'][1]++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['48']++;appendChild(body, modalElement);
+	            }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['49']++;var modal = { controller: modalController, scope: modalScope, element: modalElement, close: closeDeferred.promise, closed: closedDeferred.promise };__cov_GL43Ieg5PM7ctuB_vuWsyw.s['50']++;deferred.resolve(modal);function cleanUpClose(result) {
+	               __cov_GL43Ieg5PM7ctuB_vuWsyw.f['11']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['52']++;closeDeferred.resolve(result);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['53']++;modalScope.$destroy();__cov_GL43Ieg5PM7ctuB_vuWsyw.s['54']++;$animate.leave(modalElement).then(function () {
+	                  __cov_GL43Ieg5PM7ctuB_vuWsyw.f['12']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['55']++;closedDeferred.resolve(result);__cov_GL43Ieg5PM7ctuB_vuWsyw.s['56']++;inputs.close = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['57']++;deferred = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['58']++;closeDeferred = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['59']++;modal = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['60']++;inputs = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['61']++;modalElement = null;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['62']++;modalScope = null;
+	               });__cov_GL43Ieg5PM7ctuB_vuWsyw.s['63']++;(__cov_GL43Ieg5PM7ctuB_vuWsyw.b['12'][0]++, rootScopeOnClose) && (__cov_GL43Ieg5PM7ctuB_vuWsyw.b['12'][1]++, rootScopeOnClose());
+	            }
+	         }).then(null, function (error) {
+	            __cov_GL43Ieg5PM7ctuB_vuWsyw.f['13']++;__cov_GL43Ieg5PM7ctuB_vuWsyw.s['64']++;deferred.reject(error);
+	         });__cov_GL43Ieg5PM7ctuB_vuWsyw.s['65']++;return deferred.promise;
 	      };
-	    }
-	
-	    return new ModalService();
-	  }]);
-	})();
+	   }__cov_GL43Ieg5PM7ctuB_vuWsyw.s['66']++;return new ModalService();
+	}]);
 
 /***/ }
 /******/ ]);

@@ -126,14 +126,15 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             //  Resolve the 'close' promise.
             closeDeferred.resolve(result);
 
+            //  We can now clean up the scope
+            modalScope.$destroy();
+              
             //  Let angular remove the element and wait for animations to finish.
             $animate.leave(modalElement)
                     .then(function () {
                       //  Resolve the 'closed' promise.
                       closedDeferred.resolve(result);
 
-                      //  We can now clean up the scope
-                      modalScope.$destroy();
 
                       //  Unless we null out all of these objects we seem to suffer
                       //  from memory leaks, if anyone can explain why then I'd

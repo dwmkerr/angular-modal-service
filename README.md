@@ -152,6 +152,9 @@ The `modal` object returned by `showModal` has this structure:
 * `modal.controller` - The new controller created for the modal.
 * `modal.close` - A promise which is resolved when the modal `close` function is called.
 * `modal.closed` - A promise which is resolved once the modal has finished animating out of the DOM.
+* `modal.closeModal` - A function to close the modal (same as the `close` function passed into the controller). Call
+  this function with any parameter (the result). This result parameter is then passed as the parameter of the `close`
+  and `closed` promises used by the caller.
 
 #### The Modal Controller
 

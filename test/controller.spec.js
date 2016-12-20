@@ -3,6 +3,7 @@ describe('controller', () => {
   var ModalService = null;
   var $httpBackend = null;
   var $timeout = null;
+  var $onInit = null;
 
   angular.module('controllertests', ['angularModalService'])
     .controller('CloseController', ($scope, close) => {
@@ -24,9 +25,14 @@ describe('controller', () => {
     })
     .controller('ElementController', ($scope, $element) => {
       $scope.getElement = () => { return $element; };
+    })
+    .controller('OnInitController', function() {
+      var vm = this;
+      vm.$onInit = $onInit;
     });
 
   beforeEach(() => {
+    $onInit = jasmine.createSpy('$onInit');
     angular.mock.module('controllertests');
     inject((_ModalService_, $injector) => {
       ModalService = _ModalService_;
@@ -211,6 +217,22 @@ describe('controller', () => {
     }).then((modal) => {
       expect(modal.scope.formCtrl.ExampleForm).not.toBeUndefined();
       expect(modal.scope.formCtrl.checkValidity()).toBe(true);
+    });
+
+    $httpBackend.flush();
+
+  });
+
+  it('should call the existing $onInit after instantiating a controller', () => {
+
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'OnInitController',
+      controllerAs: 'oninitCtrl',
+      templateUrl: 'some/controllertemplate.html'
+    }).then((modal) => {
+      expect(modal.scope.oninitCtrl.$onInit).toHaveBeenCalled();
     });
 
     $httpBackend.flush();

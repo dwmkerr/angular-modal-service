@@ -1,171 +1,128 @@
-//  angularModalService.js
-//
-//  Service for showing modal dialogs.
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
 
-/***** JSLint Config *****/
-/*global angular  */
-(function() {
+	"use strict";
+	
+	var __cov_LJ6y9QsEYJy7cg83eFQGGg = Function('return this')();
+	if (!__cov_LJ6y9QsEYJy7cg83eFQGGg.__coverage__) {
+	   __cov_LJ6y9QsEYJy7cg83eFQGGg.__coverage__ = {};
+	}
+	__cov_LJ6y9QsEYJy7cg83eFQGGg = __cov_LJ6y9QsEYJy7cg83eFQGGg.__coverage__;
+	if (!__cov_LJ6y9QsEYJy7cg83eFQGGg['D:\\Danny\\Documents\\angular-modal-service\\src\\angular-modal-service.js']) {
+	   __cov_LJ6y9QsEYJy7cg83eFQGGg['D:\\Danny\\Documents\\angular-modal-service\\src\\angular-modal-service.js'] = { "path": "D:\\Danny\\Documents\\angular-modal-service\\src\\angular-modal-service.js", "s": { "1": 0, "2": 0, "3": 1, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0, "14": 0, "15": 0, "16": 0, "17": 0, "18": 0, "19": 0, "20": 0, "21": 0, "22": 0, "23": 0, "24": 0, "25": 0, "26": 0, "27": 0, "28": 0, "29": 0, "30": 0, "31": 0, "32": 0, "33": 0, "34": 0, "35": 0, "36": 0, "37": 0, "38": 0, "39": 0, "40": 0, "41": 0, "42": 0, "43": 0, "44": 0, "45": 0, "46": 0, "47": 0, "48": 0, "49": 0, "50": 0, "51": 0, "52": 0, "53": 1, "54": 0, "55": 0, "56": 0, "57": 0, "58": 0, "59": 0, "60": 0, "61": 0, "62": 0, "63": 0, "64": 0, "65": 0, "66": 0, "67": 0, "68": 0, "69": 0, "70": 0 }, "b": { "1": [0, 0], "2": [0, 0], "3": [0, 0], "4": [0, 0], "5": [0, 0], "6": [0, 0], "7": [0, 0], "8": [0, 0], "9": [0, 0], "10": [0, 0], "11": [0, 0], "12": [0, 0], "13": [0, 0], "14": [0, 0] }, "f": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "7": 0, "8": 0, "9": 0, "10": 0, "11": 0, "12": 0, "13": 0 }, "fnMap": { "1": { "name": "(anonymous_1)", "line": 5, "loc": { "start": { "line": 6, "column": 2 }, "end": { "line": 6, "column": 106 } } }, "2": { "name": "ModalService", "line": 7, "loc": { "start": { "line": 8, "column": 4 }, "end": { "line": 8, "column": 28 } } }, "3": { "name": "getTemplate", "line": 14, "loc": { "start": { "line": 15, "column": 24 }, "end": { "line": 15, "column": 56 } } }, "4": { "name": "(anonymous_4)", "line": 19, "loc": { "start": { "line": 21, "column": 18 }, "end": { "line": 21, "column": 37 } } }, "5": { "name": "(anonymous_5)", "line": 21, "loc": { "start": { "line": 23, "column": 15 }, "end": { "line": 23, "column": 31 } } }, "6": { "name": "appendChild", "line": 33, "loc": { "start": { "line": 35, "column": 24 }, "end": { "line": 35, "column": 48 } } }, "7": { "name": "(anonymous_7)", "line": 41, "loc": { "start": { "line": 43, "column": 23 }, "end": { "line": 43, "column": 41 } } }, "8": { "name": "(anonymous_8)", "line": 57, "loc": { "start": { "line": 60, "column": 16 }, "end": { "line": 60, "column": 35 } } }, "9": { "name": "close", "line": 73, "loc": { "start": { "line": 76, "column": 21 }, "end": { "line": 76, "column": 45 } } }, "10": { "name": "(anonymous_10)", "line": 75, "loc": { "start": { "line": 78, "column": 25 }, "end": { "line": 78, "column": 36 } } }, "11": { "name": "cleanUpClose", "line": 124, "loc": { "start": { "line": 129, "column": 12 }, "end": { "line": 129, "column": 42 } } }, "12": { "name": "(anonymous_12)", "line": 135, "loc": { "start": { "line": 141, "column": 22 }, "end": { "line": 141, "column": 33 } } }, "13": { "name": "(anonymous_13)", "line": 157, "loc": { "start": { "line": 165, "column": 22 }, "end": { "line": 165, "column": 38 } } } }, "statementMap": { "1": { "start": { "line": 3, "column": 0 }, "end": { "line": 3, "column": 0 } }, "2": { "start": { "line": 5, "column": 0 }, "end": { "line": 5, "column": 0 } }, "3": { "start": { "line": 8, "column": 4 }, "end": { "line": 172, "column": 5 } }, "4": { "start": { "line": 10, "column": 6 }, "end": { "line": 10, "column": 6 } }, "5": { "start": { "line": 15, "column": 6 }, "end": { "line": 15, "column": 6 } }, "6": { "start": { "line": 16, "column": 8 }, "end": { "line": 16, "column": 8 } }, "7": { "start": { "line": 17, "column": 8 }, "end": { "line": 28, "column": 9 } }, "8": { "start": { "line": 18, "column": 10 }, "end": { "line": 18, "column": 10 } }, "9": { "start": { "line": 19, "column": 15 }, "end": { "line": 28, "column": 9 } }, "10": { "start": { "line": 20, "column": 10 }, "end": { "line": 20, "column": 10 } }, "11": { "start": { "line": 22, "column": 14 }, "end": { "line": 22, "column": 14 } }, "12": { "start": { "line": 24, "column": 14 }, "end": { "line": 24, "column": 14 } }, "13": { "start": { "line": 27, "column": 10 }, "end": { "line": 27, "column": 10 } }, "14": { "start": { "line": 29, "column": 8 }, "end": { "line": 29, "column": 8 } }, "15": { "start": { "line": 35, "column": 6 }, "end": { "line": 35, "column": 6 } }, "16": { "start": { "line": 36, "column": 8 }, "end": { "line": 36, "column": 8 } }, "17": { "start": { "line": 37, "column": 8 }, "end": { "line": 39, "column": 9 } }, "18": { "start": { "line": 38, "column": 10 }, "end": { "line": 38, "column": 10 } }, "19": { "start": { "line": 40, "column": 8 }, "end": { "line": 40, "column": 8 } }, "20": { "start": { "line": 43, "column": 6 }, "end": { "line": 43, "column": 6 } }, "21": { "start": { "line": 46, "column": 8 }, "end": { "line": 46, "column": 8 } }, "22": { "start": { "line": 49, "column": 8 }, "end": { "line": 49, "column": 8 } }, "23": { "start": { "line": 52, "column": 8 }, "end": { "line": 52, "column": 8 } }, "24": { "start": { "line": 53, "column": 8 }, "end": { "line": 56, "column": 9 } }, "25": { "start": { "line": 54, "column": 10 }, "end": { "line": 54, "column": 10 } }, "26": { "start": { "line": 55, "column": 10 }, "end": { "line": 55, "column": 10 } }, "27": { "start": { "line": 59, "column": 8 }, "end": { "line": 59, "column": 8 } }, "28": { "start": { "line": 63, "column": 12 }, "end": { "line": 63, "column": 12 } }, "29": { "start": { "line": 64, "column": 12 }, "end": { "line": 64, "column": 12 } }, "30": { "start": { "line": 72, "column": 12 }, "end": { "line": 72, "column": 12 } }, "31": { "start": { "line": 73, "column": 12 }, "end": { "line": 73, "column": 12 } }, "32": { "start": { "line": 74, "column": 12 }, "end": { "line": 74, "column": 12 } }, "33": { "start": { "line": 77, "column": 16 }, "end": { "line": 77, "column": 59 } }, "34": { "start": { "line": 77, "column": 59 }, "end": { "line": 77, "column": 59 } }, "35": { "start": { "line": 78, "column": 16 }, "end": { "line": 78, "column": 16 } }, "36": { "start": { "line": 80, "column": 18 }, "end": { "line": 80, "column": 18 } }, "37": { "start": { "line": 87, "column": 12 }, "end": { "line": 87, "column": 32 } }, "38": { "start": { "line": 87, "column": 32 }, "end": { "line": 87, "column": 32 } }, "39": { "start": { "line": 91, "column": 12 }, "end": { "line": 91, "column": 12 } }, "40": { "start": { "line": 92, "column": 12 }, "end": { "line": 92, "column": 12 } }, "41": { "start": { "line": 93, "column": 12 }, "end": { "line": 93, "column": 12 } }, "42": { "start": { "line": 96, "column": 12 }, "end": { "line": 96, "column": 12 } }, "43": { "start": { "line": 97, "column": 12 }, "end": { "line": 97, "column": 12 } }, "44": { "start": { "line": 99, "column": 12 }, "end": { "line": 101, "column": 13 } }, "45": { "start": { "line": 100, "column": 14 }, "end": { "line": 100, "column": 14 } }, "46": { "start": { "line": 104, "column": 12 }, "end": { "line": 110, "column": 13 } }, "47": { "start": { "line": 106, "column": 14 }, "end": { "line": 106, "column": 14 } }, "48": { "start": { "line": 109, "column": 14 }, "end": { "line": 109, "column": 14 } }, "49": { "start": { "line": 112, "column": 12 }, "end": { "line": 114, "column": 13 } }, "50": { "start": { "line": 113, "column": 14 }, "end": { "line": 113, "column": 14 } }, "51": { "start": { "line": 118, "column": 12 }, "end": { "line": 118, "column": 12 } }, "52": { "start": { "line": 127, "column": 12 }, "end": { "line": 127, "column": 12 } }, "53": { "start": { "line": 129, "column": 12 }, "end": { "line": 162, "column": 13 } }, "54": { "start": { "line": 132, "column": 14 }, "end": { "line": 132, "column": 14 } }, "55": { "start": { "line": 135, "column": 14 }, "end": { "line": 137, "column": 15 } }, "56": { "start": { "line": 136, "column": 16 }, "end": { "line": 136, "column": 16 } }, "57": { "start": { "line": 140, "column": 14 }, "end": { "line": 140, "column": 14 } }, "58": { "start": { "line": 143, "column": 18 }, "end": { "line": 143, "column": 18 } }, "59": { "start": { "line": 146, "column": 18 }, "end": { "line": 146, "column": 18 } }, "60": { "start": { "line": 151, "column": 18 }, "end": { "line": 151, "column": 18 } }, "61": { "start": { "line": 152, "column": 18 }, "end": { "line": 152, "column": 18 } }, "62": { "start": { "line": 153, "column": 18 }, "end": { "line": 153, "column": 18 } }, "63": { "start": { "line": 154, "column": 18 }, "end": { "line": 154, "column": 18 } }, "64": { "start": { "line": 155, "column": 18 }, "end": { "line": 155, "column": 18 } }, "65": { "start": { "line": 156, "column": 18 }, "end": { "line": 156, "column": 18 } }, "66": { "start": { "line": 157, "column": 18 }, "end": { "line": 157, "column": 18 } }, "67": { "start": { "line": 161, "column": 14 }, "end": { "line": 161, "column": 14 } }, "68": { "start": { "line": 166, "column": 12 }, "end": { "line": 166, "column": 12 } }, "69": { "start": { "line": 169, "column": 8 }, "end": { "line": 169, "column": 8 } }, "70": { "start": { "line": 174, "column": 4 }, "end": { "line": 174, "column": 4 } } }, "branchMap": { "1": { "line": 16, "type": "if", "locations": [{ "start": { "line": 17, "column": 8 }, "end": { "line": 17, "column": 8 } }, { "start": { "line": 17, "column": 8 }, "end": { "line": 17, "column": 8 } }] }, "2": { "line": 18, "type": "if", "locations": [{ "start": { "line": 19, "column": 15 }, "end": { "line": 19, "column": 15 } }, { "start": { "line": 19, "column": 15 }, "end": { "line": 19, "column": 15 } }] }, "3": { "line": 35, "type": "if", "locations": [{ "start": { "line": 37, "column": 8 }, "end": { "line": 37, "column": 8 } }, { "start": { "line": 37, "column": 8 }, "end": { "line": 37, "column": 8 } }] }, "4": { "line": 51, "type": "if", "locations": [{ "start": { "line": 53, "column": 8 }, "end": { "line": 53, "column": 8 } }, { "start": { "line": 53, "column": 8 }, "end": { "line": 53, "column": 8 } }] }, "5": { "line": 60, "type": "binary-expr", "locations": [{ "start": { "line": 63, "column": 30 }, "end": { "line": 63, "column": 30 } }, { "start": { "line": 63, "column": 47 }, "end": { "line": 63, "column": 29 } }] }, "6": { "line": 74, "type": "if", "locations": [{ "start": { "line": 77, "column": 16 }, "end": { "line": 77, "column": 16 } }, { "start": { "line": 77, "column": 16 }, "end": { "line": 77, "column": 16 } }] }, "7": { "line": 74, "type": "binary-expr", "locations": [{ "start": { "line": 77, "column": 20 }, "end": { "line": 77, "column": 20 } }, { "start": { "line": 77, "column": 43 }, "end": { "line": 77, "column": 16 } }] }, "8": { "line": 83, "type": "if", "locations": [{ "start": { "line": 87, "column": 12 }, "end": { "line": 87, "column": 12 } }, { "start": { "line": 87, "column": 12 }, "end": { "line": 87, "column": 12 } }] }, "9": { "line": 95, "type": "if", "locations": [{ "start": { "line": 99, "column": 12 }, "end": { "line": 99, "column": 12 } }, { "start": { "line": 99, "column": 12 }, "end": { "line": 99, "column": 12 } }] }, "10": { "line": 95, "type": "binary-expr", "locations": [{ "start": { "line": 99, "column": 16 }, "end": { "line": 99, "column": 16 } }, { "start": { "line": 99, "column": 40 }, "end": { "line": 99, "column": 12 } }] }, "11": { "line": 100, "type": "if", "locations": [{ "start": { "line": 104, "column": 12 }, "end": { "line": 104, "column": 12 } }, { "start": { "line": 104, "column": 12 }, "end": { "line": 104, "column": 12 } }] }, "12": { "line": 108, "type": "if", "locations": [{ "start": { "line": 112, "column": 12 }, "end": { "line": 112, "column": 12 } }, { "start": { "line": 112, "column": 12 }, "end": { "line": 112, "column": 12 } }] }, "13": { "line": 130, "type": "if", "locations": [{ "start": { "line": 135, "column": 14 }, "end": { "line": 135, "column": 14 } }, { "start": { "line": 135, "column": 14 }, "end": { "line": 135, "column": 14 } }] }, "14": { "line": 155, "type": "binary-expr", "locations": [{ "start": { "line": 161, "column": 14 }, "end": { "line": 161, "column": 14 } }, { "start": { "line": 161, "column": 34 }, "end": { "line": 161, "column": 14 } }] } }, "code": ["'use strict';", "", "let module = angular.module('angularModalService', []);", "", "module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',", "  function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {", "", "    function ModalService() {", "", "      var self = this;", "", "      //  Returns a promise which gets the template, either", "      //  from the template parameter or via a request to the", "      //  template url parameter.", "      var getTemplate = function(template, templateUrl) {", "        var deferred = $q.defer();", "        if (template) {", "          deferred.resolve(template);", "        } else if (templateUrl) {", "          $templateRequest(templateUrl, true)", "            .then(function(template) {", "              deferred.resolve(template);", "            }, function(error) {", "              deferred.reject(error);", "            });", "        } else {", "          deferred.reject(\"No template or templateUrl has been specified.\");", "        }", "        return deferred.promise;", "      };", "", "      //  Adds an element to the DOM as the last child of its container", "      //  like append, but uses $animate to handle animations. Returns a", "      //  promise that is resolved once all animation is complete.", "      var appendChild = function(parent, child) {", "        var children = parent.children();", "        if (children.length > 0) {", "          return $animate.enter(child, parent, children[children.length - 1]);", "        }", "        return $animate.enter(child, parent);", "      };", "", "      self.showModal = function(options) {", "", "        //  Get the body of the document, we'll add the modal to this.", "        var body = angular.element($document[0].body);", "", "        //  Create a deferred we'll resolve when the modal is ready.", "        var deferred = $q.defer();", "", "        //  Validate the input parameters.", "        var controllerName = options.controller;", "        if (!controllerName) {", "          deferred.reject(\"No controller has been specified.\");", "          return deferred.promise;", "        }", "", "        //  Get the actual html of the template.", "        getTemplate(options.template, options.templateUrl)", "          .then(function(template) {", "", "            //  Create a new scope for the modal.", "            var modalScope = (options.scope || $rootScope).$new();", "            var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);", "", "            //  Create the inputs object to the controller - this will include", "            //  the scope, as well as all inputs provided.", "            //  We will also create a deferred that is resolved with a provided", "            //  close function. The controller can then call 'close(result)'.", "            //  The controller can also provide a delay for closing - this is", "            //  helpful if there are closing animations which must finish first.", "            var closeDeferred = $q.defer();", "            var closedDeferred = $q.defer();", "            var inputs = {", "              $scope: modalScope,", "              close: function(result, delay) {", "                if (delay === undefined || delay === null) delay = 0;", "                $timeout(function() {", "", "                  cleanUpClose(result);", "", "                }, delay);", "              }", "            };", "", "            //  If we have provided any inputs, pass them to the controller.", "            if (options.inputs) angular.extend(inputs, options.inputs);", "", "            //  Compile then link the template element, building the actual element.", "            //  Set the $element on the inputs so that it can be injected if required.", "            var linkFn = $compile(template);", "            var modalElement = linkFn(modalScope);", "            inputs.$element = modalElement;", "", "            //  Create the controller, explicitly specifying the scope to use.", "            var controllerObjBefore = modalScope[options.controllerAs];", "            var modalController = $controller(options.controller, inputs, false, options.controllerAs);", "", "            if (options.controllerAs && controllerObjBefore) {", "              angular.extend(modalController, controllerObjBefore);", "            }", "", "            //  Then, append the modal to the dom.", "            if (options.appendElement) {", "              // append to custom append element", "              appendChild(options.appendElement, modalElement);", "            } else {", "              // append to body when no custom append element is specified", "              appendChild(body, modalElement);", "            }", "            // Finally, append any custom classes to the body", "            if (options.bodyClass) {", "              body[0].classList.add(options.bodyClass);", "            }", "", "", "            //  We now have a modal object...", "            var modal = {", "              controller: modalController,", "              scope: modalScope,", "              element: modalElement,", "              close: closeDeferred.promise,", "              closed: closedDeferred.promise", "            };", "", "            //  ...which is passed to the caller via the promise.", "            deferred.resolve(modal);", "", "            function cleanUpClose(result) {", "", "              //  Resolve the 'close' promise.", "              closeDeferred.resolve(result);", "", "              //  Remove the custom class from the body", "              if (options.bodyClass) {", "                body[0].classList.remove(options.bodyClass);", "              }", "", "              //  Let angular remove the element and wait for animations to finish.", "              $animate.leave(modalElement)", "                .then(function() {", "                  //  Resolve the 'closed' promise.", "                  closedDeferred.resolve(result);", "", "                  //  We can now clean up the scope", "                  modalScope.$destroy();", "", "                  //  Unless we null out all of these objects we seem to suffer", "                  //  from memory leaks, if anyone can explain why then I'd", "                  //  be very interested to know.", "                  inputs.close = null;", "                  deferred = null;", "                  closeDeferred = null;", "                  modal = null;", "                  inputs = null;", "                  modalElement = null;", "                  modalScope = null;", "                });", "", "              // remove event watcher", "              rootScopeOnClose && rootScopeOnClose();", "            }", "", "          })", "          .then(null, function(error) { // 'catch' doesn't work in IE8.", "            deferred.reject(error);", "          });", "", "        return deferred.promise;", "      };", "", "    }", "", "    return new ModalService();", "  }", "]);"] };
+	}
+	__cov_LJ6y9QsEYJy7cg83eFQGGg = __cov_LJ6y9QsEYJy7cg83eFQGGg['D:\\Danny\\Documents\\angular-modal-service\\src\\angular-modal-service.js'];
+	__cov_LJ6y9QsEYJy7cg83eFQGGg.s['1']++;var _module = angular.module('angularModalService', []);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['2']++;_module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
+	   __cov_LJ6y9QsEYJy7cg83eFQGGg.f['1']++;function ModalService() {
+	      __cov_LJ6y9QsEYJy7cg83eFQGGg.f['2']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['4']++;var self = this;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['5']++;var getTemplate = function getTemplate(template, templateUrl) {
+	         __cov_LJ6y9QsEYJy7cg83eFQGGg.f['3']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['6']++;var deferred = $q.defer();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['7']++;if (template) {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['1'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['8']++;deferred.resolve(template);
+	         } else {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['1'][1]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['9']++;if (templateUrl) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['2'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['10']++;$templateRequest(templateUrl, true).then(function (template) {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.f['4']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['11']++;deferred.resolve(template);
+	               }, function (error) {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.f['5']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['12']++;deferred.reject(error);
+	               });
+	            } else {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['2'][1]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['13']++;deferred.reject('No template or templateUrl has been specified.');
+	            }
+	         }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['14']++;return deferred.promise;
+	      };__cov_LJ6y9QsEYJy7cg83eFQGGg.s['15']++;var appendChild = function appendChild(parent, child) {
+	         __cov_LJ6y9QsEYJy7cg83eFQGGg.f['6']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['16']++;var children = parent.children();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['17']++;if (children.length > 0) {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['3'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['18']++;return $animate.enter(child, parent, children[children.length - 1]);
+	         } else {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['3'][1]++;
+	         }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['19']++;return $animate.enter(child, parent);
+	      };__cov_LJ6y9QsEYJy7cg83eFQGGg.s['20']++;self.showModal = function (options) {
+	         __cov_LJ6y9QsEYJy7cg83eFQGGg.f['7']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['21']++;var body = angular.element($document[0].body);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['22']++;var deferred = $q.defer();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['23']++;var controllerName = options.controller;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['24']++;if (!controllerName) {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['4'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['25']++;deferred.reject('No controller has been specified.');__cov_LJ6y9QsEYJy7cg83eFQGGg.s['26']++;return deferred.promise;
+	         } else {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.b['4'][1]++;
+	         }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['27']++;getTemplate(options.template, options.templateUrl).then(function (template) {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.f['8']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['28']++;var modalScope = ((__cov_LJ6y9QsEYJy7cg83eFQGGg.b['5'][0]++, options.scope) || (__cov_LJ6y9QsEYJy7cg83eFQGGg.b['5'][1]++, $rootScope)).$new();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['29']++;var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['30']++;var closeDeferred = $q.defer();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['31']++;var closedDeferred = $q.defer();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['32']++;var inputs = { $scope: modalScope, close: function close(result, delay) {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.f['9']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['33']++;if ((__cov_LJ6y9QsEYJy7cg83eFQGGg.b['7'][0]++, delay === undefined) || (__cov_LJ6y9QsEYJy7cg83eFQGGg.b['7'][1]++, delay === null)) {
+	                     __cov_LJ6y9QsEYJy7cg83eFQGGg.b['6'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['34']++;delay = 0;
+	                  } else {
+	                     __cov_LJ6y9QsEYJy7cg83eFQGGg.b['6'][1]++;
+	                  }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['35']++;$timeout(function () {
+	                     __cov_LJ6y9QsEYJy7cg83eFQGGg.f['10']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['36']++;cleanUpClose(result);
+	                  }, delay);
+	               } };__cov_LJ6y9QsEYJy7cg83eFQGGg.s['37']++;if (options.inputs) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['8'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['38']++;angular.extend(inputs, options.inputs);
+	            } else {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['8'][1]++;
+	            }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['39']++;var linkFn = $compile(template);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['40']++;var modalElement = linkFn(modalScope);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['41']++;inputs.$element = modalElement;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['42']++;var controllerObjBefore = modalScope[options.controllerAs];__cov_LJ6y9QsEYJy7cg83eFQGGg.s['43']++;var modalController = $controller(options.controller, inputs, false, options.controllerAs);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['44']++;if ((__cov_LJ6y9QsEYJy7cg83eFQGGg.b['10'][0]++, options.controllerAs) && (__cov_LJ6y9QsEYJy7cg83eFQGGg.b['10'][1]++, controllerObjBefore)) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['9'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['45']++;angular.extend(modalController, controllerObjBefore);
+	            } else {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['9'][1]++;
+	            }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['46']++;if (options.appendElement) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['11'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['47']++;appendChild(options.appendElement, modalElement);
+	            } else {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['11'][1]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['48']++;appendChild(body, modalElement);
+	            }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['49']++;if (options.bodyClass) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['12'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['50']++;body[0].classList.add(options.bodyClass);
+	            } else {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.b['12'][1]++;
+	            }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['51']++;var modal = { controller: modalController, scope: modalScope, element: modalElement, close: closeDeferred.promise, closed: closedDeferred.promise };__cov_LJ6y9QsEYJy7cg83eFQGGg.s['52']++;deferred.resolve(modal);function cleanUpClose(result) {
+	               __cov_LJ6y9QsEYJy7cg83eFQGGg.f['11']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['54']++;closeDeferred.resolve(result);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['55']++;if (options.bodyClass) {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.b['13'][0]++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['56']++;body[0].classList.remove(options.bodyClass);
+	               } else {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.b['13'][1]++;
+	               }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['57']++;$animate.leave(modalElement).then(function () {
+	                  __cov_LJ6y9QsEYJy7cg83eFQGGg.f['12']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['58']++;closedDeferred.resolve(result);__cov_LJ6y9QsEYJy7cg83eFQGGg.s['59']++;modalScope.$destroy();__cov_LJ6y9QsEYJy7cg83eFQGGg.s['60']++;inputs.close = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['61']++;deferred = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['62']++;closeDeferred = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['63']++;modal = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['64']++;inputs = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['65']++;modalElement = null;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['66']++;modalScope = null;
+	               });__cov_LJ6y9QsEYJy7cg83eFQGGg.s['67']++;(__cov_LJ6y9QsEYJy7cg83eFQGGg.b['14'][0]++, rootScopeOnClose) && (__cov_LJ6y9QsEYJy7cg83eFQGGg.b['14'][1]++, rootScopeOnClose());
+	            }
+	         }).then(null, function (error) {
+	            __cov_LJ6y9QsEYJy7cg83eFQGGg.f['13']++;__cov_LJ6y9QsEYJy7cg83eFQGGg.s['68']++;deferred.reject(error);
+	         });__cov_LJ6y9QsEYJy7cg83eFQGGg.s['69']++;return deferred.promise;
+	      };
+	   }__cov_LJ6y9QsEYJy7cg83eFQGGg.s['70']++;return new ModalService();
+	}]);
 
-  'use strict';
-
-  var module = angular.module('angularModalService', []);
-
-  module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
-    function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
-
-    //  Get the body of the document, we'll add the modal to this.
-    var body = $document.find('body');
-
-    function ModalService() {
-
-      var self = this;
-
-      //  Returns a promise which gets the template, either
-      //  from the template parameter or via a request to the
-      //  template url parameter.
-      var getTemplate = function(template, templateUrl) {
-        var deferred = $q.defer();
-        if(template) {
-          deferred.resolve(template);
-        } else if(templateUrl) {
-          $templateRequest(templateUrl, true)
-            .then(function (template) {
-              deferred.resolve(template);
-            }, function (error) {
-              deferred.reject(error);
-            });
-        } else {
-          deferred.reject("No template or templateUrl has been specified.");
-        }
-        return deferred.promise;
-      };
-
-      //  Adds an element to the DOM as the last child of its container
-      //  like append, but uses $animate to handle animations. Returns a
-      //  promise that is resolved once all animation is complete.
-      var appendChild = function(parent, child) {
-        var children = parent.children();
-        if (children.length > 0) {
-          return $animate.enter(child, parent, children[children.length - 1]);
-        }
-        return $animate.enter(child, parent);
-      };
-
-      self.showModal = function(options) {
-
-        //  Create a deferred we'll resolve when the modal is ready.
-        var deferred = $q.defer();
-
-        //  Validate the input parameters.
-        var controllerName = options.controller;
-        if(!controllerName) {
-          deferred.reject("No controller has been specified.");
-          return deferred.promise;
-        }
-
-        //  Get the actual html of the template.
-        getTemplate(options.template, options.templateUrl)
-          .then(function(template) {
-
-            //  Create a new scope for the modal.
-            var modalScope = $rootScope.$new();
-
-            //  Create the inputs object to the controller - this will include
-            //  the scope, as well as all inputs provided.
-            //  We will also create a deferred that is resolved with a provided
-            //  close function. The controller can then call 'close(result)'.
-            //  The controller can also provide a delay for closing - this is
-            //  helpful if there are closing animations which must finish first.
-            var closeDeferred = $q.defer();
-            var closedDeferred = $q.defer();
-            var inputs = {
-              $scope: modalScope,
-              close: function(result, delay) {
-                if(delay === undefined || delay === null) delay = 0;
-                $timeout(function() {
-                  //  Resolve the 'close' promise.
-                  closeDeferred.resolve(result);
-
-                  //  Remove the custom class from the body
-                  if(options.bodyClass) {
-                    body[0].classList.remove(options.bodyClass);
-                  }
-
-                  //  Let angular remove the element and wait for animations to finish.
-                  $animate.leave(modalElement)
-                    .then(function () {
-                      //  Resolve the 'closed' promise.
-                      closedDeferred.resolve(result);
-
-                      //  We can now clean up the scope
-                      modalScope.$destroy();
-
-                      //  Unless we null out all of these objects we seem to suffer
-                      //  from memory leaks, if anyone can explain why then I'd
-                      //  be very interested to know.
-                      inputs.close = null;
-                      deferred = null;
-                      closeDeferred = null;
-                      modal = null;
-                      inputs = null;
-                      modalElement = null;
-                      modalScope = null;
-                    });
-                }, delay);
-              }
-            };
-
-            //  If we have provided any inputs, pass them to the controller.
-            if(options.inputs) angular.extend(inputs, options.inputs);
-
-            //  Compile then link the template element, building the actual element.
-            //  Set the $element on the inputs so that it can be injected if required.
-            var linkFn = $compile(template);
-            var modalElement = linkFn(modalScope);
-            inputs.$element = modalElement;
-
-            //  Create the controller, explicitly specifying the scope to use.
-            var modalController = $controller(options.controller, inputs);
-
-            if(options.controllerAs){
-              modalScope[options.controllerAs] = modalController ;
-            }
-            // Then append the modal to the dom.
-            if (options.appendElement) {
-              // append to custom append element
-              appendChild(options.appendElement, modalElement);
-            } else {
-              // append to body when no custom append element is specified
-              appendChild(body, modalElement);
-            }
-            // Finally, append any custom classes to the body
-            if(options.bodyClass) {
-              body[0].classList.add(options.bodyClass);
-            }
-
-            //  We now have a modal object...
-            var modal = {
-              controller: modalController,
-              scope: modalScope,
-              element: modalElement,
-              close: closeDeferred.promise,
-              closed: closedDeferred.promise
-            };
-
-            //  ...which is passed to the caller via the promise.
-            deferred.resolve(modal);
-
-          })
-          .then(null, function(error) { // 'catch' doesn't work in IE8.
-            deferred.reject(error);
-          });
-
-        return deferred.promise;
-      };
-
-    }
-
-    return new ModalService();
-  }]);
-
-}());
+/***/ }
+/******/ ]);
+//# sourceMappingURL=angular-modal-service.js.map

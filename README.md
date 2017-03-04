@@ -16,22 +16,18 @@ Modal service for AngularJS - supports creating popups and modals via a service.
 
 ## Usage
 
-First, install with Bower:
+Install with Bower (or NPM):
 
-```
+```bash
 bower install angular-modal-service
-```
-or npm
-
-```
+# or...
 npm install angular-modal-service
 ```
-
 
 Then reference the minified script:
 
 ```html
-<script src="bower_components\angular-modal-service\dst\angular-modal-service.min.js"></script>
+<script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
 ```
 
 Specify the modal service as a dependency of your application:
@@ -213,11 +209,11 @@ To work with the code, just run:
 
 ```
 npm install
-bower install
-gulp
+npm test
+npm start
 ```
 
-The samples will be opened in the browser. All JavaScript changes will re-run the tests, all samples changes are automatically reloaded into the browser.
+The dependencies will install, the tests will be run (always a useful sanity check after a clean checkout) and the code will run. You can open the browser at localhost:8080 to see the samples. As you change the code in the `src/` folder, it will be re-built and the browser will be updated.
 
 The easiest way to adapt the code is to play with some of the examples in the ``samples`` folder.
 
@@ -309,3 +305,5 @@ Thanks go the the following contributors:
 * [poporul](https://github.com/poporul) - Improving the core logic around compilation and inputs.
 * [jonasnas](https://github.com/jonasnas) - Fixing template cache logic.
 * [maxdow](https://github.com/maxdow) - Added support for controller inlining.
+* [kernowjoe](https://github.com/kernowjoe) - Robustness around locationChange
+* [arthur-xavier](https://github.com/arthur-xavier) - Robustness when `body` element changes.

@@ -1,16 +1,16 @@
-describe('template', function() {
+describe('template', () => {
 
   var ModalService = null;
   var rootScope = null;
   var $httpBackend = null;
 
   angular.module('templatetests', ['angularModalService'])
-    .controller('TemplateController', function ($scope) {
+    .controller('TemplateController', ($scope) => {
     });
 
-  beforeEach(function() {
-    module('templatetests');
-    inject(function(_ModalService_, $rootScope, $injector) {
+  beforeEach(() => {
+    angular.mock.module('templatetests');
+    inject((_ModalService_, $rootScope, $injector) => { 
       ModalService = _ModalService_;
       rootScope = $rootScope;
       $httpBackend = $injector.get('$httpBackend');

@@ -1,20 +1,9 @@
-//  angularModalService.js
-//
-//  Service for showing modal dialogs.
+'use strict';
 
-/***** JSLint Config *****/
-/*global angular  */
-(function() {
+let module = angular.module('angularModalService', []);
 
-  'use strict';
-
-  var module = angular.module('angularModalService', []);
-
-  module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
-    function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
-
-    //  Get the body of the document, we'll add the modal to this.
-    var body = $document.find('body');
+module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout',
+  function($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
 
     function ModalService() {
 
@@ -53,6 +42,9 @@
 
       self.showModal = function(options) {
 
+        //  Get the body of the document, we'll add the modal to this.
+        var body = angular.element($document[0].body);
+
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 
@@ -69,6 +61,7 @@
 
             //  Create a new scope for the modal.
             var modalScope = (options.scope || $rootScope).$new();
+            var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
 
             //  Create the inputs object to the controller - this will include
             //  the scope, as well as all inputs provided.
@@ -83,34 +76,9 @@
               close: function(result, delay) {
                 if (delay === undefined || delay === null) delay = 0;
                 $timeout(function() {
-                  //  Resolve the 'close' promise.
-                  closeDeferred.resolve(result);
 
-                  //  Remove the custom class from the body
-                  if(options.bodyClass) {
-                    body[0].classList.remove(options.bodyClass);
-                  }
+                  cleanUpClose(result);
 
-                  //  Let angular remove the element and wait for animations to finish.
-                  $animate.leave(modalElement)
-                    .then(function () {
-                      //  Resolve the 'closed' promise.
-                      closedDeferred.resolve(result);
-
-                      //  We can now clean up the scope
-                      modalScope.$destroy();
-
-                      //  Unless we null out all of these objects we seem to suffer
-                      //  from memory leaks, if anyone can explain why then I'd
-                      //  be very interested to know.
-                      inputs.close = null;
-                      deferred = null;
-                      closeDeferred = null;
-                      modal = null;
-                      inputs = null;
-                      modalElement = null;
-                      modalScope = null;
-                    });
                 }, delay);
               }
             };
@@ -132,7 +100,7 @@
               angular.extend(modalController, controllerObjBefore);
             }
 
-            // Then append the modal to the dom.
+            //  Then, append the modal to the dom.
             if (options.appendElement) {
               // append to custom append element
               appendChild(options.appendElement, modalElement);
@@ -141,9 +109,10 @@
               appendChild(body, modalElement);
             }
             // Finally, append any custom classes to the body
-            if(options.bodyClass) {
+            if (options.bodyClass) {
               body[0].classList.add(options.bodyClass);
             }
+
 
             //  We now have a modal object...
             var modal = {
@@ -157,6 +126,41 @@
             //  ...which is passed to the caller via the promise.
             deferred.resolve(modal);
 
+            function cleanUpClose(result) {
+
+              //  Resolve the 'close' promise.
+              closeDeferred.resolve(result);
+
+              //  Remove the custom class from the body
+              if (options.bodyClass) {
+                body[0].classList.remove(options.bodyClass);
+              }
+
+              //  Let angular remove the element and wait for animations to finish.
+              $animate.leave(modalElement)
+                .then(function() {
+                  //  Resolve the 'closed' promise.
+                  closedDeferred.resolve(result);
+
+                  //  We can now clean up the scope
+                  modalScope.$destroy();
+
+                  //  Unless we null out all of these objects we seem to suffer
+                  //  from memory leaks, if anyone can explain why then I'd
+                  //  be very interested to know.
+                  inputs.close = null;
+                  deferred = null;
+                  closeDeferred = null;
+                  modal = null;
+                  inputs = null;
+                  modalElement = null;
+                  modalScope = null;
+                });
+
+              // remove event watcher
+              rootScopeOnClose && rootScopeOnClose();
+            }
+
           })
           .then(null, function(error) { // 'catch' doesn't work in IE8.
             deferred.reject(error);
@@ -168,6 +172,5 @@
     }
 
     return new ModalService();
-  }]);
-
-}());
+  }
+]);

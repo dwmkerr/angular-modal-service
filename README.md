@@ -235,6 +235,15 @@ npm run test-debug
 
 This will run the tests in Chrome, allowing you to debug.
 
+## Releasing
+
+To create a release:
+
+- Create the `dst` pack with `npm run build`
+- Merge your work to master
+- Use `npm version` to bump, e.g. `npm version patch`
+- Push and deploy `git push --tags && git push && npm deploy`
+
 ## FAQ
 
 Having problems? Check this FAQ first.

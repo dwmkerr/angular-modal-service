@@ -307,3 +307,4 @@ Thanks go the the following contributors:
 * [maxdow](https://github.com/maxdow) - Added support for controller inlining.
 * [kernowjoe](https://github.com/kernowjoe) - Robustness around locationChange
 * [arthur-xavier](https://github.com/arthur-xavier) - Robustness when `body` element changes.
+* [stormpooper](https://github.com/StormPooper) - The new `bodyClass` feature.

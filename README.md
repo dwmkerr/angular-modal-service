@@ -140,6 +140,7 @@ The `showModal` function takes an object with these fields:
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
+* `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
 
 #### The Modal Object
 

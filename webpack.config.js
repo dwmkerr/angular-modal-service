@@ -28,10 +28,6 @@ module.exports = {
         path.resolve('node_modules/')
       ],
       loader: 'babel'
-    },{
-      test: /\.js$/,
-      include: path.resolve('src/'),
-      loader: 'isparta'
     }]
   },
 

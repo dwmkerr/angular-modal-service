@@ -1,9 +1,16 @@
+var path = require('path');
 var webpackConfig = require('./webpack.config.js');
 
 //  We'll use the webpack config already defined, but take
 //  away the entrypoint.
 webpackConfig.entry = {};
 webpackConfig.externals = {};
+//  Add isparta in when running karma tests only
+webpackConfig.module.preLoaders.push({
+  test: /\.js$/,
+  include: path.resolve('src/'),
+  loader: 'isparta'
+});
 
 module.exports = function(config) {
   config.set({

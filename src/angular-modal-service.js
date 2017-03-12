@@ -109,7 +109,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             appendChild(body, modalElement);
           }
 		  
-		  // Finally, append any custom classes to the body
+          // Finally, append any custom classes to the body
           if(options.bodyClass) {
             body[0].classList.add(options.bodyClass);
           }

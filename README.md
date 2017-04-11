@@ -131,7 +131,7 @@ ModalService.showModal({
 
 The `showModal` function takes an object with these fields:
 
-* `controller`: The name of the controller to created. It could be a function.
+* `controller`: The name of the controller to create. It could be a function.
 * `controllerAs` : The name of the variable on the scope instance of the controller is assigned to - (optional).
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
@@ -146,7 +146,7 @@ The `showModal` function takes an object with these fields:
 
 The `modal` object returned by `showModal` has this structure:
 
-* `modal.element` - The DOM element created. This is a jquery lite object (or jquery if full
+* `modal.element` - The created DOM element. This is a jquery lite object (or jquery if full
   jquery is used). If you are using a bootstrap modal, you can call `modal` on this object
   to show the modal.
 * `modal.scope` - The new scope created for the modal DOM and controller.

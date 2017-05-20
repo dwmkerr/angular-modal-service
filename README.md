@@ -131,7 +131,7 @@ ModalService.showModal({
 
 The `showModal` function takes an object with these fields:
 
-* `controller`: The name of the controller to created. It could be a function.
+* `controller`: The name of the controller to create. It could be a function.
 * `controllerAs` : The name of the variable on the scope instance of the controller is assigned to - (optional).
 * `templateUrl`: The URL of the HTML template to use for the modal.
 * `template`: If `templateUrl` is not specified, you can specify `template` as raw
@@ -141,13 +141,13 @@ The `showModal` function takes an object with these fields:
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
-* `preClose`: Optional. A funtion which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.
+* `preClose`: Optional. A function which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.
 
 #### The Modal Object
 
 The `modal` object returned by `showModal` has this structure:
 
-* `modal.element` - The DOM element created. This is a jquery lite object (or jquery if full
+* `modal.element` - The created DOM element. This is a jquery lite object (or jquery if full
   jquery is used). If you are using a bootstrap modal, you can call `modal` on this object
   to show the modal.
 * `modal.scope` - The new scope created for the modal DOM and controller.

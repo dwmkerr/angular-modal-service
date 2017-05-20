@@ -352,6 +352,16 @@ ModalService.showModal({
 
 Thanks [lindamarieb](https://github.com/lindamarieb) and [ledgeJumper](https://github.com/ledgeJumper)!
 
+#### Problems with Nested Modals
+
+If you are trying to nest Bootstrap modals, you will run into issues. From Bootstrap:
+
+> Bootstrap only supports one modal window at a time. Nested modals aren’t supported as we believe them to be poor user experiences.
+
+See: https://v4-alpha.getbootstrap.com/components/modal/#how-it-works
+
+Some people have been able to get them working (see https://github.com/dwmkerr/angular-modal-service/issues/176). Unfortunately, due to the lack of support in Bootstrap is has proven troublesome to support this in angular-modal-service.
+
 ## Thanks
 
 Thanks go the the following contributors:

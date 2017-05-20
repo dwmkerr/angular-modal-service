@@ -259,7 +259,7 @@ To create a release:
 
 Having problems? Check this FAQ first.
 
-**I'm using a Bootstrap Modal and the backdrop doesn't fade away**
+#### I'm using a Bootstrap Modal and the backdrop doesn't fade away
 
 This can happen if your modal template contains more than one top level element.
 Imagine this case:
@@ -281,7 +281,7 @@ It will try and make both elements into a modal. This means both elements will g
 In this case, either remove the extra elements, or find the specific element you need
 from the provided `modal.element` property.
 
-**The backdrop does not fade away after I call `close`** or **I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?**
+#### The backdrop STILL does not fade away after I call `close` OR I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?
 
 You can check the 'Complex' sample ([complexcontroller.js](samples/complex/complexcontroller.js)). The 'Cancel' button closes without using the `data-dismiss` attribute. In this case, just use the `preClose` option to ensure the bootstrap modal is removed:
 
@@ -315,7 +315,7 @@ app.controller('ExampleModalController', [
 }]);
 ```
 
-**I'm using a Bootstrap Modal and the dialog doesn't show up**
+#### I'm using a Bootstrap Modal and the dialog doesn't show up
 
 Code is entered exactly as shown the example but when the showAModal() function fires the modal template html is appended to the body while the console outputs:
 
@@ -325,6 +325,32 @@ TypeError: undefined is not a function
 
 Pointing to the code: `modal.element.modal();`. This occurs if you are using a Bootstap modal but have not included the Bootstrap JavaScript. The recommendation is to include the modal JavaScript before AngularJS.
 
+#### How can I prevent a Bootstrap modal from being closed?
+
+If you are using a bootstrap modal and want to make sure that only the `close` function will close the modal (not a click outside or escape), use the following attributes:
+
+```html
+<div class="modal" data-backdrop="static" data-keyboard="false">
+```
+
+To do this programatically, use:
+
+```js
+ModalService.showModal({
+  templateUrl: "whatever.html",
+  controller: "WhateverController"
+}).then(function(modal) {
+  modal.element.modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+  modal.close.then(function(result) {
+    //  ...etc
+  });
+});
+```
+
+Thanks [lindamarieb](https://github.com/lindamarieb) and [ledgeJumper](https://github.com/ledgeJumper)!
 
 ## Thanks
 

@@ -47,7 +47,12 @@
     <![endif]-->
   </head>
 
-  <body ng-controller="SampleController" data-spy="scroll" data-target="#mainNav">
+  <body
+      ng-controller="SampleController"
+      ng-keypress="keyPress($event)"
+      data-spy="scroll"
+      data-target="#mainNav"
+      >
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -80,6 +85,7 @@
 
       <hr />
 
+      <p>Tip: Close all modals at any time by hitting the <code>*</code> key!</p>
       <a id="yesno"></a>
       <div class="sample">
       <h3>A Simple Yes/No Modal</h3>

@@ -11,11 +11,12 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
 
     ModalService.showModal({
       templateUrl: "yesno/yesno.html",
-      controller: "YesNoController"
+      controller: "YesNoController",
+      preClose: (modal) => { modal.element.modal('hide'); }
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {
-        $scope.yesNoResult = result ? "You said Yes" : "You said No";
+        $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
       });
     });
 
@@ -26,13 +27,18 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
     ModalService.showModal({
       templateUrl: "complex/complex.html",
       controller: "ComplexController",
+      preClose: (modal) => { modal.element.modal('hide'); },
       inputs: {
         title: "A More Complex Example"
       }
     }).then(function(modal) {
       modal.element.modal();
       modal.close.then(function(result) {
-        $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+        if (!result) {
+          $scope.complexResult = "Modal forcibly closed..."
+        } else {
+          $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+        }
       });
     });
 
@@ -50,6 +56,12 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       });
     });
 
+  };
+
+  $scope.keyPress = function(value) {
+    if (value.keyCode == 42) {
+      ModalService.closeModals(null, 500);
+    }
   };
 
 }]);

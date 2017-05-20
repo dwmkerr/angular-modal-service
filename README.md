@@ -141,6 +141,7 @@ The `showModal` function takes an object with these fields:
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
+* `preClose`: Optional. A funtion which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.
 
 #### The Modal Object
 
@@ -159,6 +160,16 @@ The `modal` object returned by `showModal` has this structure:
 The controller that is used for the modal always has one extra parameter injected, a function
 called `close`. Call this function with any parameter (the result). This result parameter is
 then passed as the parameter of the `close` and `closed` promises used by the caller.
+
+### Closing All Modals
+
+Sometimes you may way to forcibly close all open modals, for example if you are going to transition routes. You can use the `ModalService.closeModals` function for this:
+
+```js
+ModalService.closeModals(optionalResult, optionalDelay);
+```
+
+The `optionalResult` parameter is pased into all `close` promises, the `optionalDelay` parameter has the same effect as the controller `close` function delay parameter.
 
 ### Animation
 
@@ -270,10 +281,21 @@ It will try and make both elements into a modal. This means both elements will g
 In this case, either remove the extra elements, or find the specific element you need
 from the provided `modal.element` property.
 
-**I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?**
+**The backdrop does not fade away after I call `close`** or **I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?**
 
-You can check the 'Complex' sample ([complexcontroller.js](samples/complex/complexcontroller.js)). The 'Cancel' button closes without using the `data-dismiss` attribute.
-All you need to do is grab the modal element in your controller, then call the bootstrap `modal` function
+You can check the 'Complex' sample ([complexcontroller.js](samples/complex/complexcontroller.js)). The 'Cancel' button closes without using the `data-dismiss` attribute. In this case, just use the `preClose` option to ensure the bootstrap modal is removed:
+
+```js
+ModalService.showModal({
+  templateUrl: "some/bootstrap-template.html",
+  controller: "SomeController",
+  preClose: (modal) => { modal.element.modal('hide'); }
+}).then(function(modal) {
+  // etc
+});
+```
+
+Another option is to grab the modal element in your controller, then call the bootstrap `modal` function
 to manually close the modal. Then call the `close` function as normal:
 
 ```js

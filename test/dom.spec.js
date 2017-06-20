@@ -120,13 +120,14 @@ describe('dom', () => {
 
   });
 
-  it('should remove the template html from the dom when the $locationChangeSuccess event is fired', () => {
+  it('should remove the template html from the dom when a $rootScope event is fired', () => {
 
     $httpBackend.expectGET('some/template2.html');
 
     ModalService.showModal({
       controller: "DomController",
-      templateUrl: "some/template2.html"
+      templateUrl: "some/template2.html",
+      closeOn: "$locationChangeSuccess"
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.

@@ -120,7 +120,9 @@
 	        //  Create a new scope for the modal.
 	        var modalScope = (options.scope || $rootScope).$new();
 	
-	        if (options.closeOn) {
+	        !options.hasOwnProperty('closeOn') && (options.closeOn = '$locationChangeSuccess');
+	
+	        if (options.closeOn !== false) {
 	          rootScopeOnClose = $rootScope.$on(options.closeOn, cleanUpClose);
 	        }
 	
@@ -229,9 +231,7 @@
 	          });
 	
 	          // remove event watcher
-	          if (options.closeOn) {
-	            rootScopeOnClose && rootScopeOnClose();
-	          }
+	          !!rootScopeOnClose && rootScopeOnClose();
 	        }
 	      }).then(null, function (error) {
 	        // 'catch' doesn't work in IE8.

@@ -77,7 +77,9 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
           //  Create a new scope for the modal.
           var modalScope = (options.scope || $rootScope).$new();
 
-          if (options.closeOn) {
+          !options.hasOwnProperty('closeOn') && (options.closeOn = '$locationChangeSuccess');
+
+          if (options.closeOn !== false) {
             rootScopeOnClose = $rootScope.$on(options.closeOn, cleanUpClose);
           }
 
@@ -188,9 +190,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
                     });
 
             // remove event watcher
-            if (options.closeOn) {
-              rootScopeOnClose && rootScopeOnClose();
-            }
+            !!rootScopeOnClose && rootScopeOnClose();
           }
 
         })

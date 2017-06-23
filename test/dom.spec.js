@@ -120,7 +120,7 @@ describe('dom', () => {
 
   });
 
-  it('should remove the template html from the dom when a $rootScope event is fired', () => {
+  it('should remove the template html from the dom when the onClose $rootScope event is fired', () => {
 
     $httpBackend.expectGET('some/template2.html');
 
@@ -132,12 +132,35 @@ describe('dom', () => {
 
       // We should be able to find the element that has been created in the dom.
       expect(document.getElementById('template2')).not.toBeNull();
+      $rootScope.$emit('$locationChangeSuccess');
+      expect(document.getElementById('template2')).toBeNull();
+
+    });
+
+    $httpBackend.flush();
+    $timeout.flush();
+
+  });
+
+  it('should NOT remove the template html from the dom if false is passed to onClose', () => {
+
+    $httpBackend.expectGET('some/template2.html');
+
+    ModalService.showModal({
+      controller: "DomController",
+      templateUrl: "some/template2.html",
+      closeOn: false
+    }).then((modal) => {
+
+      // We should be able to find the element that has been created in the dom.
+      expect(document.getElementById('template2')).not.toBeNull();
+      $rootScope.$emit('$locationChangeSuccess');
+      expect(document.getElementById('template2')).not.toBeNull();
 
       modal.close.then((result) => {
         expect(document.getElementById('template2')).toBeNull();
       });
 
-      $rootScope.$emit('$locationChangeSuccess');
     });
 
     $httpBackend.flush();

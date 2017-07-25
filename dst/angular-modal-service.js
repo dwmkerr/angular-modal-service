@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -115,10 +115,16 @@
 	
 	        //  The main modal object we will build.
 	        var modal = {};
+	        var rootScopeOnClose;
 	
 	        //  Create a new scope for the modal.
 	        var modalScope = (options.scope || $rootScope).$new();
-	        var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
+	
+	        !options.hasOwnProperty('closeOn') && (options.closeOn = '$locationChangeSuccess');
+	
+	        if (options.closeOn !== false) {
+	          rootScopeOnClose = $rootScope.$on(options.closeOn, cleanUpClose);
+	        }
 	
 	        //  Create the inputs object to the controller - this will include
 	        //  the scope, as well as all inputs provided.
@@ -225,7 +231,7 @@
 	          });
 	
 	          // remove event watcher
-	          rootScopeOnClose && rootScopeOnClose();
+	          !!rootScopeOnClose && rootScopeOnClose();
 	        }
 	      }).then(null, function (error) {
 	        // 'catch' doesn't work in IE8.
@@ -239,6 +245,6 @@
 	  return new ModalService();
 	}]);
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=angular-modal-service.js.map

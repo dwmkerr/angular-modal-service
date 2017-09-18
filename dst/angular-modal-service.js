@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
@@ -183,9 +183,6 @@
 	        //  ...which is passed to the caller via the promise.
 	        deferred.resolve(modal);
 	
-	        // Clear previous inputs to avoid open multiple modals on enter
-	        document.activeElement.blur();
-	
 	        //  We can track this modal in our open modals.
 	        self.openModals.push({ modal: modal, close: inputs.close });
 	
@@ -242,6 +239,6 @@
 	  return new ModalService();
 	}]);
 
-/***/ })
+/***/ }
 /******/ ]);
 //# sourceMappingURL=angular-modal-service.js.map

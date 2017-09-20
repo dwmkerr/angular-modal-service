@@ -8,7 +8,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
   function ModalService() {
 
     var self = this;
-    
+
     //  Track open modals.
     self.openModals = [];
 
@@ -75,7 +75,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
           //  Create a new scope for the modal.
           var modalScope = (options.scope || $rootScope).$new();
-          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
+          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', function(result) {
+            $timeout(function() {
+              cleanUpClose(result);
+            });
+          });
 
           //  Create the inputs object to the controller - this will include
           //  the scope, as well as all inputs provided.

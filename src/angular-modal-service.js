@@ -78,7 +78,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
           var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', function(result) {
             $timeout(function() {
               cleanUpClose(result);
-            });
+            }, 300);
           });
 
           //  Create the inputs object to the controller - this will include

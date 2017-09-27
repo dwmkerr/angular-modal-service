@@ -76,6 +76,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
           //  Create a new scope for the modal.
           var modalScope = (options.scope || $rootScope).$new();
           var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', function(result) {
+            // Timeout to give time to the backdrop to disapear in fast state change
             $timeout(function() {
               cleanUpClose(result);
             }, 300);

@@ -48,6 +48,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
       while (self.openModals.length) {
         self.openModals[0].close(result, delay);
         self.openModals.splice(0, 1);
+        /*
+          Remove extra modal elements from DOM
+        */
+        angular.element('.modal-backdrop').remove();
+        angular.element('.modal').remove();
       }
     };
 

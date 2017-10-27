@@ -75,7 +75,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
           //  Create a new scope for the modal.
           var modalScope = (options.scope || $rootScope).$new();
-          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
+
+          // wrap cleanUpClose as otherwise unexptected parameters are passed in - https://docs.angularjs.org/api/ng/service/$location#event-$locationChangeSuccess
+          var rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', function() {
+              cleanUpClose()
+          });
 
           //  Create the inputs object to the controller - this will include
           //  the scope, as well as all inputs provided.

@@ -117,11 +117,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
                 cleanUpClose(result);
 
               }, delay);
-            }
+            },
+            //  If we have provided any inputs, pass them to the controller as `inputs`
+            //  This allows inputs to be optional
+            inputs: options.inputs || null
           };
-
-          //  If we have provided any inputs, pass them to the controller.
-          if (options.inputs) angular.extend(inputs, options.inputs);
 
           //  Compile then link the template element, building the actual element.
           //  Set the $element on the inputs so that it can be injected if required.

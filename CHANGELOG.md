@@ -1,3 +1,22 @@
+## v0.7.12
+
+* Support for configuration of the `$locationChangeSuccess` event. Thanks [smalbs](https://github.com/smalbs).
+
+## v0.6.12
+
+* When a model is opened, we blur any active element. Thanks [samx](https://github.com/samwx)!
+
+## v0.6.11
+
+* Robustness for 'locationChangeEvent'.
+* Robustness if the body element changs.
+* Addded `bower` as a dev dependency. Run `bower install` as an `npm` `postinstall` step, which makes initial setup on a clean machine slightly easier.
+
+## v0.6.10
+
+* Added support for using a custom parent scope for the controller scope, via the `scope` option.
+* Fixed a bug with controllerAs vs `controller as`.
+
 ## v0.6.6
 
 * Removed calls to $q `catch` and replaced with `then(null, f)` so that the code works in 

@@ -1,52 +1,69 @@
+var path = require('path');
+var webpackConfig = require('./webpack.config.js');
+
+//  We'll use the webpack config already defined, but take
+//  away the entrypoint.
+webpackConfig.entry = {};
+webpackConfig.externals = {};
+//  Add isparta in when running karma tests only
+webpackConfig.module.preLoaders.push({
+  test: /\.js$/,
+  include: path.resolve('src/'),
+  loader: 'isparta'
+});
+
 module.exports = function(config) {
   config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '../',
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
     files: [
       //  Dependencies
-      'bower_components/angular/angular.min.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      //  Our source
-      'src/angular-modal-service.js',
-      //  Our specs
-      'test/**/*.spec.js'
-    ],
+      // './node_modules/angular/angular.js',
+      // './node_modules/angular-mocks/angular-mocks.js',
 
-    // list of files to exclude
-    exclude: [],
+      //'src/angular-modal-service.js',
+
+      //  Our specs
+      './test/index.js'
+    ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/angular-modal-service.js': ['coverage']
+      //'../test/*.spec.js': ['webpack'],
+      './test/index.js': ['webpack'],
+      'src/angular-modal-service.js': ['webpack', 'coverage']
     },
+
+    webpack: webpackConfig,
+
+    webpackMiddleware: {
+      noInfo: true // no spam!
+    },  
 
     // test results reporter to use
     reporters: ['progress', 'coverage', 'junit'],
 
     // tell karma how you want the coverage results
     coverageReporter: {
-    	reporters: [{
-	    		type: 'lcov',
-	      	dir: 'build/coverage/'
-    		},{
+      reporters: [{
+          type: 'lcov',
+          dir: 'build/coverage/'
+        },{
           type: 'html', 
-          dir:'build/coverage/'
+          dir: 'build/coverage/'
         }
-    	]
+      ]
     },
 
-		// junit output is used by jenkins	
-		junitReporter: {
-		  outputFile: 'build/test-results.xml'
-		},
+    // junit output is used by jenkins  
+    junitReporter: {
+      outputDir: 'build',
+      outputFile: 'test-results.xml',
+      useBrowserName: false
+    },
 
     // web server port
     port: 9876,

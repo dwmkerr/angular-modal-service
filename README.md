@@ -122,6 +122,9 @@ The `showModal` function takes an object with these fields:
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
 * `appendElement`: The custom angular element to append the modal to instead of default `body` element.
+* `wrapper`: (Optional) Boolean default to `false`. If true, wrap the template in a div.
+* `wrapperClass`: (Optional) String default `modal-wrapper`. Relative `wrapper`
+  option, define the class of the wrapper element.
 
 #### The Modal Object
 
@@ -216,14 +219,14 @@ to manually close the modal. Then call the `close` function as normal:
 
 ```js
 app.controller('ExampleModalController', [
-  '$scope', '$element', 'close', 
+  '$scope', '$element', 'close',
   function($scope, $element, close) {
 
   $scope.closeModal = function() {
 
     //  Manually hide the modal using bootstrap.
     $element.modal('hide');
-    
+
     //  Now close as normal, but give 500ms for bootstrap to animate
     close(null, 500);
   };

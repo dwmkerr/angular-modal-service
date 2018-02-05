@@ -69,6 +69,9 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
       //  Get the actual html of the template.
       getTemplate(options.template, options.templateUrl)
         .then(function(template) {
+          if (options.wrapper) {
+            template = `<div class="${options.wrapperClass || 'modal-wrapper'}">${template}</div>`
+          }
 
           //  The main modal object we will build.
           var modal = {};

@@ -143,6 +143,9 @@ The `showModal` function takes an object with these fields:
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
 * `preClose`: Optional. A function which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.
 * `locationChangeSuccess`: Optional. Allows the closing of the modal when the location changes to be configured. If no value is set, the modal is closed immediately when the `$locationChangeSuccess` event fires. If `false` is set, event is not fired. If a number `n` is set, then the event fires after `n` milliseconds.
+* `wrapper`: Optional. Boolean default to `false`. If true, wrap the template in a div.
+* `wrapperClass`: Optional. String default to `modal-wrapper`. Relative `wrapper`
+  option, define the class of the wrapper element.
 
 #### The Modal Object
 

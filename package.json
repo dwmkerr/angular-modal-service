@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nakamurabh/angular-modal-service.git"
+    "url": "git://github.com/dwmkerr/angular-modal-service.git"
   },
   "keywords": [
     "angular",
@@ -20,12 +20,12 @@
     "modal",
     "popup"
   ],
-  "author": "Luiz Alberto Eiti Nakamura (github.com/nakamurabh)",
+  "author": "Dave Kerr (github.com/dwmkerr)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nakamurabh/angular-modal-service/issues"
+    "url": "https://github.com/dwmkerr/angular-modal-service/issues"
   },
-  "homepage": "https://github.com/nakamurabh/angular-modal-service",
+  "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "devDependencies": {
     "angular": "1.6.x",
     "angular-mocks": "1.6.x",

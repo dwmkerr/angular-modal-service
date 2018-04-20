@@ -222,5 +222,3 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
   return new ModalService();
 }]);
-
-export default module.name;

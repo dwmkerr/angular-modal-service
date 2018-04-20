@@ -1,8 +1,8 @@
 {
   "name": "angular-modal-service",
-  "version": "0.13.0",
+  "version": "0.13.2",
   "description": "AngularJS Service for showing Modals and Popups",
-  "main": "./dst/angular-modal-service.js",
+  "main": "./src/angular-modal-service.js",
   "scripts": {
     "build": "webpack && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map ./dst/angular-modal-service.min.js.map",
     "start": "webpack-dev-server --inline --content-base ./samples",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dwmkerr/angular-modal-service.git"
+    "url": "git://github.com/nakamurabh/angular-modal-service.git"
   },
   "keywords": [
     "angular",
@@ -20,12 +20,12 @@
     "modal",
     "popup"
   ],
-  "author": "Dave Kerr (github.com/dwmkerr)",
+  "author": "Luiz Alberto Eiti Nakamura (github.com/nakamurabh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dwmkerr/angular-modal-service/issues"
+    "url": "https://github.com/nakamurabh/angular-modal-service/issues"
   },
-  "homepage": "https://github.com/dwmkerr/angular-modal-service",
+  "homepage": "https://github.com/nakamurabh/angular-modal-service",
   "devDependencies": {
     "angular": "1.6.x",
     "angular-mocks": "1.6.x",

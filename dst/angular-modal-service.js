@@ -42,10 +42,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	var _module = angular.module('angularModalService', []);
 	
 	_module.factory('ModalService', ['$animate', '$document', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $document, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
@@ -256,7 +259,9 @@
 	
 	  return new ModalService();
 	}]);
+	
+	exports.default = _module.name;
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=angular-modal-service.js.map

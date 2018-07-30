@@ -180,7 +180,6 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             //  Let angular remove the element and wait for animations to finish.
             $animate.leave(modalElement)
                     .then(function () {
-                      debugger;
                       // prevent error if modal is already destroyed
                       if (modalElement) {
 

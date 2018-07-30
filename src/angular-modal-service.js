@@ -8,7 +8,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
   function ModalService() {
 
     var self = this;
-    
+
     //  Track open modals.
     self.openModals = [];
 
@@ -145,7 +145,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             // append to body when no custom append element is specified
             appendChild(body, modalElement);
           }
-		  
+
           // Finally, append any custom classes to the body
           if(options.bodyClass) {
             body[0].classList.add(options.bodyClass);
@@ -171,7 +171,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
             //  Resolve the 'close' promise.
             closeDeferred.resolve(result);
-			
+
             //  Remove the custom class from the body
             if(options.bodyClass) {
                 body[0].classList.remove(options.bodyClass);
@@ -180,32 +180,37 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             //  Let angular remove the element and wait for animations to finish.
             $animate.leave(modalElement)
                     .then(function () {
-                      //  Resolve the 'closed' promise.
-                      closedDeferred.resolve(result);
+                      debugger;
+                      // prevent error if modal is already destroyed
+                      if (modalElement) {
 
-                      //  We can now clean up the scope
-                      modalScope.$destroy();
+                        //  Resolve the 'closed' promise.
+                        closedDeferred.resolve(result);
 
-                      //  Remove the modal from the set of open modals.
-                      for (var i=0; i<self.openModals.length; i++) {
-                        if (self.openModals[i].modal === modal) {
-                          self.openModals.splice(i, 1);
-                          break;
+                        //  We can now clean up the scope
+                        modalScope.$destroy();
+
+                        //  Remove the modal from the set of open modals.
+                        for (var i=0; i<self.openModals.length; i++) {
+                          if (self.openModals[i].modal === modal) {
+                            self.openModals.splice(i, 1);
+                            break;
+                          }
                         }
+
+                        //  Unless we null out all of these objects we seem to suffer
+                        //  from memory leaks, if anyone can explain why then I'd
+                        //  be very interested to know.
+                        inputs.close = null;
+                        deferred = null;
+                        closeDeferred = null;
+                        modal = null;
+                        inputs = null;
+                        modalElement = null;
+                        modalScope = null;
+
                       }
-
-                      //  Unless we null out all of these objects we seem to suffer
-                      //  from memory leaks, if anyone can explain why then I'd
-                      //  be very interested to know.
-                      inputs.close = null;
-                      deferred = null;
-                      closeDeferred = null;
-                      modal = null;
-                      inputs = null;
-                      modalElement = null;
-                      modalScope = null;
-                    });
-
+                  });
             // remove event watcher
             rootScopeOnClose && rootScopeOnClose();
           }

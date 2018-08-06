@@ -181,34 +181,35 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             $animate.leave(modalElement)
                     .then(function () {
                       // prevent error if modal is already destroyed
-                      if (modalElement) {
-
-                        //  Resolve the 'closed' promise.
-                        closedDeferred.resolve(result);
-
-                        //  We can now clean up the scope
-                        modalScope.$destroy();
-
-                        //  Remove the modal from the set of open modals.
-                        for (var i=0; i<self.openModals.length; i++) {
-                          if (self.openModals[i].modal === modal) {
-                            self.openModals.splice(i, 1);
-                            break;
-                          }
-                        }
-
-                        //  Unless we null out all of these objects we seem to suffer
-                        //  from memory leaks, if anyone can explain why then I'd
-                        //  be very interested to know.
-                        inputs.close = null;
-                        deferred = null;
-                        closeDeferred = null;
-                        modal = null;
-                        inputs = null;
-                        modalElement = null;
-                        modalScope = null;
-
+                      if (!modalElement) {
+                        return;
                       }
+
+                      //  Resolve the 'closed' promise.
+                      closedDeferred.resolve(result);
+
+                      //  We can now clean up the scope
+                      modalScope.$destroy();
+
+                      //  Remove the modal from the set of open modals.
+                      for (var i=0; i<self.openModals.length; i++) {
+                        if (self.openModals[i].modal === modal) {
+                          self.openModals.splice(i, 1);
+                          break;
+                        }
+                      }
+
+                      //  Unless we null out all of these objects we seem to suffer
+                      //  from memory leaks, if anyone can explain why then I'd
+                      //  be very interested to know.
+                      inputs.close = null;
+                      deferred = null;
+                      closeDeferred = null;
+                      modal = null;
+                      inputs = null;
+                      modalElement = null;
+                      modalScope = null;
+
                   });
             // remove event watcher
             rootScopeOnClose && rootScopeOnClose();

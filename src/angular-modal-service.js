@@ -8,7 +8,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
   function ModalService() {
 
     var self = this;
-    
+
     //  Track open modals.
     self.openModals = [];
 
@@ -145,7 +145,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             // append to body when no custom append element is specified
             appendChild(body, modalElement);
           }
-		  
+
           // Finally, append any custom classes to the body
           if(options.bodyClass) {
             body[0].classList.add(options.bodyClass);
@@ -171,7 +171,7 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
 
             //  Resolve the 'close' promise.
             closeDeferred.resolve(result);
-			
+
             //  Remove the custom class from the body
             if(options.bodyClass) {
                 body[0].classList.remove(options.bodyClass);
@@ -180,6 +180,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
             //  Let angular remove the element and wait for animations to finish.
             $animate.leave(modalElement)
                     .then(function () {
+                      // prevent error if modal is already destroyed
+                      if (!modalElement) {
+                        return;
+                      }
+
                       //  Resolve the 'closed' promise.
                       closedDeferred.resolve(result);
 
@@ -204,8 +209,8 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
                       inputs = null;
                       modalElement = null;
                       modalScope = null;
-                    });
 
+                  });
             // remove event watcher
             rootScopeOnClose && rootScopeOnClose();
           }

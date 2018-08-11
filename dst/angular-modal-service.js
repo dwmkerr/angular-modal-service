@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 	
@@ -257,6 +257,6 @@
 	  return new ModalService();
 	}]);
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=angular-modal-service.js.map

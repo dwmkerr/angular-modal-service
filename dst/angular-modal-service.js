@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ function(module, exports) {
 
 	'use strict';
 	
@@ -216,6 +216,11 @@
 	
 	          //  Let angular remove the element and wait for animations to finish.
 	          $animate.leave(modalElement).then(function () {
+	            // prevent error if modal is already destroyed
+	            if (!modalElement) {
+	              return;
+	            }
+	
 	            //  Resolve the 'closed' promise.
 	            closedDeferred.resolve(result);
 	
@@ -241,7 +246,6 @@
 	            modalElement = null;
 	            modalScope = null;
 	          });
-	
 	          // remove event watcher
 	          rootScopeOnClose && rootScopeOnClose();
 	        }
@@ -257,6 +261,6 @@
 	  return new ModalService();
 	}]);
 
-/***/ })
+/***/ }
 /******/ ]);
 //# sourceMappingURL=angular-modal-service.js.map

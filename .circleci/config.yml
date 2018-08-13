@@ -22,12 +22,11 @@ jobs:
       - run:
           name: upload-coverage
           command: npm run coveralls
-      # TODO: store test artifacts
-      # - store_artifacts:
-          # path: test-results.xml
-          # prefix: tests
-      # - store_artifacts:
-          # path: coverage
-          # prefix: coverage
-      # - store_test_results:
-          # path: test-results.xml
+      - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
+      - store_test_results:
+          path: ./build/test-results.xml

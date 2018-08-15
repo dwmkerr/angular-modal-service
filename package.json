@@ -34,7 +34,7 @@
     "babel-preset-es2015": "^6.9.0",
     "coveralls": "^3.0.0",
     "isparta-loader": "^2.0.0",
-    "jasmine-core": "^2.4.1",
+    "jasmine-core": "^3.2.1",
     "jshint-stylish": "^2.0.0",
     "karma": "~2.0.0",
     "karma-chrome-launcher": "~2.2.0",

@@ -30,7 +30,7 @@
     "angular": "1.6.x",
     "angular-mocks": "1.6.x",
     "babel-core": "^6.9.1",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^8.0.0",
     "babel-preset-es2015": "^6.9.0",
     "coveralls": "^3.0.0",
     "isparta-loader": "^2.0.0",

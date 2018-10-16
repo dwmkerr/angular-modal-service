@@ -1,6 +1,6 @@
-require('angular');
-require('angular-mocks');
-require('../src/angular-modal-service');
+import 'angular';
+import 'angular-mocks';
+import '../src/angular-modal-service';
 
 // require all modules ending in ".spec" from the
 // current directory and all subdirectories

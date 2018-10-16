@@ -3,4 +3,4 @@ node_modules
 build
 .DS_Store
 
-lcov\.info
+artifacts/

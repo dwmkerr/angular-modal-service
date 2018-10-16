@@ -24,10 +24,10 @@ describe('parameters', () => {
       //  note, no controller is specified, so we should fail.
     }).then(function(modal) {
       //  We should never get here!
-      expect(true).toBe(false);
+      expect(true).to.equal(false);
       done();
     }).catch(function(error) {
-      expect(error).toEqual("No controller has been specified.");
+      expect(error).to.equal("No controller has been specified.");
       done();
     });
 
@@ -42,10 +42,10 @@ describe('parameters', () => {
       //  note, no template or template url is specified, so we should fail.
     }).then(function(modal) {
       //  We should never get here!
-      expect(true).toBe(false);
+      expect(true).to.equal(false);
       done();
     }).catch(function(error) {
-      expect(error).toEqual("No template or templateUrl has been specified.");
+      expect(error).to.equal("No template or templateUrl has been specified.");
       done();
     });
 
@@ -59,7 +59,7 @@ describe('parameters', () => {
       controller: "ValidController",
       template: "<div>A template</div>"
     }).then(function(modal) {
-      expect(modal.element.html()).toBe("A template");
+      expect(modal.element.html()).to.equal("A template");
       done();
     });
 
@@ -76,7 +76,7 @@ describe('parameters', () => {
       },
       template: "<div>A template</div>"
     }).then(function(modal) {
-      expect(modal.element.html()).toBe("A template");
+      expect(modal.element.html()).to.equal("A template");
       done();
     });
 

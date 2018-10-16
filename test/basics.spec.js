@@ -10,7 +10,7 @@ describe('basics', function() {
   });
  
   it('should be able to inject the modal service', () => {
-    expect(ModalService).not.toBeNull();
+    expect(ModalService).not.to.equal(null);
   });
 
 });

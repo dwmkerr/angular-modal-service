@@ -4,7 +4,7 @@
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./index.js",
   "scripts": {
-    "build": "webpack && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map ./dst/angular-modal-service.min.js.map",
+    "build": "webpack --mode=production && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map",
     "start": "webpack-dev-server --inline --content-base ./samples",
     "test": "karma start karma.config.js",
     "test-debug": "karma start karma.config.js --no-single-run --browsers Chrome",
@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/dwmkerr/angular-modal-service",
   "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
     "angular": "1.6.x",
     "angular-mocks": "1.6.x",
-    "babel-core": "^6.9.1",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-loader": "^8.0.4",
     "coveralls": "^3.0.0",
     "isparta-loader": "^2.0.0",
     "jasmine-core": "^2.4.1",
@@ -45,7 +45,8 @@
     "karma-webpack": "^2.0.9",
     "phantomjs-prebuilt": "2.1.x",
     "uglify-js": "^3.3.9",
-    "webpack": "^3.10.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^2.11.1"
   }
 }

@@ -21,17 +21,19 @@ module.exports = {
     angular: 'angular',
   },
 
+  //  All JavaScript code goes through the babel loader.
   module: {
-    preLoaders: [{
-      test: /\.js$/,
-      exclude: [
-        path.resolve('node_modules/')
-      ],
-      loader: 'babel'
-    }]
-  },
-
-  babel: {
-    presets: ['es2015']
-  },
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 };

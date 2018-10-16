@@ -25,11 +25,14 @@ jobs:
           name: upload-coverage
           command: npm run coveralls
       - store_artifacts:
+          path: dst
+          destination: dst
+      - store_artifacts:
           path: test-results.xml
-          prefix: tests
+          destination: tests
       - store_artifacts:
           path: coverage
-          prefix: coverage
+          destination: coverage
       - store_test_results:
           path: ./build/test-results.xml
 workflows:

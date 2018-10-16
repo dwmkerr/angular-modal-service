@@ -1,7 +1,7 @@
 # angular-modal-service
 
 [![CircleCI](https://circleci.com/gh/dwmkerr/angular-modal-service.svg?style=shield)](https://circleci.com/gh/dwmkerr/angular-modal-service)
-[![Coverage Status](https://coveralls.io/repos/dwmkerr/angular-modal-service/badge.png?branch=master)](https://coveralls.io/r/dwmkerr/angular-modal-service?branch=master)
+[![codecov](https://codecov.io/gh/dwmkerr/angular-modal-service/branch/master/graph/badge.svg)](https://codecov.io/gh/dwmkerr/angular-modal-service)
 [![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/)

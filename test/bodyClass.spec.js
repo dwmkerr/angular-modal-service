@@ -36,7 +36,7 @@ describe('bodyclass', () => {
             bodyClass: "custom-class"
         }).then((modal) => {
             // We should be able to find the custom class on the body.
-            expect($document.find('body')[0].classList.contains('custom-class')).toBe(true);
+            expect($document.find('body')[0].classList.contains('custom-class')).to.equal(true);
         });
 
         $httpBackend.flush();
@@ -53,11 +53,11 @@ describe('bodyclass', () => {
         }).then(modal => {
 
             // We should be able to find the custom class on the body.
-            expect($document.find('body')[0].classList.contains('custom-class')).toBe(true);
+            expect($document.find('body')[0].classList.contains('custom-class')).to.equal(true);
 
             modal.close.then(result => {
                 // The custom class should have been removed after closing.
-                expect($document.find('body')[0].classList.contains('custom-class')).toBe(false);
+                expect($document.find('body')[0].classList.contains('custom-class')).to.equal(false);
             });
 
             modal.scope.close();

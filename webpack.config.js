@@ -14,24 +14,26 @@ module.exports = {
   //  Make sure we include sourcemaps. This is for the bundled
   //  code, not the uglfied code (we uglify with npm run build,
   //  see package.json for details).
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 
   //  Define externals (things we don't pack).
   externals: {
     angular: 'angular',
   },
 
+  //  All JavaScript code goes through the babel loader.
   module: {
-    preLoaders: [{
-      test: /\.js$/,
-      exclude: [
-        path.resolve('node_modules/')
-      ],
-      loader: 'babel'
-    }]
-  },
-
-  babel: {
-    presets: ['es2015']
-  },
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
 };

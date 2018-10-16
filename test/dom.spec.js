@@ -37,7 +37,7 @@ describe('dom', () => {
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template1')).not.toBeNull();
+      expect(document.getElementById('template1')).not.to.equal(null);
 
     });
 
@@ -53,7 +53,7 @@ describe('dom', () => {
     fakeDomElement.id = 'fake-dom-element';
 
     // insert fakeDomElement into the document to test against
-    document.body.insertBefore(fakeDomElement);
+    document.body.insertBefore(fakeDomElement, null);
 
     ModalService.showModal({
       controller: "DomController",
@@ -61,7 +61,7 @@ describe('dom', () => {
       appendElement: angular.element(document.getElementById('fake-dom-element'))
     }).then((modal) => {
       // We should be able to find the lement that has been created in the custom dom element
-      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
+      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.to.equal(null);
     });
 
     $httpBackend.flush();
@@ -75,7 +75,7 @@ describe('dom', () => {
     fakeDomElement.id = 'fake-dom-element';
 
     // insert fakeDomElement into the document to test against
-    document.body.insertBefore(fakeDomElement);
+    document.body.insertBefore(fakeDomElement, null);
 
     ModalService.showModal({
       controller: "DomController",
@@ -83,10 +83,10 @@ describe('dom', () => {
       appendElement: angular.element(document.getElementById('fake-dom-element'))
     }).then((modal) => {
       // We should be able to find the lement that has been created in the custom dom element
-      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.toBeNull();
+      expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.to.equal(null);
 
       modal.close.then((result) => {
-        expect(document.getElementById('template2')).toBeNull();
+        expect(document.getElementById('template2')).to.equal(null);
       });
 
       modal.scope.close();
@@ -106,10 +106,10 @@ describe('dom', () => {
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template2')).not.toBeNull();
+      expect(document.getElementById('template2')).not.to.equal(null);
 
       modal.closed.then((result) => {
-        expect(document.getElementById('template2')).toBeNull();
+        expect(document.getElementById('template2')).to.equal(null);
       });
 
       modal.scope.close();
@@ -130,10 +130,10 @@ describe('dom', () => {
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template2')).not.toBeNull();
+      expect(document.getElementById('template2')).not.to.equal(null);
 
       modal.close.then((result) => {
-        expect(document.getElementById('template2')).toBeNull();
+        expect(document.getElementById('template2')).to.equal(null);
       });
 
       $rootScope.$emit('$locationChangeSuccess');
@@ -154,10 +154,10 @@ describe('dom', () => {
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template2')).not.toBeNull();
+      expect(document.getElementById('template2')).not.to.equal(null);
 
       modal.close.then((result) => {
-        expect(document.getElementById('template2')).toBeNull();
+        expect(document.getElementById('template2')).to.equal(null);
       });
 
       $rootScope.$emit('$locationChangeSuccess');
@@ -179,12 +179,12 @@ describe('dom', () => {
     }).then((modal) => {
 
       // We should be able to find the element that has been created in the dom.
-      expect(document.getElementById('template2')).not.toBeNull();
+      expect(document.getElementById('template2')).not.to.equal(null);
 
       $rootScope.$emit('$locationChangeSuccess');
 
       setTimeout(() => {
-        expect(document.getElementById('template2')).not.toBeNull();
+        expect(document.getElementById('template2')).not.to.equal(null);
         done();
       }, 3);
     });
@@ -205,12 +205,12 @@ describe('dom', () => {
     }).then((modal) => {
 
       $rootScope.$emit('$locationChangeSuccess');
-      expect($timeout.verifyNoPendingTasks).toThrow();
-      expect(document.getElementById('template2')).not.toBeNull();
+      expect($timeout.verifyNoPendingTasks).to.throw();
+      expect(document.getElementById('template2')).not.to.equal(null);
 
       modal.close.then((result) => {
          $timeout.verifyNoPendingTasks();
-        expect(document.getElementById('template2')).toBeNull();
+        expect(document.getElementById('template2')).to.equal(null);
       });
 
       $rootScope.$emit('$locationChangeSuccess');

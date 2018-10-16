@@ -23,9 +23,6 @@ jobs:
       - run:
           name: test
           command: npm test
-      - run:
-          name: upload-coverage
-          command: npm run coveralls
       - store_artifacts:
           path: dst
           destination: dst

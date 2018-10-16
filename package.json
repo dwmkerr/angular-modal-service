@@ -7,8 +7,7 @@
     "build": "webpack --mode=production && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map",
     "start": "webpack-dev-server --inline --content-base ./samples",
     "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
-    "test-debug": "karma start --no-single-run --browsers ChromeHeadless karma.conf.js",
-    "coveralls": "cp build/coverage/PhantomJS*/lcov.info lcov.info && node node_modules/coveralls/bin/coveralls.js < lcov.info"
+    "test-debug": "karma start --no-single-run --browsers ChromeHeadless karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -33,7 +32,6 @@
     "angular-mocks": "1.6.x",
     "babel-loader": "^8.0.4",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.0",
     "isparta-loader": "^2.0.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.4.1",

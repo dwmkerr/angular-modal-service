@@ -105,6 +105,8 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
           //  helpful if there are closing animations which must finish first.
           var closeDeferred = $q.defer();
           var closedDeferred = $q.defer();
+          var hasAlreadyBeenClosed = false;
+
           var inputs = {
             $scope: modalScope,
             close: function(result, delay) {
@@ -112,6 +114,11 @@ module.factory('ModalService', ['$animate', '$document', '$compile', '$controlle
               if (typeof options.preClose === 'function') options.preClose(modal, result, delay);
 
               if (delay === undefined || delay === null) delay = 0;
+              if (hasAlreadyBeenClosed) {
+                return;
+              }
+              hasAlreadyBeenClosed = true;
+
               $timeout(function() {
 
                 cleanUpClose(result);

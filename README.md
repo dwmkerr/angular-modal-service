@@ -87,7 +87,7 @@ The `close` function is automatically injected to the modal controller and takes
 object (which is passed to the `close` and `closed` promises used by the caller). It can
 take an optional second parameter, the number of milliseconds to wait before destroying the
 DOM element. This is so that you can have a delay before destroying the DOM element if you
-are animating the closure.
+are animating the closure. See [Global Config](#global-options-configuration) for setting a default delay.
 
 Now just make sure the `close` function is called by your modal controller when the modal
 should be closed and that's it. Quick hint - if you are using Bootstrap for your modals,
@@ -214,6 +214,19 @@ ModalService.showModal({
   console.log(error);
 });
 ```
+
+### Global Options Configuration
+To configure the default options that will apply to all modals call `configureOptions` on the `ModalServiceProvider`.
+```js
+app.config(["ModalServiceProvider", function(ModalServiceProvider) {
+  
+  ModalServiceProvider.configureOptions({closeDelay:500});
+
+}]);
+```
+
+Here are the available global options:
+* `closeDelay` - This sets the default number of milliseconds to use in the close handler. This delay will also be used in the `closeModals` method and as the default for `locationChangeSuccess`. 
 
 ## Developing
 

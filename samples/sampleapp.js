@@ -3,7 +3,7 @@ var app = angular.module('sampleapp', ['angularModalService', 'ngAnimate']);
 
 app.config(["ModalServiceProvider", function(ModalServiceProvider) {
   //uncomment this line to set a default close delay
-  //ModalServiceProvider.setDefaultCloseDelay(500);
+  //ModalServiceProvider.configureOptions({closeDelay:500});
 
 }]);
 

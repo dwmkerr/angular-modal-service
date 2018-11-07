@@ -1,6 +1,12 @@
 //  Build our app module, with a dependency on the angular modal service.
 var app = angular.module('sampleapp', ['angularModalService', 'ngAnimate']);
 
+app.config(["ModalServiceProvider", function(ModalServiceProvider) {
+  //uncomment this line to set a default close delay
+  //ModalServiceProvider.setDefaultCloseDelay(500);
+
+}]);
+
 app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
 
   $scope.yesNoResult = null;

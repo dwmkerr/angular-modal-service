@@ -138,7 +138,7 @@ The `showModal` function takes an object with these fields:
   HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
-* `appendElement`: The custom angular element to append the modal to instead of default `body` element.
+* `appendElement`: The custom angular element or selector (such as `#element-id`) to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
 * `preClose`: Optional. A function which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.

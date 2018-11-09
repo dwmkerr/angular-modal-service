@@ -60,12 +60,34 @@ describe('dom', () => {
       templateUrl: "some/template1.html",
       appendElement: angular.element(document.getElementById('fake-dom-element'))
     }).then((modal) => {
-      // We should be able to find the lement that has been created in the custom dom element
+      // We should be able to find the element that has been created in the custom dom element
       expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.to.equal(null);
     });
 
     $httpBackend.flush();
   });
+
+    it('should add the template html to the custom selector', () => {
+        $httpBackend.expectGET('some/template1.html');
+
+        // create fake element
+        let fakeDomElement = document.createElement('div');
+        fakeDomElement.id = 'fake-dom-element';
+
+        // insert fakeDomElement into the document to test against
+        document.body.insertBefore(fakeDomElement, null);
+
+        ModalService.showModal({
+            controller: "DomController",
+            templateUrl: "some/template1.html",
+            appendElement: '#fake-dom-element'
+        }).then((modal) => {
+            // We should be able to find the element that has been created in the custom dom element
+            expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.to.equal(null);
+        });
+
+        $httpBackend.flush();
+    });
 
   it('should close the template html to the custom dom element', () => {
     $httpBackend.expectGET('some/template1.html');
@@ -82,7 +104,7 @@ describe('dom', () => {
       templateUrl: "some/template1.html",
       appendElement: angular.element(document.getElementById('fake-dom-element'))
     }).then((modal) => {
-      // We should be able to find the lement that has been created in the custom dom element
+      // We should be able to find the element that has been created in the custom dom element
       expect(angular.element(document.querySelector('#fake-dom-element')).find('div')).not.to.equal(null);
 
       modal.close.then((result) => {

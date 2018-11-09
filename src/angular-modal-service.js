@@ -157,14 +157,19 @@ module.provider('ModalService', function ModalServiceProvider() {
                                 angular.extend(modalController, controllerObjBefore);
                             }
 
-                            //  Then, append the modal to the dom.
-                            if (options.appendElement) {
-                                // append to custom append element
-                                appendChild(options.appendElement, modalElement);
-                            } else {
-                                // append to body when no custom append element is specified
-                                appendChild(body, modalElement);
-                            }
+                        //  Then, append the modal to the dom.
+                        var appendTarget = body; // append to body when no custom append element is specified
+                       if (angular.isString(options.appendElement)) {
+                            // query the document for the first element that matches the selector
+                           // and create an angular element out of it.
+                            appendTarget = angular.element($document[0].querySelector(options.appendElement));
+
+                        } else if (options.appendElement) {
+                            // append to custom append element
+                            appendTarget = options.appendElement;
+                        }
+
+                        appendChild(appendTarget, modalElement);
 
                             // Finally, append any custom classes to the body
                             if (options.bodyClass) {
@@ -247,4 +252,4 @@ module.provider('ModalService', function ModalServiceProvider() {
 
             return new ModalService(_options);
         }];
-});
+    });

@@ -406,3 +406,4 @@ Thanks go the the following contributors:
 * [kernowjoe](https://github.com/kernowjoe) - Robustness around locationChange
 * [arthur-xavier](https://github.com/arthur-xavier) - Robustness when `body` element changes.
 * [stormpooper](https://github.com/StormPooper) - The new `bodyClass` feature.
+* [decherneyge](https://github.com/decherneyge) - Provider features, global configuration, `appendElement` improvements.

@@ -1,3 +1,9 @@
+## v0.8.0
+
+* Support for a globally configurable close timeout. Thanks [decherneyge](https://github.com/decherneyge).
+* Support for selector for `appendElement`. Thanks [decherneyge](https://github.com/decherneyge).
+* Tooling version updates.
+
 ## v0.7.12
 
 * Support for configuration of the `$locationChangeSuccess` event. Thanks [smalbs](https://github.com/smalbs).

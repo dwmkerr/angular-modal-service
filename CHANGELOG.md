@@ -1,4 +1,4 @@
-## v0.8.0
+## v0.15.0
 
 * Support for a globally configurable close timeout. Thanks [decherneyge](https://github.com/decherneyge).
 * Support for selector for `appendElement`. Thanks [decherneyge](https://github.com/decherneyge).

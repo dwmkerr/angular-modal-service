@@ -39,11 +39,12 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       }
     }).then(function(modal) {
       modal.element.modal();
+
       modal.close.then(function(result) {
         if (!result) {
           $scope.complexResult = "Modal forcibly closed..."
         } else {
-          $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+          $scope.complexResult  = "Name: " + result.name + ", age: " + result.age + ", source: " + result.source;
         }
       });
     });

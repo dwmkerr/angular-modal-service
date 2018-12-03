@@ -1,3 +1,5 @@
+var sinon = require('sinon');
+
 describe('controller', () => {
 
   var ModalService = null;
@@ -24,6 +26,9 @@ describe('controller', () => {
     })
     .controller('ElementController', ($scope, $element) => {
       $scope.getElement = () => { return $element; };
+    })
+    .controller('OnInitController', function() {
+      this.$onInit = sinon.spy();
     });
 
   beforeEach(() => {
@@ -217,4 +222,16 @@ describe('controller', () => {
 
   });
 
+  it('should run the controller\'s $onInit function if specified', () => {
+    $httpBackend.expectGET('some/controllertemplate.html');
+
+    ModalService.showModal({
+      controller: 'OnInitController',
+      templateUrl: 'some/controllertemplate.html'
+    }).then((modal) => {
+      sinon.assert.calledOnce(modal.controller.$onInit);
+    });
+
+    $httpBackend.flush();
+  });
 });

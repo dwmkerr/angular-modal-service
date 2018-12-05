@@ -183,6 +183,10 @@ module.provider('ModalService', function ModalServiceProvider() {
                             modal.close = closeDeferred.promise;
                             modal.closed = closedDeferred.promise;
 
+                            // $onInit is part of the component lifecycle introduced in AngularJS 1.6.x
+                            // Because it may not be defined on all controllers,
+                            // we must check for it before attempting to invoke it.
+                            // https://docs.angularjs.org/guide/component#component-based-application-architecture
                             if (angular.isFunction(modal.controller.$onInit)) {
                                 modal.controller.$onInit();
                             }

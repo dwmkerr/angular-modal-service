@@ -99,12 +99,12 @@ module.provider('ModalService', function ModalServiceProvider() {
                             }
                             else if (angular.isNumber(locationChangeSuccess) && locationChangeSuccess >= 0) {
                                 $timeout(function () {
-                                    rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
+                                    rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', inputs.close);
                                 }, locationChangeSuccess);
                             }
                             else {
                                 $timeout(function () {
-                                    rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', cleanUpClose);
+                                    rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', inputs.close);
                                 }, self.configOptions.closeDelay);
                             }
 
@@ -122,15 +122,16 @@ module.provider('ModalService', function ModalServiceProvider() {
                             var inputs = {
                                 $scope: modalScope,
                                 close: function (result, delay) {
+                                    if (hasAlreadyBeenClosed) {
+                                        return;
+                                    }
+                                    hasAlreadyBeenClosed = true;
+
                                     delay = delay || self.configOptions.closeDelay;
                                     //  If we have a pre-close function, call it.
                                     if (typeof options.preClose === 'function') options.preClose(modal, result, delay);
 
                                     if (delay === undefined || delay === null) delay = 0;
-                                    if (hasAlreadyBeenClosed) {
-                                        return;
-                                    }
-                                    hasAlreadyBeenClosed = true;
 
                                     $timeout(function () {
 

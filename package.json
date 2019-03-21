@@ -1,6 +1,6 @@
 {
   "name": "angular-modal-service",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./index.js",
   "scripts": {
@@ -28,8 +28,8 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "angular": "1.6.x",
-    "angular-mocks": "1.6.x",
+    "angular": "1.7.x",
+    "angular-mocks": "1.7.x",
     "babel-loader": "^8.0.4",
     "chai": "^4.2.0",
     "istanbul-instrumenter-loader": "^3.0.1",

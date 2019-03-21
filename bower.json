@@ -29,9 +29,9 @@
     "*.yml"
   ],
   "dependencies": {
-    "angular": "1.5.0 - 1.6.x"
+    "angular": "1.5.0 - 1.7.x"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.0 - 1.6.x"
+    "angular-mocks": "1.5.0 - 1.7.x"
   }
 }

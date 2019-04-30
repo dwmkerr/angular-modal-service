@@ -65,39 +65,12 @@ module.provider('ModalService', function ModalServiceProvider() {
 
                 /*
                  *  Creates a controller with scope bindings
-                 *
-                 *  Input:
-                 *
-                 *    {
-                 *       component: 'myComponent',
-                 *       bindings: {
-                 *         name: 'Foo',
-                 *         phoneNumber: '123-456-7890'
-                 *       }
-                 *    }
-                 *
-                 *  Output:
-                 *
-                 *    ['$scope', 'close', 'name', 'phoneNumber',
-                 *      function($scope, close, name, phoneNumber) {
-                 *        $scope.close = close;
-                 *        $scope.name = name;
-                 *        $scope.phoneNumber = phoneNumber;
-                 *      }
-                 *    ]
                  */
                 var buildComponentController = function(options) {
-                  var injects = ['$scope', 'close'];
-                  var inputKeys = Object.keys(options.bindings || {});
-                  var controllerFn = function() {
-                    var $scope = arguments[0];
-                    $scope.close = arguments[1];
-                    arguments.slice(2).forEach(function(argument, i) {
-                      $scope[inputKeys[i]] = argument;
-                    });
-                  };
-
-                  return [].concat(injects, inputKeys, controllerFn);
+                  return ['$scope', 'close', function($scope, close) {
+                    $scope.close = close;
+                    $scope.bindings = options.bindings;
+                  }];
                 };
 
                 /*
@@ -115,7 +88,7 @@ module.provider('ModalService', function ModalServiceProvider() {
                  *
                  *  Output:
                  *
-                 *    '<my-component name="name" phone-number="phoneNumber"></my-component>'
+                 *    '<my-component close="close" name="bindings.name" phone-number="bindings.phoneNumber"></my-component>'
                  */
                 var buildComponentTemplate = function(options) {
                   var kebabCase = function(camelCase) {
@@ -124,11 +97,11 @@ module.provider('ModalService', function ModalServiceProvider() {
                   };
 
                   var componentHandle = kebabCase(options.component);
-                  var template = '<' + componentHandle + ' name="component" close="close"';
+                  var template = '<' + componentHandle + ' close="close"';
                   var inputKeys = Object.keys(options.bindings || {})
                   if (inputKeys.length > 0) {
                     var bindingAttributes = inputKeys.map(function(inputKey) {
-                      return kebabCase(inputKey) + '="' + inputKey + '"';
+                      return kebabCase(inputKey) + '="bindings.' + inputKey + '"';
                     });
                     template += ' ' + bindingAttributes.join(' ');
                   }

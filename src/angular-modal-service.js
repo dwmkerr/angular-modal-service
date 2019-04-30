@@ -63,7 +63,89 @@ module.provider('ModalService', function ModalServiceProvider() {
                     }
                 };
 
+                /*
+                 *  Creates a controller with scope bindings
+                 *
+                 *  Input:
+                 *
+                 *    {
+                 *       component: 'myComponent',
+                 *       bindings: {
+                 *         name: 'Foo',
+                 *         phoneNumber: '123-456-7890'
+                 *       }
+                 *    }
+                 *
+                 *  Output:
+                 *
+                 *    ['$scope', 'close', 'name', 'phoneNumber',
+                 *      function($scope, close, name, phoneNumber) {
+                 *        $scope.close = close;
+                 *        $scope.name = name;
+                 *        $scope.phoneNumber = phoneNumber;
+                 *      }
+                 *    ]
+                 */
+                var buildComponentController = function(options) {
+                  var injects = ['$scope', 'close'];
+                  var inputKeys = Object.keys(options.bindings || {});
+                  var controllerFn = function() {
+                    var $scope = arguments[0];
+                    $scope.close = arguments[1];
+                    arguments.slice(2).forEach(function(argument, i) {
+                      $scope[inputKeys[i]] = argument;
+                    });
+                  };
+
+                  return [].concat(injects, inputKeys, controllerFn);
+                };
+
+                /*
+                 *  Creates a component template
+                 *
+                 *  Input:
+                 *
+                 *    {
+                 *       component: 'myComponent',
+                 *       bindings: {
+                 *         name: 'Foo',
+                 *         phoneNumber: '123-456-7890'
+                 *       }
+                 *    }
+                 *
+                 *  Output:
+                 *
+                 *    '<my-component name="name" phone-number="phoneNumber"></my-component>'
+                 */
+                var buildComponentTemplate = function(options) {
+                  var kebabCase = function(camelCase) {
+                    var skewer = function(_m, c1, c2) { return [c1, c2].join('-').toLowerCase(); };
+                    return camelCase.replace(/([a-z0-9])([A-Z])/g, skewer);
+                  };
+
+                  var componentHandle = kebabCase(options.component);
+                  var template = '<' + componentHandle + ' name="component" close="close"';
+                  var inputKeys = Object.keys(options.bindings || {})
+                  if (inputKeys.length > 0) {
+                    var bindingAttributes = inputKeys.map(function(inputKey) {
+                      return kebabCase(inputKey) + '="' + inputKey + '"';
+                    });
+                    template += ' ' + bindingAttributes.join(' ');
+                  }
+                  template += '></' + componentHandle + '>';
+
+                  return template;
+                };
+
+                var setupComponentOptions = function(options) {
+                  options.controller = buildComponentController(options);
+                  options.template = buildComponentTemplate(options);
+                };
+
                 self.showModal = function (options) {
+                    if (options.component) {
+                      setupComponentOptions(options);
+                    }
 
                     //  Get the body of the document, we'll add the modal to this.
                     var body = angular.element($document[0].body);

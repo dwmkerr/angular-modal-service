@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/dwmkerr/angular-modal-service/branch/master/graph/badge.svg)](https://codecov.io/gh/dwmkerr/angular-modal-service)
 [![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
-[![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/) [![GuardRails badge](https://badges.production.guardrails.io/dwmkerr/angular-modal-service.svg)](https://www.guardrails.io)
 
 Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 

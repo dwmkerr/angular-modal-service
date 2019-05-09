@@ -1,4 +1,4 @@
-describe('controller', () => {
+describe('component', () => {
   let ModalService;
   let $rootScope;
 

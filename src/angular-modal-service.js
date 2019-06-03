@@ -63,7 +63,62 @@ module.provider('ModalService', function ModalServiceProvider() {
                     }
                 };
 
+                /*
+                 *  Creates a controller with scope bindings
+                 */
+                var buildComponentController = function(options) {
+                  return ['$scope', 'close', function($scope, close) {
+                    $scope.close = close;
+                    $scope.bindings = options.bindings;
+                  }];
+                };
+
+                /*
+                 *  Creates a component template
+                 *
+                 *  Input:
+                 *
+                 *    {
+                 *       component: 'myComponent',
+                 *       bindings: {
+                 *         name: 'Foo',
+                 *         phoneNumber: '123-456-7890'
+                 *       }
+                 *    }
+                 *
+                 *  Output:
+                 *
+                 *    '<my-component close="close" name="bindings.name" phone-number="bindings.phoneNumber"></my-component>'
+                 */
+                var buildComponentTemplate = function(options) {
+                  var kebabCase = function(camelCase) {
+                    var skewer = function(_m, c1, c2) { return [c1, c2].join('-').toLowerCase(); };
+                    return camelCase.replace(/([a-z0-9])([A-Z])/g, skewer);
+                  };
+
+                  var componentHandle = kebabCase(options.component);
+                  var template = '<' + componentHandle + ' close="close"';
+                  var inputKeys = Object.keys(options.bindings || {})
+                  if (inputKeys.length > 0) {
+                    var bindingAttributes = inputKeys.map(function(inputKey) {
+                      return kebabCase(inputKey) + '="bindings.' + inputKey + '"';
+                    });
+                    template += ' ' + bindingAttributes.join(' ');
+                  }
+                  template += '></' + componentHandle + '>';
+
+                  return template;
+                };
+
+                var setupComponentOptions = function(options) {
+                  options.controller = buildComponentController(options);
+                  options.template = buildComponentTemplate(options);
+                };
+
                 self.showModal = function (options) {
+                    if (options.component) {
+                      setupComponentOptions(options);
+                    }
 
                     //  Get the body of the document, we'll add the modal to this.
                     var body = angular.element($document[0].body);

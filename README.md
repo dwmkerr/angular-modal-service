@@ -6,12 +6,12 @@
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
 [![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/) [![GuardRails badge](https://badges.production.guardrails.io/dwmkerr/angular-modal-service.svg)](https://www.guardrails.io)
 
-Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
-
+Modal service for AngularJS - supports creating popups and modals via a service. Full support for Angular 1.5+ components. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 
 <!-- vim-markdown-toc GFM -->
 
 * [Usage](#usage)
+* [Support for AngularJS 1.5.x Components](#support-for-angularjs-15x-components)
     * [ShowModal Options](#showmodal-options)
     * [The Modal Object](#the-modal-object)
     * [The Modal Controller](#the-modal-controller)
@@ -415,6 +415,7 @@ Some people have been able to get them working (see https://github.com/dwmkerr/a
 
 Thanks go the the following contributors:
 
+* [DougKeller](https://github.com/DougKeller) - Adding support for Angular 1.5 components.
 * [joshvillbrandt](https://github.com/joshvillbrandt) - Adding support for `$templateCache`.
 * [cointilt](https://github.com/cointilt) - Allowing the modal to be added to a custom element, not just the body.
 * [kernowjoe](https://github.com/kernowjoe) - controllerAs

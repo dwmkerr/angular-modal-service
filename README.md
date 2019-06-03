@@ -142,6 +142,22 @@ ModalService.showModal({
 
 ```
 
+
+## Support for AngularJS 1.5.x Components
+
+It's also possible to specify a component, rather than a template and controller. This can be done by providing a `component` and an optional `bindings` value to the `showModal` function.
+
+```js
+ModalService.showModal({
+  component: 'myComponent',
+  bindings: {
+    name: 'Foo',
+    myRecord: { id: '123' }
+  }
+})
+```
+
+
 ### ShowModal Options
 
 The `showModal` function takes an object with these fields:
@@ -153,6 +169,8 @@ The `showModal` function takes an object with these fields:
   HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
+* `component`: Renders a modal with the provided component as its template
+* `bindings`: Optional. If `component` is provided, all properties in `bindings` will be bound to the rendered `component`.
 * `appendElement`: The custom angular element or selector (such as `#element-id`) to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
@@ -236,14 +254,14 @@ To configure the default options that will apply to all modals call `configureOp
 
 ```js
 app.config(["ModalServiceProvider", function(ModalServiceProvider) {
-  
+
   ModalServiceProvider.configureOptions({closeDelay:500});
 
 }]);
 ```
 
 Here are the available global options:
-* `closeDelay` - This sets the default number of milliseconds to use in the close handler. This delay will also be used in the `closeModals` method and as the default for `locationChangeSuccess`. 
+* `closeDelay` - This sets the default number of milliseconds to use in the close handler. This delay will also be used in the `closeModals` method and as the default for `locationChangeSuccess`.
 
 ## Developing
 

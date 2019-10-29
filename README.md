@@ -1,18 +1,31 @@
 # angular-modal-service
 
-[![Build Status](https://secure.travis-ci.org/dwmkerr/angular-modal-service.png?branch=master)](https://travis-ci.org/dwmkerr/angular-modal-service)
-[![Coverage Status](https://coveralls.io/repos/dwmkerr/angular-modal-service/badge.png?branch=master)](https://coveralls.io/r/dwmkerr/angular-modal-service?branch=master)
+[![CircleCI](https://circleci.com/gh/dwmkerr/angular-modal-service.svg?style=shield)](https://circleci.com/gh/dwmkerr/angular-modal-service)
+[![codecov](https://codecov.io/gh/dwmkerr/angular-modal-service/branch/master/graph/badge.svg)](https://codecov.io/gh/dwmkerr/angular-modal-service)
 [![Dependencies](https://david-dm.org/dwmkerr/angular-modal-service.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service)
 [![Dev Dependencies](https://david-dm.org/dwmkerr/angular-modal-service/dev-status.svg?theme=shields.io)](https://david-dm.org/dwmkerr/angular-modal-service#info=devDependencies)
-[![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/dwmkerr/angular-modal-service.svg)](https://greenkeeper.io/) [![GuardRails badge](https://badges.production.guardrails.io/dwmkerr/angular-modal-service.svg)](https://www.guardrails.io)
 
-Modal service for AngularJS - supports creating popups and modals via a service. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
+Modal service for AngularJS - supports creating popups and modals via a service. Full support for Angular 1.5+ components. See [a quick fiddle](http://jsfiddle.net/dwmkerr/8MVLJ/) or a full set of samples at [dwmkerr.github.io/angular-modal-service](http://dwmkerr.github.io/angular-modal-service).
 
-1. [Usage](#usage)
-2. [Developing](#developing)
-3. [Tests](#tests)
-4. [FAQ & Troubleshooting](#faq)
-5. [Thanks](#thanks)
+<!-- vim-markdown-toc GFM -->
+
+* [Usage](#usage)
+* [Support for AngularJS 1.5.x Components](#support-for-angularjs-15x-components)
+    * [ShowModal Options](#showmodal-options)
+    * [The Modal Object](#the-modal-object)
+    * [The Modal Controller](#the-modal-controller)
+    * [Closing All Modals](#closing-all-modals)
+    * [Animation](#animation)
+    * [Error Handing](#error-handing)
+    * [Global Options Configuration](#global-options-configuration)
+* [Developing](#developing)
+* [Tests](#tests)
+* [Releasing](#releasing)
+* [FAQ](#faq)
+* [Thanks](#thanks)
+
+<!-- vim-markdown-toc -->
 
 ## Usage
 
@@ -87,7 +100,7 @@ The `close` function is automatically injected to the modal controller and takes
 object (which is passed to the `close` and `closed` promises used by the caller). It can
 take an optional second parameter, the number of milliseconds to wait before destroying the
 DOM element. This is so that you can have a delay before destroying the DOM element if you
-are animating the closure.
+are animating the closure. See [Global Config](#global-options-configuration) for setting a default delay.
 
 Now just make sure the `close` function is called by your modal controller when the modal
 should be closed and that's it. Quick hint - if you are using Bootstrap for your modals,
@@ -126,8 +139,26 @@ ModalService.showModal({
   },
   controllerAs : "futurama"
 })
+
 ```
-#### ShowModal Options
+
+
+## Support for AngularJS 1.5.x Components
+
+It's also possible to specify a component, rather than a template and controller. This can be done by providing a `component` and an optional `bindings` value to the `showModal` function.
+
+```js
+ModalService.showModal({
+  component: 'myComponent',
+  bindings: {
+    name: 'Foo',
+    myRecord: { id: '123' }
+  }
+})
+```
+
+
+### ShowModal Options
 
 The `showModal` function takes an object with these fields:
 
@@ -138,13 +169,15 @@ The `showModal` function takes an object with these fields:
   HTML for the modal.
 * `inputs`: A set of values to pass as inputs to the controller. Each value provided
   is injected into the controller constructor.
-* `appendElement`: The custom angular element to append the modal to instead of default `body` element.
+* `component`: Renders a modal with the provided component as its template
+* `bindings`: Optional. If `component` is provided, all properties in `bindings` will be bound to the rendered `component`.
+* `appendElement`: The custom angular element or selector (such as `#element-id`) to append the modal to instead of default `body` element.
 * `scope`: Optional. If provided, the modal controller will use a new scope as a child of `scope` (created by calling `scope.$new()`) rather than a new scope created as a child of `$rootScope`.
 * `bodyClass`: Optional. The custom css class to append to the body while the modal is open (optional, useful when not using Bootstrap).
 * `preClose`: Optional. A function which will be called before the process of closing a modal starts. The signature is `function preClose(modal, result, delay)`. It is provided the `modal` object, the `result` which was passed to `close` and the `delay` which was passed to close.
 * `locationChangeSuccess`: Optional. Allows the closing of the modal when the location changes to be configured. If no value is set, the modal is closed immediately when the `$locationChangeSuccess` event fires. If `false` is set, event is not fired. If a number `n` is set, then the event fires after `n` milliseconds.
 
-#### The Modal Object
+### The Modal Object
 
 The `modal` object returned by `showModal` has this structure:
 
@@ -156,7 +189,7 @@ The `modal` object returned by `showModal` has this structure:
 * `modal.close` - A promise which is resolved when the modal `close` function is called.
 * `modal.closed` - A promise which is resolved once the modal has finished animating out of the DOM.
 
-#### The Modal Controller
+### The Modal Controller
 
 The controller that is used for the modal always has one extra parameter injected, a function
 called `close`. Call this function with any parameter (the result). This result parameter is
@@ -215,6 +248,21 @@ ModalService.showModal({
 });
 ```
 
+### Global Options Configuration
+
+To configure the default options that will apply to all modals call `configureOptions` on the `ModalServiceProvider`.
+
+```js
+app.config(["ModalServiceProvider", function(ModalServiceProvider) {
+
+  ModalServiceProvider.configureOptions({closeDelay:500});
+
+}]);
+```
+
+Here are the available global options:
+* `closeDelay` - This sets the default number of milliseconds to use in the close handler. This delay will also be used in the `closeModals` method and as the default for `locationChangeSuccess`.
+
 ## Developing
 
 To work with the code, just run:
@@ -260,7 +308,7 @@ To create a release:
 
 Having problems? Check this FAQ first.
 
-#### I'm using a Bootstrap Modal and the backdrop doesn't fade away
+**I'm using a Bootstrap Modal and the backdrop doesn't fade away**
 
 This can happen if your modal template contains more than one top level element.
 Imagine this case:
@@ -282,7 +330,7 @@ It will try and make both elements into a modal. This means both elements will g
 In this case, either remove the extra elements, or find the specific element you need
 from the provided `modal.element` property.
 
-#### The backdrop STILL does not fade away after I call `close` OR I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?
+**The backdrop STILL does not fade away after I call `close` OR I don't want to use the 'data-dismiss' attribute on a button, how can I close a modal manually?**
 
 You can check the 'Complex' sample ([complexcontroller.js](samples/complex/complexcontroller.js)). The 'Cancel' button closes without using the `data-dismiss` attribute. In this case, just use the `preClose` option to ensure the bootstrap modal is removed:
 
@@ -316,7 +364,7 @@ app.controller('ExampleModalController', [
 }]);
 ```
 
-#### I'm using a Bootstrap Modal and the dialog doesn't show up
+**I'm using a Bootstrap Modal and the dialog doesn't show up**
 
 Code is entered exactly as shown the example but when the showAModal() function fires the modal template html is appended to the body while the console outputs:
 
@@ -326,7 +374,7 @@ TypeError: undefined is not a function
 
 Pointing to the code: `modal.element.modal();`. This occurs if you are using a Bootstap modal but have not included the Bootstrap JavaScript. The recommendation is to include the modal JavaScript before AngularJS.
 
-#### How can I prevent a Bootstrap modal from being closed?
+**How can I prevent a Bootstrap modal from being closed?**
 
 If you are using a bootstrap modal and want to make sure that only the `close` function will close the modal (not a click outside or escape), use the following attributes:
 
@@ -353,7 +401,7 @@ ModalService.showModal({
 
 Thanks [lindamarieb](https://github.com/lindamarieb) and [ledgeJumper](https://github.com/ledgeJumper)!
 
-#### Problems with Nested Modals
+**Problems with Nested Modals**
 
 If you are trying to nest Bootstrap modals, you will run into issues. From Bootstrap:
 
@@ -367,6 +415,7 @@ Some people have been able to get them working (see https://github.com/dwmkerr/a
 
 Thanks go the the following contributors:
 
+* [DougKeller](https://github.com/DougKeller) - Adding support for Angular 1.5 components.
 * [joshvillbrandt](https://github.com/joshvillbrandt) - Adding support for `$templateCache`.
 * [cointilt](https://github.com/cointilt) - Allowing the modal to be added to a custom element, not just the body.
 * [kernowjoe](https://github.com/kernowjoe) - controllerAs
@@ -376,3 +425,4 @@ Thanks go the the following contributors:
 * [kernowjoe](https://github.com/kernowjoe) - Robustness around locationChange
 * [arthur-xavier](https://github.com/arthur-xavier) - Robustness when `body` element changes.
 * [stormpooper](https://github.com/StormPooper) - The new `bodyClass` feature.
+* [decherneyge](https://github.com/decherneyge) - Provider features, global configuration, `appendElement` improvements.

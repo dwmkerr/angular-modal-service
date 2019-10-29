@@ -1,3 +1,5 @@
+var sinon = require('sinon');
+
 describe('template', () => {
 
   var ModalService = null;
@@ -23,6 +25,7 @@ describe('template', () => {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
     $templateCache.removeAll();
+    sinon.restore();
   }));
 
   it('should http get the specified template url', function() {
@@ -33,7 +36,7 @@ describe('template', () => {
       controller: "TemplateController",
       templateUrl: "some/template.html"
     }).then(function(modal) {
-      expect(modal).not.toBe(null);
+      expect(modal).not.to.equal(null);
     });
 
     $httpBackend.flush();
@@ -48,7 +51,7 @@ describe('template', () => {
     }).then(function(modal) {
       
     }).catch(function(error) {
-      expect(error).not.toBe(null);
+      expect(error).not.to.equal(null);
     });
 
     $httpBackend.flush();
@@ -66,15 +69,16 @@ describe('template', () => {
     }).then(function(modal) {
 
       //  The template should now be cached...
-      spyOn($templateCache, 'get').and.callThrough();
+      sinon.spy($templateCache, 'get');
 
       ModalService.showModal({
         controller: "TemplateController",
         templateUrl: "templatetobecached.html"
       }).then(function(modal) {
         //  ...so get should have been called.
-        expect(modal).not.toBe(null);
-        expect($templateCache.get).toHaveBeenCalledWith('templatetobecached.html');
+        expect(modal).not.to.equal(null);
+        expect($templateCache.get.called).to.equal(true);
+        expect($templateCache.get.getCall(0).args[0]).to.equal('templatetobecached.html');
       });
 
     });
@@ -92,15 +96,15 @@ describe('template', () => {
     $http.get('templatetobeprecached.html', {cache: $templateCache});  
 
     //  The template should now be cached...
-    spyOn($templateCache, 'get').and.callThrough();
+      sinon.spy($templateCache, 'get');
 
     ModalService.showModal({
       controller: "TemplateController",
       templateUrl: "templatetobeprecached.html"
     }).then(function(modal) {
       //  ...so get should have been called.
-      expect(modal).not.toBe(null);
-      expect($templateCache.get).toHaveBeenCalledWith('templatetobeprecached.html');
+      expect($templateCache.get.called).to.equal(true);
+      expect($templateCache.get.getCall(0).args[0]).to.equal('templatetobeprecached.html');
     });
 
     $httpBackend.flush();

@@ -31,14 +31,14 @@ describe('closeAll', () => {
       controller: "Modal1Controller",
       template: "<div>Modal 1</div>"
     }).then((modal) => {
-      modal.close.then((result) => { expect(result).toBe('closeModals'); });
+      modal.close.then((result) => { expect(result).to.equal('closeModals'); });
     }).then(() => {
       //  Open another...
       ModalService.showModal({
         controller: "Modal2Controller",
         template: "<div>Modal 2</div>"
       }).then((modal) => {
-        modal.close.then((result) => { expect(result).toBe('closeModals'); });
+        modal.close.then((result) => { expect(result).to.equal('closeModals'); });
       });
     }).then(() => {
       //  Then close them both...

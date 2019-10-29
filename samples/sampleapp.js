@@ -1,6 +1,12 @@
 //  Build our app module, with a dependency on the angular modal service.
 var app = angular.module('sampleapp', ['angularModalService', 'ngAnimate']);
 
+app.config(["ModalServiceProvider", function(ModalServiceProvider) {
+  //uncomment this line to set a default close delay
+  //ModalServiceProvider.configureOptions({closeDelay:500});
+
+}]);
+
 app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
 
   $scope.yesNoResult = null;
@@ -33,11 +39,12 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       }
     }).then(function(modal) {
       modal.element.modal();
+
       modal.close.then(function(result) {
         if (!result) {
           $scope.complexResult = "Modal forcibly closed..."
         } else {
-          $scope.complexResult  = "Name: " + result.name + ", age: " + result.age;
+          $scope.complexResult  = "Name: " + result.name + ", age: " + result.age + ", source: " + result.source;
         }
       });
     });

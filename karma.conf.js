@@ -3,64 +3,56 @@ var webpackConfig = require('./webpack.config.js');
 
 //  We'll use the webpack config already defined, but take
 //  away the entrypoint.
-webpackConfig.entry = {};
+webpackConfig.mode = 'development';
+
+//  Normally we exlcude angular from the packed bundle for consumers. But when
+//  testing, we need it. So make sure to remove any excludes.
 webpackConfig.externals = {};
-//  Add isparta in when running karma tests only
-webpackConfig.module.preLoaders.push({
+
+webpackConfig.module.rules.push({
   test: /\.js$/,
-  include: path.resolve('src/'),
-  loader: 'isparta'
+  use: { loader: 'istanbul-instrumenter-loader' },
+  include: path.resolve('src')
 });
+
+//  Add isparta in when running karma tests only
+// webpackConfig.module.preLoaders.push({
+  // test: /\.js$/,
+  // include: path.resolve('src/'),
+  // loader: 'isparta'
+// });
 
 module.exports = function(config) {
   config.set({
 
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
 
     // list of files / patterns to load in the browser
     files: [
-      //  Dependencies
-      // './node_modules/angular/angular.js',
-      // './node_modules/angular-mocks/angular-mocks.js',
-
-      //'src/angular-modal-service.js',
-
       //  Our specs
-      './test/index.js'
+      'test/index.js',
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //'../test/*.spec.js': ['webpack'],
-      './test/index.js': ['webpack'],
-      'src/angular-modal-service.js': ['webpack', 'coverage']
+      'test/index.js': ['webpack', 'sourcemap']
     },
 
     webpack: webpackConfig,
 
-    webpackMiddleware: {
-      noInfo: true // no spam!
-    },  
-
     // test results reporter to use
-    reporters: ['progress', 'coverage', 'junit'],
+    reporters: ['progress', 'coverage-istanbul', 'junit'],
 
-    // tell karma how you want the coverage results
-    coverageReporter: {
-      reporters: [{
-          type: 'lcov',
-          dir: 'build/coverage/'
-        },{
-          type: 'html', 
-          dir: 'build/coverage/'
-        }
-      ]
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly', 'text-summary'],
+      dir: path.join(__dirname, './artifacts/coverage'),
+      fixWebpackSourcePaths: true,
+      skipFilesWithNoCoverage: true,
     },
 
-    // junit output is used by jenkins  
     junitReporter: {
-      outputDir: 'build',
+      outputDir: './artifacts/tests',
       outputFile: 'test-results.xml',
       useBrowserName: false
     },
@@ -80,12 +72,11 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: ['ChromeHeadless'],
 
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,
 
     background: false
-
   });
 };

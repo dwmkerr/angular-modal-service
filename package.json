@@ -46,7 +46,7 @@
     "mocha": "^6.0.0",
     "phantomjs-prebuilt": "2.1.x",
     "sinon": "^7.0.0",
-    "uglify-js": "^3.3.9",
+    "uglify-js": "^3.6.8",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"

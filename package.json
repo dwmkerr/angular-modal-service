@@ -43,7 +43,7 @@
     "karma-phantomjs-launcher": "1.0.x",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
-    "mocha": "^6.0.0",
+    "mocha": "^7.0.1",
     "phantomjs-prebuilt": "2.1.x",
     "sinon": "^7.0.0",
     "uglify-js": "^3.3.9",

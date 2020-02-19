@@ -45,7 +45,7 @@
     "karma-webpack": "^4.0.2",
     "mocha": "^7.0.1",
     "phantomjs-prebuilt": "2.1.x",
-    "sinon": "^7.0.0",
+    "sinon": "^9.0.0",
     "uglify-js": "^3.3.9",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.1.2",

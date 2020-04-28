@@ -1,3 +1,9 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.15.4](https://github.com/dwmkerr/angular-modal-service/compare/v0.15.3...v0.15.4) (2020-04-28)
+
 ## v0.15.0
 
 * Support for a globally configurable close timeout. Thanks [decherneyge](https://github.com/decherneyge).

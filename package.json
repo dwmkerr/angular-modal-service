@@ -1,13 +1,14 @@
 {
   "name": "angular-modal-service",
-  "version": "0.15.3",
+  "version": "0.15.4",
   "description": "AngularJS Service for showing Modals and Popups",
   "main": "./index.js",
   "scripts": {
     "build": "webpack --mode=production && uglifyjs ./dst/angular-modal-service.js --compress --mangle -o ./dst/angular-modal-service.min.js --source-map",
     "start": "webpack-dev-server --inline --content-base ./samples",
     "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js",
-    "test-debug": "karma start --no-single-run --browsers ChromeHeadless karma.conf.js"
+    "test-debug": "karma start --no-single-run --browsers ChromeHeadless karma.conf.js",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "karma-webpack": "^4.0.2",
     "mocha": "^7.1.2",
     "sinon": "^7.0.0",
+    "standard-version": "^7.1.0",
     "uglify-js": "^3.3.9",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",

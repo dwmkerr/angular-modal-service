@@ -301,7 +301,7 @@ To create a release:
 
 - Create the `dst` pack with `npm run build`
 - Merge your work to master
-- Use `npm version` to bump, e.g. `npm version patch`
+- Use `npm run release` to tag, bump the version numbers and update the changelog
 - Push and deploy `git push --follow-tags && npm publish`
 
 ## FAQ

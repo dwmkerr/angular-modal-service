@@ -38,7 +38,7 @@
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-coverage": "^2.0.2",
-    "karma-coverage-istanbul-reporter": "^2.0.4",
+    "karma-coverage-istanbul-reporter": "^3.0.0",
     "karma-junit-reporter": "^2.0.1",
     "karma-mocha": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",

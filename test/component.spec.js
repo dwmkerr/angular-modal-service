@@ -15,6 +15,10 @@ describe('component', () => {
     },
     controller: function() {
       component = this;
+
+      this.$onInit = () => {
+        this.isSomeRecordDefined = angular.isDefined(this.someRecord);
+      };
     }
   });
 
@@ -44,5 +48,9 @@ describe('component', () => {
 
   it('binds the close function to the component', () => {
     expect(component.close).to.equal(ModalService.openModals[0].close);
+  });
+
+  it('ensures scope bindings are available before initializing the component', function() {
+    expect(component.isSomeRecordDefined).to.equal(true);
   });
 });

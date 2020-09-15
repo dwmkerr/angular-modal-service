@@ -14,7 +14,7 @@
     <!-- Boostrap, from CDN. -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    
+
     <!-- Angular, from CDN. -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-animate.min.js"></script>
@@ -26,6 +26,7 @@
     <script src="sampleapp.js"></script>
     <script src="yesno/yesnocontroller.js"></script>
     <script src="complex/complexcontroller.js"></script>
+    <script src="component/component.js"></script>
     <link href="custom/custom.css" rel="stylesheet">
     <script src="custom/customcontroller.js"></script>
     <style>
@@ -69,6 +70,7 @@
           <ul class="nav navbar-nav">
             <li><a href="#yesno">Yes No Modal</a></li>
             <li><a href="#complex">Complex Modal</a></li>
+            <li><a href="#component">Component Modal</a></li>
             <li><a href="#custom">Custom Modal</a></li>
             <li><a href="https://github.com/dwmkerr/angular-modal-service">GitHub</a></li>
           </ul>
@@ -101,7 +103,7 @@
       <ul>
       <li>The Modal Template - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/yesno/yesno.html">yesno.html</a></li>
       <li>The Modal Controller - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/yesno/yesnocontroller.js">yesnocontroller.js</a></li>
-      <li>The Sample Controller (see 'showYesNo') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L10">sampleapp.js</a></li>
+      <li>The Sample Controller (see 'showYesNo') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L17">sampleapp.js</a></li>
       </ul>
       </div>
 
@@ -122,7 +124,26 @@
       <ul>
       <li>The Modal Template - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/complex/complex.html">complex.html</a></li>
       <li>The Modal Controller - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/complex/complexcontroller.js">complexcontroller.js</a></li>
-      <li>The Sample Controller (see 'showComplex') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L24">sampleapp.js</a></li>
+      <li>The Sample Controller (see 'showComplex') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L32">sampleapp.js</a></li>
+      </ul>
+      </div>
+
+      <hr />
+
+      <a id="component"></a>
+      <div class="sample">
+      <h3>A Component Modal</h3>
+
+      <p>This modal will display a component with any bindings provided to it.</p>
+
+      <p><a href class="btn btn-default btn-lg " ng-click="showComponent()">Show Component</a></p>
+
+      <pre>{{componentUser.name}}</pre>
+
+      <p>See the code that makes up this sample:</p>
+      <ul>
+      <li>The Component - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/component/component.js">component.js</a></li>
+      <li>The Sample Controller (see 'showComponent') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L55">sampleapp.js</a></li>
       </ul>
       </div>
 
@@ -141,7 +162,7 @@
       <ul>
       <li>The Modal Template - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/custom/custom.html">custom.html</a></li>
       <li>The Modal Controller - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/custom/customcontroller.js">customcontroller.js</a></li>
-      <li>The Sample Controller (see 'showCustom') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L41">sampleapp.js</a></li>
+      <li>The Sample Controller (see 'showCustom') - <a href="https://github.com/dwmkerr/angular-modal-service/blob/master/samples/sampleapp.js#L73">sampleapp.js</a></li>
       </ul>
       </div>
 

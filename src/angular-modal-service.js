@@ -87,7 +87,7 @@ module.provider('ModalService', function ModalServiceProvider() {
                   };
 
                   var componentHandle = kebabCase(options.component);
-                  var template = '<' + componentHandle + ' ng-if="::bindings" close="close"';
+                  var template = '<' + componentHandle + ' close="close"';
                   var inputKeys = Object.keys(options.bindings || {})
                   if (inputKeys.length > 0) {
                     var bindingAttributes = inputKeys.map(function(inputKey) {

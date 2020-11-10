@@ -64,16 +64,6 @@ module.provider('ModalService', function ModalServiceProvider() {
                 };
 
                 /*
-                 *  Creates a controller with scope bindings
-                 */
-                var buildComponentController = function(options) {
-                  return ['$scope', 'close', function($scope, close) {
-                    $scope.close = close;
-                    $scope.bindings = options.bindings;
-                  }];
-                };
-
-                /*
                  *  Creates a component template
                  *
                  *  Input:
@@ -97,11 +87,12 @@ module.provider('ModalService', function ModalServiceProvider() {
                   };
 
                   var componentHandle = kebabCase(options.component);
-                  var template = '<' + componentHandle + ' close="close"';
+                  var template = '<' + componentHandle + (options.ngxBindings ? ' [close]="close"' : ' close="close"');
                   var inputKeys = Object.keys(options.bindings || {})
                   if (inputKeys.length > 0) {
                     var bindingAttributes = inputKeys.map(function(inputKey) {
-                      return kebabCase(inputKey) + '="bindings.' + inputKey + '"';
+                      var attr = options.ngxBindings ? '[' + kebabCase(inputKey) + ']' : kebabCase(inputKey);
+                      return attr + '="bindings.' + inputKey + '"';
                     });
                     template += ' ' + bindingAttributes.join(' ');
                   }
@@ -110,9 +101,22 @@ module.provider('ModalService', function ModalServiceProvider() {
                   return template;
                 };
 
+                /*
+                 *  Creates a controller with scope bindings
+                 */
+                var buildComponentController = function(options) {
+                  return ['$scope', 'close', '$element', '$compile', function($scope, close, $element, $compile) {
+                    $scope.close = close;
+                    $scope.bindings = options.bindings;
+
+                    // Lazily render component to ensure bindings are on the scope before component is initialized.
+                    $element.append($compile(buildComponentTemplate(options))($scope));
+                  }];
+                };
+
                 var setupComponentOptions = function(options) {
                   options.controller = buildComponentController(options);
-                  options.template = buildComponentTemplate(options);
+                  options.template = '<div></div>';
                 };
 
                 self.showModal = function (options) {

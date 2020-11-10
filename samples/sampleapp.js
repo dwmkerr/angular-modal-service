@@ -7,11 +7,12 @@ app.config(["ModalServiceProvider", function(ModalServiceProvider) {
 
 }]);
 
-app.controller('SampleController', ['$scope', 'ModalService', function($scope, ModalService) {
+app.controller('SampleController', ['$scope', 'ModalService', '$timeout', function($scope, ModalService, $timeout) {
 
   $scope.yesNoResult = null;
   $scope.complexResult = null;
   $scope.customResult = null;
+  $scope.componentUser = { name: 'AngularJS User' };
 
   $scope.showYesNo = function() {
 
@@ -49,6 +50,23 @@ app.controller('SampleController', ['$scope', 'ModalService', function($scope, M
       });
     });
 
+  };
+
+  $scope.showComponent = () => {
+    ModalService.showModal({
+      component: 'sampleComponent',
+      bindings: {
+        user: $scope.componentUser
+      },
+      preClose: (modal) => { modal.element.find('.modal').modal('hide'); }
+    }).then((modal) => {
+      // Wait for controller to append component
+      $timeout(() => modal.element.find('.modal').modal());
+
+      modal.close.then((result) => {
+        $scope.componentUser.name = result;
+      });
+    });
   };
 
   $scope.showCustom = function() {

@@ -143,7 +143,7 @@ ModalService.showModal({
 ```
 
 
-## Support for AngularJS 1.5.x Components
+### Support for AngularJS 1.5.x Components
 
 It's also possible to specify a component, rather than a template and controller. This can be done by providing a `component` and an optional `bindings` value to the `showModal` function.
 
@@ -157,6 +157,9 @@ ModalService.showModal({
 })
 ```
 
+**Disclaimer:** ModalService supports 1.5.x components by wrapping them in a custom-build template and passing in bindings via the controller's scope. This is not a perfect implementation, and is only intended to adhere to AngularJS best practices by avoiding controller/view flows.
+As such, attribute (@) and output (&) bindings will not work correctly. Instead of defining an output binding, a function can be provided to the component via a 1-way binding (<).
+([Issue 270](https://github.com/dwmkerr/angular-modal-service/issues/270))
 
 ### ShowModal Options
 

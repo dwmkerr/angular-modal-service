@@ -87,11 +87,12 @@ module.provider('ModalService', function ModalServiceProvider() {
                   };
 
                   var componentHandle = kebabCase(options.component);
-                  var template = '<' + componentHandle + ' close="close"';
+                  var template = '<' + componentHandle + (options.ngxBindings ? ' [close]="close"' : ' close="close"');
                   var inputKeys = Object.keys(options.bindings || {})
                   if (inputKeys.length > 0) {
                     var bindingAttributes = inputKeys.map(function(inputKey) {
-                      return kebabCase(inputKey) + '="bindings.' + inputKey + '"';
+                      var attr = options.ngxBindings ? '[' + kebabCase(inputKey) + ']' : kebabCase(inputKey);
+                      return attr + '="bindings.' + inputKey + '"';
                     });
                     template += ' ' + bindingAttributes.join(' ');
                   }

@@ -50,5 +50,9 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/dwmkerr"
   }
 }
